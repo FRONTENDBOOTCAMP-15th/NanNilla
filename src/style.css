@@ -1,1 +1,39 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+:root {
+  /* Black ~ White */
+  --black: #111111;
+  --gray-dark: #707072;
+  --gray-medium: #9e9ea0;
+  --gray-light: #cacacb;
+  --gray-lighter: #e5e5e5;
+  --gray-lightest: #f5f5f5;
+  --white: #ffffff;
+
+  /* Red / Green */
+  --red: #9e3500;
+  --green: #007d48;
+
+  /* Black 35% 투명도 */
+  --black-35: rgba(17, 17, 17, 0.35);
+}
+
+@theme {
+  /* Color 변수 정의 */
+  --color-nike-black: var(--black);
+  --color-nike-gray-dark: var(--gray-dark);
+  --color-nike-gray-medium: var(--gray-medium);
+  --color-nike-gray-light: var(--gray-light);
+  --color-nike-gray-lighter: var(--gray-lighter);
+  --color-nike-gray-lightest: var(--gray-lightest);
+  --color-nike-white: var(--white);
+  --color-nike-red: var(--red);
+  --color-nike-green: var(--green);
+  --color-nike-black-35: var(--black-35);
+
+  /* 웹 폰트(Pretendard) 사용자 정의 */
+  --font-Noto: 'Noto Sans KR', sans-serif;
+
+  /* 브레이크포인트 */
+  --breakpoint-nikeDesktop: 48rem;
+}
