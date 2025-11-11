@@ -1,0 +1,26 @@
+meta {
+  name: 회원가입
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{url}}/users
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "u3@gmail.com",
+    "password": "11111111",
+    "name": "네오",
+    "type": "user",
+    "loginType": "email",
+    "image": "https://res.cloudinary.com/ddedslqvv/image/upload/v1762758667/nike/l6wt5gQPTd.webp",
+    "extra": {
+      "birthday": "1988.05.13"
+    }
+  }
+  
+}
