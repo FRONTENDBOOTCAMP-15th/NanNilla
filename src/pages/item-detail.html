@@ -12,7 +12,7 @@
       <div class="DetailPriceInfo">
         <p>149,000원</p>
         <s>249,000원</s>
-        <strong>10% 할인</strong>
+        <span>10% 할인</span>
       </div>
 
       <figure class="DetailItemImage">
@@ -25,11 +25,10 @@
         <img src="/src/images/List.png" alt="테이텀 2PF 아토믹 핑크 색상 이미지" />
       </div>
 
-      <div class="DetailSizeSelect">
-        <h2>사이즈 선택</h2>
-        <a href="" id="sr-message-guide">사이즈 가이드</a>
-        <span id="sr-message-guide" class="sr-only">클릭 시 사이즈 가이드 링크로 이동합니다.</span>
-        <div class="SizeButtons">
+      <fieldset class="DetailSizeSelect">
+        <legend>사이즈 선택</legend>
+        <a href="" aria-label="사이즈 가이드, 클릭시 사이즈 가이드 링크로 이동">사이즈 가이드</a>
+        <div class="SizeButtons" role="group" aria-label="사이즈 옵션">
           <button type="button">250</button>
           <button type="button">255</button>
           <button type="button">260</button>
@@ -43,17 +42,14 @@
           <button type="button">305</button>
           <button type="button">310</button>
         </div>
-      </div>
+      </fieldset>
 
       <div class="DetailWantToBuy">
-        <button type="button" id="sr-message-cart">장바구니</button>
-        <span id="sr-message-cart" class="sr-only">클릭 시 해당 상품을 장바구니에 담습니다.</span>
-
-        <button type="button" id="sr-message-wish">
+        <button type="button" aria-label="장바구니, 클릭 시 해당 상품을 장바구니에 담음">장바구니</button>
+        <button type="button" aria-label="위시리스트, 클릭 시 해당 상품을 위시리스트에 담음">
           위시리스트
-          <img src="/src/images/Vector.svg" alt="하트 벡터 이미지" />
+          <img src="/src/images/Vector.svg" alt="" />
         </button>
-        <span id="sr-message-wish" class="sr-only">클릭 시 해당 상품을 위시리스트에 담습니다.</span>
       </div>
 
       <p>
@@ -70,17 +66,18 @@
     <div class="DetailInfo">
       <h2>상품 상세 정보 보기</h2>
       <details>
-        <summary id="sr-message-delivery-return">무료 배송 및 반품</summary>
-        <span id="sr-message-delivery-return" class="sr-only">클릭 시 배송 정보 및 반품 정보에 대해 확인할 수 있습니다.</span>
+        <summary aria-label="무료 배송 및 반품, 클릭 시 배송 및 반품 정보에 대해 확인 가능">무료 배송 및 반품</summary>
         <p>
           일반 배송  • 배송지역: 전국 (일부 지역 제외) • 배송비: 무료배송 • 제품 수령일로부터 14일 이내 제품에 대해서만 무료 반품 서비스가 가능합니다. 오늘도착 서비스 • 이용시간: 오전 10시 30분까지 결제 시, 당일 도착 (일요일, 공휴일 제외) • 서비스지역: 서울∙과천∙의왕∙군포∙수원∙성남∙안양시 전체,
           용인시 수지구∙기흥구, 부천시 중동∙상동∙심곡동 • 서비스비용: 5,000원 A/S 안내  • 나이키 온라인에서 구매하신 제품에 대한 A/S 는 나이키코리아 고객센터(080-022-0182)에서 유선으로만 접수 가능합니다.
         </p>
-        <summary id="sr-message-review">
+      </details>
+
+      <details>
+        <summary aria-label="리뷰, 클릭 시 리뷰 조회 가능">
           리뷰(2)
           <img src="/src/images/Group 16.svg" alt="평점 별 5개" />
         </summary>
-        <span id="sr-message-review" class="sr-only">클릭 시 구매자들이 작성한 리뷰를 확인할 수 있습니다. </span>
 
         <img src="/src/images/Group 16.svg" alt="평점 별 5개" />
         <p>4.7점</p>
@@ -98,11 +95,11 @@
           <img src="/src/images/Group 16.svg" alt="평점 별 5개" />
           <p>안에 이 스티커가 원래 이렇게 쉽게 빠지나요? 한번밖에 안신었는데 벌써 빠졌네요???</p>
         </div>
+      </details>
 
-        <summary id="sr-message-extra">추가 정보</summary>
-        <span id="sr-message-extra" class="sr-only">클릭 시 상품정보제공고시를 확인할 수 있습니다. </span>
-
-        <h3>상품정보제공고시</h3>
+      <details>
+        <summary aria-label="추가 정보, 클릭 시 상품정보제공고시 열람 가능">추가 정보</summary>
+        <span>상품정보제공고시</span>
         <p>
           제조연월: 수입제품으로 각 제품별 입고 시기에 따라 상이하여 정확한 제조연월 제공이 어렵습니다. 제조연월을 확인하시려면 고객센터에 문의하시기 바라며, 정확한 제조연월은 배송받으신 제품의 라벨을 참고하시기 바랍니다. A/S 책임자와 전화번호: (유)나이키코리아 온라인 스토어 고객센터 / 080-022-0182
           세탁방법 및 취급시 주의사항: 자세한 내용은 '자세히 보기'를 클릭하여 확인 부탁드립니다. 미성년자 권리 보호 안내: 자세한 내용은 '자세히 보기' 를 클릭하여 확인 부탁드립니다. 품질보증기준: 품질보증기간-섬유 및 일반 소재(구입 후 6개월), 가죽소재(구입 후 1년). 유통 중 손상되었거나 품질에 이상이
@@ -111,14 +108,11 @@
         </p>
       </details>
     </div>
-
     <section>
       <h2>추천 제품</h2>
-      <button type="button" id="sr-message-left"></button>
-      <span id="sr-message-left" class="sr-only">버튼 클릭 시 이전 추천 제품을 확인할 수 있습니다.</span>
+      <button type="button" aria-label="버튼 클릭 시 이전 추천 제품 확인 가능"></button>
 
-      <button type="button" id="sr-message-right"></button>
-      <span id="sr-message-right" class="sr-only">버튼 클릭 시 다음 추천 제품을 확인할 수 있습니다. </span>
+      <button type="button" aria-label="버튼 클릭 시 다음 추천 제품 확인 가능"></button>
 
       <article>
         <figure>
@@ -138,7 +132,6 @@
       </article>
     </section>
 
-    <a href="" id="sr-message-go-cart">장바구니</a>
-    <span id="sr-message-go-cart" class="sr-only">버튼 클릭 시 장바구니 페이지로 이동합니다.</span>
+    <a href="" aria-label="장바구니, 클릭 시 장바구니 페이지로 이동">장바구니</a>
   </body>
 </html>
