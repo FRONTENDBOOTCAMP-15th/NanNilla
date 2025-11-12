@@ -31,9 +31,18 @@
   --color-nike-green: var(--green);
   --color-nike-black-35: var(--black-35);
 
-  /* 웹 폰트(Pretendard) 사용자 정의 */
+  /* 웹 폰트(Noto Sans KR) 사용자 정의 */
   --font-Noto: 'Noto Sans KR', sans-serif;
 
   /* 브레이크포인트 */
-  --breakpoint-nikeDesktop: 48rem;
+  --breakpoint-nikeDesktop: 60rem;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+  }
 }
