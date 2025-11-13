@@ -76,7 +76,7 @@
       <details class="">
         <summary class="flex justify-between pt-[30px] pb-[30px] font-Noto list-none border-b-2 border-nike-gray-lighter" aria-label="무료 배송 및 반품, 클릭 시 배송 및 반품 정보에 대해 확인 가능">
           <p>무료 배송 및 반품</p>
-          <img src="/src/images/reviewdown.svg" alt="" />
+          <img class="w-3 h-3" src="/src/images/reviewdown.svg" alt="" />
         </summary>
         <p class="font-Noto text-xs">
           일반 배송 <br />
@@ -91,17 +91,19 @@
       <details>
         <summary class="pt-[30px] pb-[30px] font-Noto list-none border-b-2 border-nike-gray-lighter flex grow justify-between" aria-label="리뷰, 클릭 시 리뷰 조회 가능">
           <p class="grow-2">리뷰(2)</p>
-          <div class="grow-8 flex justify-end">
-            <img class="inline-block" src="/src/images/fivestars.svg" alt="평점 별 5개" />
-            <img class="" src="/src/images/reviewdown.svg" alt="" />
+          <div class="grow-8 flex justify-end gap-[15.5px]">
+            <img class="inline-block w-[85px] h-[12.334px]" src="/src/images/fivestars.svg" alt="평점 별 5개" />
+            <img class="w-3 h-3" src="/src/images/reviewdown.svg" alt="" />
           </div>
         </summary>
 
-        <img class="w-[85px] h-[12.334px]" src="/src/images/fivestars.svg" alt="평점 별 5개" />
+        <div class="flex">
+          <img class="w-[85px] h-[12.334px]" src="/src/images/fivestars.svg" alt="평점 별 5개" />
 
-        <p class="text-xs">4.7점</p>
+          <p class="text-xs">4.7점</p>
+        </div>
 
-        <a class="pt-[19px] underline" href=""> 리뷰 작성하기</a>
+        <a class="inline-block pt-[19px] underline" href=""> 리뷰 작성하기</a>
 
         <div class="pt-7 DetailFirstReview font-Noto">
           <p>Nike Jam Shoe Revie</p>
@@ -119,7 +121,7 @@
       <details>
         <summary class="flex justify-between pt-[29.5px] pb-[30.5px] font-Noto list-none border-b-2 border-nike-gray-lighter" aria-label="추가 정보, 클릭 시 상품정보제공고시 열람 가능">
           <p>추가 정보</p>
-          <img src="/src/images/reviewup.svg" alt="" />
+          <img class="w-3 h-3" src="/src/images/Img (3).svg" alt="" />
         </summary>
         <span>상품정보제공고시</span>
         <p class="text-gray-900 font-Noto text-xs pt-[11.5px]">
@@ -135,15 +137,18 @@
     </div>
     <section class="pt-[38px] pl-6 pr-6 font-Noto">
       <h2 class="pl-6">추천 제품</h2>
-      <button class="w-6 h-6 bg-nike-gray-lighter border border-nike-gray-lighter rounded-full text-sm hover:bg-gray-100" type="button" aria-label="버튼 클릭 시 이전 추천 제품 확인 가능">
-        <img src="/src/images/leftbutton.svg" alt="이전 항목 조회 버튼" />
-      </button>
 
-      <button class="w-6 bg-nike-gray-lighter border border-nike-gray-lighter rounded-full text-sm hover:bg-gray-100" type="button" aria-label="버튼 클릭 시 다음 추천 제품 확인 가능">
-        <img src="/src/images/rigthbutton.svg" alt="다음 항목 조회 버튼" />
-      </button>
+      <div class="flex justify-end gap-3 pr-6">
+        <button class="w-6 h-6 bg-nike-gray-lighter border border-nike-gray-lighter rounded-full text-sm hover:bg-gray-100" type="button" aria-label="버튼 클릭 시 이전 추천 제품 확인 가능">
+          <img src="/src/images/leftbutton.svg" alt="이전 항목 조회 버튼" />
+        </button>
 
-      <div class="pl-6 w-90 flex overflow-auto gap-3">
+        <button class="w-6 bg-nike-gray-lighter border border-nike-gray-lighter rounded-full text-sm hover:bg-gray-100" type="button" aria-label="버튼 클릭 시 다음 추천 제품 확인 가능">
+          <img src="/src/images/rigthbutton.svg" alt="다음 항목 조회 버튼" />
+        </button>
+      </div>
+
+      <div class="pl-6 w-90 flex gap-3">
         <article>
           <figure class="pt-3">
             <img src="/src/images/nike_1.png" alt="나이키 줌 보메로 5 상품 이미지" />
