@@ -3,6 +3,7 @@ class HeaderComponent extends HTMLElement {
   // 컴포넌트 렌더링과 이벤트 초기화 수행
   connectedCallback(){
     this.render();
+    this.initFilterButtons();
   }
   // UI 렌더링
   render() {
@@ -25,7 +26,7 @@ class HeaderComponent extends HTMLElement {
         <button class="w-19.5 h-10 rounded-full bg-nike-white text-nike-black border border-nike-gray-light text-base"><a href="../../src/pages/signin.html">로그인</a></button>
       </div>
       <div class="flex flex-col pl-8.5 gap-6">
-        <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span>New & Featured</span><img src="/assets/icon36px/icon-next.svg"></button>
+        <button class="flex items-center justify-between text-2xl leading-7 font-medium" data-new-only="true"><span>New & Featured</span><img src="/assets/icon36px/icon-next.svg"></button>
         <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span>Men</span><img src="/assets/icon36px/icon-next.svg"></button>
         <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span>Women</span><img src="/assets/icon36px/icon-next.svg"></button>
         <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span>Kids</span><img src="/assets/icon36px/icon-next.svg"></button>
@@ -41,6 +42,40 @@ class HeaderComponent extends HTMLElement {
     <label for="menu" class="fixed inset-0 bg-nike-black-35 opacity-0 pointer-events-none z-10 transition-opacity duration-300 [header:has(#menu:checked)~&]:opacity-100 [header:has(#menu:checked)~&]:pointer-events-auto" aria-label="배경 오버레이"></label>
     `;
   }
+
+      // 필터 관련 버튼(카테고리, 신상품 등)을 초기화
+  private initFilterButtons() {
+    // data-new-only 또는 data-category-code 속성이 있는 모든 버튼을 찾음
+    const buttons = this.querySelectorAll<HTMLButtonElement>('[data-new-only], [data-category-code]');
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const params = new URLSearchParams();
+
+        // (옵션) 나중에 카테고리로도 쓸 수 있게 예약
+        const categoryCode = button.dataset.categoryCode;
+        // 신상품 버튼인지 확인
+        const newOnly = button.dataset.newOnly === 'true';
+
+        if (categoryCode) {
+          params.set('categoryCode', categoryCode);
+        }
+        if (newOnly) {
+          params.set('newOnly', 'true');
+        }
+
+        // 쿼리스트링 만들기
+        const queryString = params.toString();
+        const url = queryString
+          ? `/item-list.html?${queryString}`
+          : '/item-list.html';
+
+        // 실제 페이지 이동
+        window.location.href = url;
+      });
+    });
+  }
+
 }
 
 // HeaderComponent 를 <nike-header> 태그로 정의
