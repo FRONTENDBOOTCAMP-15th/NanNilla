@@ -1,16 +1,17 @@
 # Frontend Coding Convention
+
 > HTML, CSS, JavaScript(TypeScript) 기반 바닐라 프로젝트 코딩 컨벤션
 
 ---
 
 ## 1. 파일 및 폴더 네이밍
 
-| 항목 | 규칙 | 예시 |
-|------|------|------|
-| HTML / CSS / JS 파일 | 모두 소문자, 단어는 하이픈(kebab-case)으로 구분 | `index.html`, `main.css`, `app.js`, `user-profile.js` |
-| TypeScript 파일 | 동일하게 kebab-case 사용 | `user-service.ts`, `dom-utils.ts` |
-| 이미지 / 폰트 / 리소스 | 타입별 폴더로 구분, 소문자 kebab-case | `/assets/images/user-avatar.png`, `/fonts/inter-regular.woff2` |
-| 폴더명 | 소문자 kebab-case | `components/`, `utils/`, `pages/` |
+| 항목                   | 규칙                                            | 예시                                                           |
+| ---------------------- | ----------------------------------------------- | -------------------------------------------------------------- |
+| HTML / CSS / JS 파일   | 모두 소문자, 단어는 하이픈(kebab-case)으로 구분 | `index.html`, `main.css`, `app.js`, `user-profile.js`          |
+| TypeScript 파일        | 동일하게 kebab-case 사용                        | `user-service.ts`, `dom-utils.ts`                              |
+| 이미지 / 폰트 / 리소스 | 타입별 폴더로 구분, 소문자 kebab-case           | `/assets/images/user-avatar.png`, `/fonts/inter-regular.woff2` |
+| 폴더명                 | 소문자 kebab-case                               | `components/`, `utils/`, `pages/`                              |
 
 ---
 
@@ -19,16 +20,19 @@
 BEM(Block-Element-Modifier)을 권장합니다.
 
 ```css
-.block {}                /* Block: 독립적인 컴포넌트 */
-.block__element {}       /* Element: 블록의 하위 구성요소 */
-.block--modifier {}      /* Modifier: 상태/변형 */
+.block {
+} /* Block: 독립적인 컴포넌트 */
+.block__element {
+} /* Element: 블록의 하위 구성요소 */
+.block--modifier {
+} /* Modifier: 상태/변형 */
 ```
 
-| 구분 | 예시 |
-|------|------|
-| Block(블록) | `.card`, `.button`, `.header` |
-| Element(엘리먼트) | `.card__title`, `.card__image` |
-| Modifier(수정자) | `.card--highlighted`, `.button--disabled` |
+| 구분              | 예시                                      |
+| ----------------- | ----------------------------------------- |
+| Block(블록)       | `.card`, `.button`, `.header`             |
+| Element(엘리먼트) | `.card__title`, `.card__image`            |
+| Modifier(수정자)  | `.card--highlighted`, `.button--disabled` |
 
 간단한 구조에서는 의미 중심의 kebab-case(`.main-nav`, `.footer-links`)도 허용합니다.
 
@@ -36,37 +40,39 @@ BEM(Block-Element-Modifier)을 권장합니다.
 
 ## 3. JS / TS 네이밍 규칙
 
-| 구분 | 규칙 | 예시 |
-|------|------|------|
-| 변수 / 함수 | camelCase | `userName`, `getUserInfo()` |
-| 상수 | UPPER_SNAKE_CASE | `MAX_USER_COUNT`, `API_URL` |
-| 클래스 | PascalCase | `UserProfile`, `AppController` |
-| 타입 / 인터페이스(TS) | PascalCase, 접두사 I 사용하지 않음 | `UserData`, `ApiResponse` |
-| 이벤트 핸들러 | `handle` 또는 `on` 접두사 | `handleClick()`, `onSubmit()` |
-| 비동기 함수 | 필요 시 `async` 접두사 | `async fetchUserData()` |
+| 구분                  | 규칙                               | 예시                           |
+| --------------------- | ---------------------------------- | ------------------------------ |
+| 변수 / 함수           | camelCase                          | `userName`, `getUserInfo()`    |
+| 상수                  | UPPER_SNAKE_CASE                   | `MAX_USER_COUNT`, `API_URL`    |
+| 클래스                | PascalCase                         | `UserProfile`, `AppController` |
+| 타입 / 인터페이스(TS) | PascalCase, 접두사 I 사용하지 않음 | `UserData`, `ApiResponse`      |
+| 이벤트 핸들러         | `handle` 또는 `on` 접두사          | `handleClick()`, `onSubmit()`  |
+| 비동기 함수           | 필요 시 `async` 접두사             | `async fetchUserData()`        |
 
 ---
 
 ## 4. HTML 속성 네이밍
 
-| 항목 | 규칙 | 예시 |
-|------|------|------|
-| id | 페이지 내 유일, camelCase | `id="mainContent"` |
-| class | 스타일 단위, kebab-case 또는 BEM | `class="user-card__image"` |
-| data-* | kebab-case, 의미를 명확히 | `data-user-id="123"` |
-| ARIA | 표준 속성 그대로 사용 | `aria-label="Close"` |
+| 항목    | 규칙                             | 예시                       |
+| ------- | -------------------------------- | -------------------------- |
+| id      | 페이지 내 유일, camelCase        | `id="mainContent"`         |
+| class   | 스타일 단위, kebab-case 또는 BEM | `class="user-card__image"` |
+| data-\* | kebab-case, 의미를 명확히        | `data-user-id="123"`       |
+| ARIA    | 표준 속성 그대로 사용            | `aria-label="Close"`       |
 
 ---
 
 ## 5. 주석 작성 규칙
 
 ### HTML
+
 ```html
 <!-- Section: Header -->
 <header>...</header>
 ```
 
 ### CSS
+
 ```css
 /* ===== Header ===== */
 .header {
@@ -75,6 +81,7 @@ BEM(Block-Element-Modifier)을 권장합니다.
 ```
 
 ### JS / TS
+
 ```ts
 // Get user data from API
 function getUserData() {
@@ -96,13 +103,13 @@ function calculateTotal(items: number[]): number {
 
 ## 6. 코드 서식(Formatting)
 
-| 항목 | 규칙 | 예시 |
-|------|------|------|
-| 들여쓰기 | 2 spaces(또는 4, 팀 내 일관 유지) | `if (x) { ... }` |
-| 문자열 | 작은따옴표 또는 큰따옴표를 일관되게 사용 | `'Hello'` |
-| 세미콜론 | JS/TS에서는 사용 | `const x = 1;` |
-| 중괄호 위치 | 여는 중괄호는 같은 줄 | `if (x) { ... }` |
-| import 순서 | 외부 -> 내부 -> 스타일 | `import utils from "./utils.js";` |
+| 항목        | 규칙                                     | 예시                              |
+| ----------- | ---------------------------------------- | --------------------------------- |
+| 들여쓰기    | 2 spaces(또는 4, 팀 내 일관 유지)        | `if (x) { ... }`                  |
+| 문자열      | 작은따옴표 또는 큰따옴표를 일관되게 사용 | `'Hello'`                         |
+| 세미콜론    | JS/TS에서는 사용                         | `const x = 1;`                    |
+| 중괄호 위치 | 여는 중괄호는 같은 줄                    | `if (x) { ... }`                  |
+| import 순서 | 외부 -> 내부 -> 스타일                   | `import utils from "./utils.js";` |
 
 ---
 
@@ -157,6 +164,7 @@ function calculateTotal(items: number[]): number {
 ## 10. 포맷팅 도구 기본 설정 예시
 
 ### .editorconfig
+
 ```ini
 root = true
 
@@ -170,6 +178,7 @@ insert_final_newline = true
 ```
 
 ### .prettierrc
+
 ```json
 {
   "semi": true,

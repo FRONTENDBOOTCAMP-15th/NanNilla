@@ -10,5 +10,6 @@ build/
 *.min.js
 *.log
 
+
 # 특정 디렉토리 및 하위 파일 무시
 coverage/
