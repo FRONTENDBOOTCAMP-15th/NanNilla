@@ -31,11 +31,11 @@ async function getData() {
 }
 
 function render(prds: Products[]) {
-  const result = prds.map((prd) => {
+  const result = prds?.map((prd) => {
     return `
 
     <main class="detail-main pt-20 flow-root">
-      <h1 class="w-[6.4011rem] h-8.75 ml-6 font-medium text-xl font-Noto">${prd.name}</h1>
+      <h1 class="w-[6.4011rem] h-8.75 ml-6 font-medium text-xl font-Noto">${prd?.name}</h1>
       <p class="w-[2.7809rem] h-7 ml-6 font-medium font-Noto">${prd.name}</p>
       <div class="detail-price-info pt-3 ml-6 flex">
         <span class="inline-block h-7 mr-2 font-medium font-Noto">${prd.price}</span>
@@ -64,14 +64,15 @@ const data = await getData();
 if (data?.ok) {
   // 쿼리 파라미터가 있으면 필터링, 없으면 전체 출력
   let filteredData = data.item;
-
+  console.log('1', filteredData);
+  console.log('2', IdQuery);
   if (IdQuery) {
     filteredData = data.item.filter((item: Products) => String(item._id) === IdQuery);
   }
   // else if (newQuery) {
   //   filteredData = data.item.filter((item: Products) => item.extra?.isNew === true);
   // }
-  console.log(filteredData);
+  console.log('3', filteredData);
 
   render(filteredData);
 }

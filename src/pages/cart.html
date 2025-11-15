@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>장바구니</title>
+    <script type="module" src="../components/header.ts"></script>
+    <!-- <script type="module" src="../components/footer.ts"></script> -->
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body class="font-font-Noto text-nike-black bg-nike-white m-0 p-0 leading-normal">
+    <nike-header></nike-header>
+
+    <main class="max-w-[1100px] mx-auto p-[40px_16px]">
+      <div class="grid grid-cols-1  gap-8 mb-2.5 ">
+        <!-- 장바구니 -->
+        <section class="pr-0  ">
+          <h2 class="text-2xl font-medium py-4">장바구니</h2>
+          <div id="cart-items" class="flex flex-col gap-3">
+            <div class="flex flex-col"></div>
+            <div class="flex gap-2">
+              <img src="../../api/dbinit/team-nike/uploadFiles/AIR_JORDAN_4RM_A_01.png" class="aspect-square w-[154px] h-[154px] rounded" alt="AIR_JORDAN_4RM_A" />
+
+              <div class="grow min-w-0">
+                <p class="whitespace-nowrap font-medium text-base">10,000 원</p>
+                <p class="font-medium break-all whitespace-normal">AIR_JORDAN_4RM_A</p>
+                <p class="text-sm text-nike-gray-dark flex flex-row gap-1">남성 신발</p>
+                <p class="text-sm text-nike-gray-dark flex flex-row gap-1">포톤 더스트/그리드아이언/세일/크롬</p>
+
+                <div class="text-sm text-nike-gray-dark flex flex-row gap-1">
+                  <span class="flex flex-col">
+                    <p class="pb-1">사이즈</p>
+                    <button class="hover:text-nike-gray-light cursor-pointer">270</button>
+                  </span>
+
+                  <span class="flex flex-col">
+                    <p class="pb-1">수량</p>
+                    <div>
+                      <button type="button" aria-label="수량 감소" class="hover:text-nike-gray-light">-</button>
+                      1
+                      <button type="button" aria-label="수량 증가" class="hover:text-nike-gray-light">+</button>
+                    </div>
+                  </span>
+                </div>
+
+                <div class="flex items-center gap-2 mt-1 text-sm text-nike-gray-dark">
+                  <button type="button" class="rounded-4xl hover:bg-nike-gray-lighter" aria-label="위시리스트">
+                    <span>
+                      <img src="../../assets/icon36px/icon-favorite.svg" alt="위시리스트" />
+                    </span>
+                  </button>
+                  <button type="button" class="p-1.5 rounded-4xl hover:bg-nike-gray-lighter" aria-label="삭제">
+                    <span>
+                      <img src="../../assets/icon24px/icon-delete.svg" alt="삭제" />
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col">
+              <p class="pb-2">무료 배송</p>
+              <span>도착 예정일: 7월 27일 (토) 배송 지역: <button class="cursor-pointer border-b font-semibold">11111</button></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 주문 요약 -->
+        <section class>
+          <h2 class="text-2xl font-medium py-2">주문 내역</h2>
+          <div class="p-4 flex flex-col gap-3 text-base">
+            <div class="flex justify-between">
+              <span class="flex items-center">
+                상품 금액
+                <span class="w-[13px] h-[13px] pl-1 cursor-pointer">
+                  <img src="../../assets/icon24px/icon-cs.svg" alt="" />
+                </span>
+              </span>
+              <span class="font-semibold">20,000 원</span>
+            </div>
+            <div class="flex justify-between">
+              <span>배송비</span>
+              <span class="font-semibold">0 원</span>
+            </div>
+            <div class="flex justify-between pt-3">
+              <span class="font-semibold">총 결제 금액</span>
+              <span class="font-semibold">20,000 원</span>
+            </div>
+            <button class="rounded-3xl bg-nike-black text-nike-white py-2 font-bold mt-4 hover:bg-nike-gray-dark">주문결제</button>
+          </div>
+        </section>
+      </div>
+
+      <div class="border-t border-nike-gray-lighter pt-8"></div>
+
+      <!-- 위시리스트 -->
+      <section class="overflow-hidden">
+        <h2 class="text-2xl font-medium py-4">위시리스트</h2>
+        <div class="flex flex-col pb-4  gap-3 border-b border-nike-gray-lighter">
+          <div class="flex flex-1 gap-2">
+            <img src="../../api/dbinit/team-nike/uploadFiles/AIR_JORDAN_4RM_A_01.png" alt="AIR_JORDAN_4RM_A" class="aspect-square w-[154px] h-[154px] rounded" />
+            <div class="grow min-w-0">
+              <p class="font-medium break-all whitespace-normal">AIR_JORDAN_4RM_A</p>
+              <p class="text-sm text-nike-gray-dark">남성 신발</p>
+              <p class="text-sm text-nike-gray-dark">사이즈: 270</p>
+              <button type="button" class="mt-1 bg-transparent text-base text-nike-black py-[7px] px-3 rounded-full border border-nike-gray-lighter hover:bg-nike-gray-lighter whitespace-nowrap">장바구니에 추가</button>
+            </div>
+            <div class="font-medium text-base whitespace-nowrap"><p>10,000원</p></div>
+          </div>
+        </div>
+        <a href="#" class="underline py-2 text-nike-gray-dark">위시리스트 상품 모두 보기</a>
+      </section>
+    </main>
+
+    <!-- 추천 제품 -->
+    <section class="max-w-7xl mx-auto p-[40px_16px]">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-medium">추천 제품</h2>
+        <div>
+          <button type="button" aria-label="왼쪽 목록으로 이동" class="rounded-4xl text-nike-gray-light bg-nike-gray-lightest px-3 py-1 m-0.5 font-medium hover:text-nike-gray-dark hover:bg-nike-gray-lighter">&lt;</button>
+          <button type="button" aria-label="오른쪽 목록으로 이동" class="rounded-4xl text-nike-gray-light bg-nike-gray-lightest px-3 py-1 m-0.5 font-medium hover:text-nike-gray-dark hover:bg-nike-gray-lighter">&gt;</button>
+        </div>
+      </div>
+
+      <div class="flex flex-row overflow-x-hidden gap-6  whitespace-nowrap pb-2.5">
+        <div class="flex-[0_0_calc((100%-16px)/2)]">
+          <div class="aspect-square bg-nike-gray-lightest overflow-hidden">
+            <img src="../../api/dbinit/team-nike/uploadFiles/AIR_JORDAN_4RM_A_01.png" alt="AIR_JORDAN_4RM_A" class="w-full h-full rounded object-cover transition-transform duration-300" />
+          </div>
+          <div class="mt-2">
+            <p class="text-sm font-medium">AIR_JORDAN_4RM_A</p>
+            <p class="text-xs font-extralight text-nike-gray-dark">AIR_JORDAN_4RM_A</p>
+            <p class="font-bold text-base mt-1">10,000 원</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

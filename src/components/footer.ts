@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="ko-KR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>나이키코리아</title>
-    <link rel="shortcut icon" href="/assets/logo.svg" type="image/x-icon" />
-    <link rel="icon" href="/assets/logo.svg" type="image/svg" />
-    <link rel="stylesheet" href="/src/style.css" />
-  </head>
-  <body>
-    <footer class="main-footer p-6 text-sm">
+class FooterComponent extends HTMLElement {
+  // 웹 컴포넌트가 DOM 연결될 때 호출되는 메서드
+  // 컴포넌트 렌더링과 이벤트 초기화 수행
+  connectedCallback(){
+    this.render();
+  }
+  // UI 렌더링
+  render() {
+    this.innerHTML =`
+    <footer class="main-footer text-sm">
           <div class="footer-content flex flex-col">
             <div class="footer-links pb-3">
               <div class="footer-col font-medium">
@@ -66,7 +64,7 @@
             <div>
               <div class="footer-bottom text-nike-gray-dark">
                 <hr class="border border-nike-gray-lightest">
-                <div class="pt-3 leading-6">
+                <div class="pt-9 leading-6">
                   <p>(유)나이키코리아 대표 Kimberlee Lynn Chang Mendes, 킴벌리 린 창 멘데스 | 서울 강남구 테헤란로 152 강남파이낸스센터 30층 | 통신판매업신고번호 2011-서울강남-03461 | 등록번호 220-88-09068</p>
                   <p><a href="#" class="underline">사업자 정보 확인</a></p>
                   <p>고객센터 전화 문의 <a href="#" class="underline">080-022-0182</a> FAX 02-6744-5880 | 이메일 <a href="#" class="underline">service@nike.co.kr</a> |</p>
@@ -76,7 +74,9 @@
             </div>
           </div>
     </footer>
-  </body>
-</html>
+    `;
+  }
+}
 
-
+// FooterComponent 를 <nike-footer> 태그로 정의
+customElements.define('nike-footer', FooterComponent);

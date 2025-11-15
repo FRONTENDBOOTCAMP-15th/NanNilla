@@ -32,6 +32,7 @@ function render(prds: Products[]) {
   const result = prds.map((prd) => {
     return `
       <figure class="prod1 w-[calc((100%-6px)/2)] nikeDesktop:w-[calc((100%-24px)/3)] nikeDesktop:px-2">
+
             <a href="/src/pages/itemdetail?_id"><img src="${prd.mainImages[0].path}" alt="신발 이미지" /> </a>
             <figcaption>
               <a href="/">

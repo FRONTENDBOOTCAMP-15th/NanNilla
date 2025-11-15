@@ -1,19 +1,26 @@
 class HeaderComponent extends HTMLElement {
   // 웹 컴포넌트가 DOM 연결될 때 호출되는 메서드
   // 컴포넌트 렌더링과 이벤트 초기화 수행
-  connectedCallback(){
+  connectedCallback() {
     this.render();
   }
   // UI 렌더링
   render() {
-    this.innerHTML =`
+    this.innerHTML = `
     <header class="flex w-full h-15 gap-24.5 justify-center items-center bg-nike-white">
       <button class="box-border px-2.5 py-5"><a href="/index.html"> <img src="/assets/logo.svg" alt="나이키 홈"></a>
       </button>
-      <div class="flex">
+      <div class="flex flex-row">
+        <button class="px-3 items-center justify-between text-2xl leading-7 font-medium hidden nikeDesktop:block" data-new-only="true"><span><a href="/src/pages/itemlist?extra.isNew=true">New & Featured</a></span></button>
+        <button class="px-3 items-center justify-between text-2xl leading-7 font-medium hidden nikeDesktop:block"><span><a href="/src/pages/itemlist?extra.category.0=PC01">Men</a></span></button>
+        <button class="px-3 items-center justify-between text-2xl leading-7 font-medium hidden nikeDesktop:block"><span><a href="/src/pages/itemlist?extra.category.0=PC02">Women</a></span></button>
+        <button class="px-3 items-center justify-between text-2xl leading-7 font-medium hidden nikeDesktop:block"><span><a href="/src/pages/itemlist?extra.category.0=PC03">Kids</a></span></button>
+        <button class="px-3 items-center justify-between text-2xl leading-7 font-medium hidden nikeDesktop:block"><span><a href="/src/pages/itemlist?extra.isNew=true">Sale</a></span></button>
+      </div>
+        <div class="flex">
         <button><a href=""></a><img src="/assets/icon36px/icon-search.svg" alt=""></button>
         <button><a href=""></a><img src="/assets/icon36px/icon-profile.svg" alt=""></button>
-        <button><a href=""></a><img src="/assets/icon36px/icon-cart-in.svg" alt=""></button>
+        <button><a href="/src/pages/cart"><img src="/assets/icon36px/icon-cart-in.svg" alt=""></a></button>
         <input type="checkbox" id="menu" class="peer hidden"><label for="menu" class="w-9 h-9 bg-[url(/assets/icon36px/icon-menu.svg)] cursor-pointer"></label>
       </div>
     </header>
@@ -21,19 +28,19 @@ class HeaderComponent extends HTMLElement {
       <div class="flex flex-col gap-9.5">
         <input type="checkbox" id="menu" class="peer hidden"><label for="menu" class="w-9 h-9 absolute right-2 p-1 z-30 box-border bg-[url(/assets/icon36px/icon-close.svg)] cursor-pointer"></label>
       <div class="flex gap-5 pl-8.5 pt-19">
-        <button class="w-22.5 h-10 rounded-full bg-nike-black text-nike-white text-base"><a href="../../src/pages/sign-up.html">가입하기</a></button>
-        <button class="w-19.5 h-10 rounded-full bg-nike-white text-nike-black border border-nike-gray-light text-base"><a href="../../src/pages/sign-in.html">로그인</a></button>
+        <button class="w-22.5 h-10 rounded-full bg-nike-black text-nike-white text-base"><a href="../../src/pages/signup.html">가입하기</a></button>
+        <button class="w-19.5 h-10 rounded-full bg-nike-white text-nike-black border border-nike-gray-light text-base"><a href="../../src/pages/signin.html">로그인</a></button>
       </div>
       <div class="flex flex-col pl-8.5 gap-6">
-        <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span>New & Featured</span><img src="/assets/icon36px/icon-next.svg"></button>
-        <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span>Men</span><img src="/assets/icon36px/icon-next.svg"></button>
-        <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span>Women</span><img src="/assets/icon36px/icon-next.svg"></button>
-        <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span>Kids</span><img src="/assets/icon36px/icon-next.svg"></button>
-        <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span>Sale</span><img src="/assets/icon36px/icon-next.svg"></button>
+        <button class="flex items-center justify-between text-2xl leading-7 font-medium" data-new-only="true"><span><a href="/src/pages/itemlist?extra.isNew=true">New & Featured</a></span><img src="/assets/icon36px/icon-next.svg"></button>
+        <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span><a href="/src/pages/itemlist?extra.category.0=PC01">Men</a></span><img src="/assets/icon36px/icon-next.svg"></button>
+        <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span><a href="/src/pages/itemlist?extra.category.0=PC02">Women</a></span><img src="/assets/icon36px/icon-next.svg"></button>
+        <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span><a href="/src/pages/itemlist?extra.category.0=PC03">Kids</a></span><img src="/assets/icon36px/icon-next.svg"></button>
+        <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span><a href="/src/pages/itemlist?extra.isNew=true">Sale</a></span><img src="/assets/icon36px/icon-next.svg"></button>
       </div>
       <div class="flex flex-col w-32.6 pl-8.5">
         <button class="flex items-center gap-3 text-base font-medium py-2"><img src="/assets/icon24px/icon-cs.svg" alt=""><span>고객센터</span></button>
-        <button class="flex items-center gap-3 text-base font-medium py-2"><img src="/assets/icon24px/icon-cart.svg" alt=""><a href="./cart.html">장바구니</a></button>
+        <button class="flex items-center gap-3 text-base font-medium py-2"><img src="/assets/icon24px/icon-cart.svg" alt=""><a href="/src/pages/cart">장바구니</a></button>
         <button class="flex items-center gap-3 text-base font-medium py-2"><img src="/assets/icon24px/icon-order.svg" alt=""><span>주문</span></button>
         <button class="flex items-center gap-3 text-base font-medium py-2"><img src="/assets/icon24px/icon-store.svg" alt=""><span>매장 찾기</span></button>
       </div>

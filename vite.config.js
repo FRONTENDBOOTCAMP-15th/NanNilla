@@ -12,6 +12,9 @@ export default defineConfig({
 
         itemlist: path.resolve(__dirname, 'src/pages/itemlist.html'),
         itemdetail: path.resolve(__dirname, 'src/pages/itemdetail.html'),
+        cart: path.resolve(__dirname, 'src/pages/cart.html'),
+        signin: path.resolve(__dirname, 'src/pages/signin.html'),
+        signup: path.resolve(__dirname, 'src/pages/signup.html'),
       },
     },
   },
