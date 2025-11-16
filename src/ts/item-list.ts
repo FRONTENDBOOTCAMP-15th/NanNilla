@@ -146,7 +146,7 @@ hiddenBtn?.addEventListener('click', function () {
   const nikeTitle = document.querySelector('.nike-title');
   const hiddenTitle = document.querySelector('.hidden-desktop-title');
 
-  categoryWrapper?.classList.toggle('hidden');
-  nikeTitle?.classList.toggle('hidden');
+  categoryWrapper?.classList.toggle('nikeDesktop:hidden');
+  nikeTitle?.classList.toggle('nikeDesktop:hidden');
   hiddenTitle?.classList.toggle('hidden');
 });
