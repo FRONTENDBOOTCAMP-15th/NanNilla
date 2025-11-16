@@ -26,6 +26,7 @@ export interface Products {
     isBest: boolean;
     category: string[];
     sort: 1;
+    gender: string;
   };
   seller: {
     _id: number;
