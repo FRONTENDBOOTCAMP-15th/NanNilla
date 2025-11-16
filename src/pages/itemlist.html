@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="../style.css" rel="stylesheet" />
     <script type="module" src="../components/header.ts"></script>
+    <script type="module" src="../components/footer.ts"></script>
     <script type="module" src="../ts/item-list.ts"></script>
     <title>상품 리스트</title>
   </head>
@@ -13,9 +14,8 @@
     <nike-header></nike-header>
     <main class="flex flex-col min-w-[360px] nikeDesktop:flex-row nikeDesktop:h-screen">
       <section>
-        <!-- 제목 -->
-        <h1 class="text-[1.25rem] px-5 pt-[13px] pb-[13px] mb-[15px] nikeDesktop:hidden">신제품</h1>
-        <h1 class="text-[1.25rem] px-12 pt-[13px] pb-[30px] hidden nikeDesktop:block">신제품 (749)</h1>
+        <!-- 대 제목 -->
+        <div class="nike-title"></div>
 
         <!-- 카테고리 목록 -->
         <div
@@ -110,6 +110,7 @@
         <!-- 필터 바 -->
         <div class="filter-bar pt-[16.5px] pb-[15px] mb-[15px] content-center inline-flex w-full h-[60px]">
           <p class="total-item ml-5 inline-flex text-nike-gray-dark nikeDesktop:hidden">741개의 결과</p>
+          <!-- <div class="hidden nikeDesktop:block"><p class="hidden">신제품</p></div> -->
           <div class="desktop-button hidden nikeDesktop:block nikeDesktop:ml-auto">
             <button class="item-filter-hidden px-5 py-[3px] inline-flex items-center ml-auto">필터숨기기<img src="/assets/icon24px/icon-filter.svg" alt="필터이미지" /></button>
             <button class="item-filter-sort mr-5 pr-3 py-[3px] inline-flex items-center ml-auto">정렬기준:<img src="/assets/icon24px/icon-down.svg" alt="필터이미지" /></button>
