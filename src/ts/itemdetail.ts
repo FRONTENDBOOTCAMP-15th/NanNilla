@@ -30,6 +30,7 @@ async function getData() {
   }
 }
 
+// 상품 이름, 가격, 이미지 출력
 function render(prds: Products[]) {
   const result = prds?.map((prd) => {
     return `
@@ -100,7 +101,7 @@ async function getDetailProduct() {
       container?.append(productSize);
     });
   } catch (err) {
-    // 사이즈 배열이 없을 때
+    // 사이즈가 DB에 없을 때
 
     function noArray() {
       return `
@@ -130,3 +131,12 @@ async function getDetailProduct() {
 }
 
 getDetailProduct();
+
+// 장바구니에 상품 담는 기능
+const addCartBtn = document.querySelector('.addCartBtn') as HTMLButtonElement;
+console.log('버튼의 id 값', IdQuery);
+
+addCartBtn.addEventListener('click', () => {
+  localStorage.setItem('cart', IdQuery);
+  alert('장바구니에 상품이 추가되었습니다');
+});
