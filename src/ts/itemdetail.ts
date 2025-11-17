@@ -47,9 +47,9 @@ function render(prds: Products[]) {
        <a href="/src/pages/itemdetail?_id=${prd._id}"><img class="w-full" src="${prd.mainImages[0].path}" alt="${prd.name} 이미지" />
       </figure>
       <div class="detail-item-color pt-0.75 flex gap-2.5 overflow-x-auto">
-        <img class="h-[125px]" src="${prd.mainImages[0].path}" alt="${prd.name}" />
-        <img class="h-[125px]" src="${prd.mainImages[0].path}" alt="${prd.name}" />
-        <img class="h-[125px]" src="${prd.mainImages[0].path}" alt="${prd.name}" />
+        <img class="w-[125px] h-[125px]" src="${prd.mainImages[0].path}" alt="${prd.name}" />
+        <img class="w-[125px] h-[125px]" src="${prd.mainImages[0].path}" alt="${prd.name}" />
+        <img class="w-[125px] h-[125px]" src="${prd.mainImages[0].path}" alt="${prd.name}" />
       </div>
 
     `;
@@ -76,3 +76,57 @@ if (data?.ok) {
 
   render(filteredData);
 }
+
+// 제품 사이즈 출력
+const axiosInstace = getAxios();
+const container = document.querySelector('.container');
+
+async function getDetailProduct() {
+  try {
+    const id = IdQuery;
+
+    const { data } = await axiosInstace.get(`/products/${id}`);
+    const { item } = data;
+
+    console.log(item);
+
+    const sizeList = item.extra.size;
+
+    sizeList.map((data: number) => {
+      const productSize = document.createElement('button');
+      productSize.textContent = String(data);
+      productSize.classList.add('w-[56.4px]', 'px-4', 'py-2', 'border', 'border-gray-300', 'rounded-md', 'text-sm', 'hover:bg-gray-100');
+
+      container?.append(productSize);
+    });
+  } catch (err) {
+    // 사이즈 배열이 없을 때
+
+    function noArray() {
+      return `
+<button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button ">250</button>
+        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">255</button>
+        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">260</button>
+        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">265</button>
+        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">270</button>
+        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">275</button>
+        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">280</button>
+        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">285</button>
+        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">290</button>
+        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">295</button>
+        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">300</button>
+        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">305</button>
+        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">310</button>
+    `;
+    }
+    const itemList = document.querySelector('.container');
+    if (itemList) {
+      itemList.innerHTML = noArray();
+    }
+
+    console.log('사이즈 배열 존재하지 않음', err);
+    noArray();
+  }
+}
+
+getDetailProduct();

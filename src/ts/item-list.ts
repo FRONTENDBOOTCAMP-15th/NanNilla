@@ -10,7 +10,7 @@ console.log('name 파라미터:', newQuery);
 console.log('category 파라미터:', categoryQuery);
 console.log('현재 URL:', window.location.href);
 
-async function getData() {
+export async function getData() {
   const axios = getAxios();
   try {
     // categoryQuery가 있으면 쿼리를 포함해서 요청
@@ -32,10 +32,9 @@ function render(prds: Products[]) {
   const result = prds.map((prd) => {
     return `
       <figure class="prod1 w-[calc((100%-6px)/2)] nikeDesktop:w-[calc((100%-24px)/3)] nikeDesktop:px-2">
-
-            <a href="/src/pages/itemdetail?_id"><img src="${prd.mainImages[0].path}" alt="신발 이미지" /> </a>
+            <a href="/src/pages/itemdetail?_id=${prd._id}"><img src="${prd.mainImages[0].path}" alt="신발 이미지" /> </a>
             <figcaption>
-              <a href="/">
+              <a href="/src/pages/itemdetail?_id=${prd._id}">
                 <p class="text-sm text-nike-red px-3 nikeDesktop:px-0">${prd.name}</p>
                 <p class="text-sm px-3 nikeDesktop:px-0">${prd.name}</p>
                 <p class="text-sm text-nike-gray-dark font-normal px-3 nikeDesktop:px-0">${prd.name}</p>
