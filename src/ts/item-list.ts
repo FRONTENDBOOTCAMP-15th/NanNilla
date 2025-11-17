@@ -7,19 +7,28 @@ console.log(params);
 
 // http://localhost:5173/src/pages/itemlist?extra.isNew=true
 const newQuery = params.get('extra.isNew');
-const genderQuery = params.get('extra.gender'); // null
+const genderQuery = params.get('extra.gender');
 console.log('newQuery 파라미터:', newQuery);
 console.log('genderQuery 파라미터:', genderQuery);
 console.log('현재 URL:', window.location.href);
 
-async function getData() {
+let url = '/products';
+let urlParams = '';
+if (newQuery) {
+  urlParams = encodeURIComponent(`{"extra.isNew": ${newQuery}}`);
+  url += `?custom=${urlParams}`;
+} else if (genderQuery) {
+  urlParams = encodeURIComponent(`{"extra.gender": "${genderQuery}"}`);
+  url += `?custom=${urlParams}`;
+}
+
+async function getData(currentUrl: string) {
   const axios = getAxios();
   try {
-    // categoryQuery가 있으면 쿼리를 포함해서 요청
-    const url = '/products';
-
     console.log('요청 URL:', url);
-    const { data } = await axios.get<ItemListRes>(url);
+    const { data } = await axios.get<ItemListRes>(currentUrl);
+    console.log(data);
+
     return data;
   } catch (err) {
     console.log(err);
@@ -55,17 +64,7 @@ function renderItemList(prds: Products[]) {
 
 function renderTitle(prds: Products[]) {
   let result = '';
-  if (prds[0].extra.gender === 'men' && genderQuery) {
-    result = `
-      <h1 class="nike-title-mobile text-[1.25rem] px-5 pt-[13px] pb-[13px] mb-[15px] nikeDesktop:hidden">${prds[0].extra.gender}</h1>
-      <h1 class="nike-title-desktop text-[1.25rem] px-12 pt-[17px] pb-[30px] hidden nikeDesktop:block nikeDesktop:whitespace-nowrap">${prds[0].extra.gender} (${prds.length})</h1>
-    `;
-  } else if (prds[0].extra.gender === 'women' && genderQuery) {
-    result = `
-      <h1 class="nike-title-mobile text-[1.25rem] px-5 pt-[13px] pb-[13px] mb-[15px] nikeDesktop:hidden">${prds[0].extra.gender}</h1>
-      <h1 class="nike-title-desktop text-[1.25rem] px-12 pt-[17px] pb-[30px] hidden nikeDesktop:block nikeDesktop:whitespace-nowrap">${prds[0].extra.gender} (${prds.length})</h1>
-    `;
-  } else if (prds[0].extra.gender === 'kids' && genderQuery) {
+  if (genderQuery) {
     result = `
       <h1 class="nike-title-mobile text-[1.25rem] px-5 pt-[13px] pb-[13px] mb-[15px] nikeDesktop:hidden">${prds[0].extra.gender}</h1>
       <h1 class="nike-title-desktop text-[1.25rem] px-12 pt-[17px] pb-[30px] hidden nikeDesktop:block nikeDesktop:whitespace-nowrap">${prds[0].extra.gender} (${prds.length})</h1>
@@ -90,12 +89,8 @@ function renderHiddenTitle(prds: Products[]) {
   const pEl = document.createElement('p');
   let textNode: Text | null = null;
 
-  if (prds[0].extra.gender === 'men' && genderQuery) {
-    textNode = document.createTextNode(`men (${prds.length})`);
-  } else if (prds[0].extra.gender === 'women' && genderQuery) {
-    textNode = document.createTextNode(`women (${prds.length})`);
-  } else if (prds[0].extra.gender === 'kids' && genderQuery) {
-    textNode = document.createTextNode(`kids (${prds.length})`);
+  if (genderQuery) {
+    textNode = document.createTextNode(`${prds[0].extra.gender} (${prds.length})`);
   } else if (newQuery) {
     textNode = document.createTextNode(`신제품 (${prds.length})`);
   }
@@ -121,25 +116,13 @@ function renderHiddenTitle(prds: Products[]) {
   }
 }
 
-const data = await getData();
+const data = await getData(url);
 if (data?.ok) {
-  // 쿼리 파라미터가 있으면 필터링, 없으면 전체 출력
-  let filteredData = data.item;
+  console.log(data.item);
 
-  if (genderQuery === 'men') {
-    filteredData = data.item.filter((item: Products) => item.extra?.gender === 'men');
-  } else if (genderQuery === 'women') {
-    filteredData = data.item.filter((item: Products) => item.extra?.gender === 'women');
-  } else if (genderQuery === 'kids') {
-    filteredData = data.item.filter((item: Products) => item.extra?.gender === 'kids');
-  } else if (newQuery) {
-    filteredData = data.item.filter((item: Products) => item.extra?.isNew === true);
-  }
-  console.log(filteredData);
-
-  renderItemList(filteredData);
-  renderTitle(filteredData);
-  renderHiddenTitle(filteredData);
+  renderItemList(data.item);
+  renderTitle(data.item);
+  renderHiddenTitle(data.item);
 }
 
 // 필터숨기기 누르면 필터영역 사라짐
@@ -159,4 +142,110 @@ hiddenBtn?.addEventListener('click', function () {
   categoryWrapper?.classList.toggle('nikeDesktop:hidden');
   nikeTitle?.classList.toggle('nikeDesktop:hidden');
   hiddenTitle?.classList.toggle('hidden');
+});
+
+// 정렬 버튼 토글 기능
+const sortBtn = document.querySelector('.item-filter-sort') as HTMLElement;
+const recommendBtn = document.querySelector('.recommend-sort');
+const recentBtn = document.querySelector('.recent-sort');
+const priceHighBtn = document.querySelector('.price-high-sort');
+const priceLowBtn = document.querySelector('.price-low-sort');
+const sortBtnImage = document.querySelector('.sort-btn-image');
+const sortText = document.querySelector('.sort-text') as HTMLElement;
+
+sortBtn?.addEventListener('click', function () {
+  recommendBtn?.classList.toggle('hidden');
+  recentBtn?.classList.toggle('hidden');
+  priceHighBtn?.classList.toggle('hidden');
+  priceLowBtn?.classList.toggle('hidden');
+
+  if (sortBtnImage?.getAttribute('src') === '/assets/icon24px/icon-down.svg') {
+    sortBtnImage?.setAttribute('src', '/assets/icon24px/icon-up.svg');
+  } else if (sortBtnImage?.getAttribute('src') === '/assets/icon24px/icon-up.svg') {
+    sortBtnImage?.setAttribute('src', '/assets/icon24px/icon-down.svg');
+  }
+});
+
+// 높은 가격순 정렬
+priceHighBtn?.addEventListener('click', async function () {
+  const priceHighUrl = url + `&sort={"price": -1}`;
+
+  const data = await getData(priceHighUrl);
+
+  if (data?.ok) {
+    console.log(data.item);
+
+    renderItemList(data.item);
+    renderTitle(data.item);
+    renderHiddenTitle(data.item);
+  }
+  recommendBtn?.classList.toggle('hidden');
+  recentBtn?.classList.toggle('hidden');
+  priceHighBtn?.classList.toggle('hidden');
+  priceLowBtn?.classList.toggle('hidden');
+  sortText.textContent = '정렬기준:높은 가격순';
+  sortBtnImage?.setAttribute('src', '/assets/icon24px/icon-down.svg');
+});
+
+// 낮은 가격순 정렬
+priceLowBtn?.addEventListener('click', async function () {
+  const priceLowUrl = url + `&sort={"price": 1}`;
+
+  const data = await getData(priceLowUrl);
+
+  if (data?.ok) {
+    console.log(data.item);
+
+    renderItemList(data.item);
+    renderTitle(data.item);
+    renderHiddenTitle(data.item);
+  }
+  recommendBtn?.classList.toggle('hidden');
+  recentBtn?.classList.toggle('hidden');
+  priceHighBtn?.classList.toggle('hidden');
+  priceLowBtn?.classList.toggle('hidden');
+  sortText.textContent = '정렬기준:낮은 가격순';
+  sortBtnImage?.setAttribute('src', '/assets/icon24px/icon-down.svg');
+});
+
+// 최신순 정렬
+recentBtn?.addEventListener('click', async function () {
+  const recentUrl = url + `&sort={"createdAt": -1}`;
+
+  const data = await getData(recentUrl);
+
+  if (data?.ok) {
+    console.log(data.item);
+
+    renderItemList(data.item);
+    renderTitle(data.item);
+    renderHiddenTitle(data.item);
+  }
+  recommendBtn?.classList.toggle('hidden');
+  recentBtn?.classList.toggle('hidden');
+  priceHighBtn?.classList.toggle('hidden');
+  priceLowBtn?.classList.toggle('hidden');
+  sortText.textContent = '정렬기준:최신순';
+  sortBtnImage?.setAttribute('src', '/assets/icon24px/icon-down.svg');
+});
+
+// 추천순 정렬
+recommendBtn?.addEventListener('click', async function () {
+  const recommendUrl = url + `&sort={"extra.isNew": -1, "extra.isBest": -1}`;
+
+  const data = await getData(recommendUrl);
+
+  if (data?.ok) {
+    console.log(data.item);
+
+    renderItemList(data.item);
+    renderTitle(data.item);
+    renderHiddenTitle(data.item);
+  }
+  recommendBtn?.classList.toggle('hidden');
+  recentBtn?.classList.toggle('hidden');
+  priceHighBtn?.classList.toggle('hidden');
+  priceLowBtn?.classList.toggle('hidden');
+  sortText.textContent = '정렬기준:추천순';
+  sortBtnImage?.setAttribute('src', '/assets/icon24px/icon-down.svg');
 });

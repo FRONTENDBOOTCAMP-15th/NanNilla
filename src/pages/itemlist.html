@@ -112,14 +112,22 @@
           <p class="total-item ml-5 inline-flex text-nike-gray-dark nikeDesktop:hidden">741개의 결과</p>
           <!-- <div class="hidden nikeDesktop:block"><p class="hidden">신제품</p></div> -->
           <div class="desktop-button hidden nikeDesktop:block nikeDesktop:ml-auto">
-            <button class="item-filter-hidden px-5 py-[3px] inline-flex items-center ml-auto">필터 숨기기<img src="/assets/icon24px/icon-filter.svg" alt="필터이미지" /></button>
-            <button class="item-filter-sort mr-5 pr-3 py-[3px] inline-flex items-center ml-auto">정렬기준:<img src="/assets/icon24px/icon-down.svg" alt="필터이미지" /></button>
+            <button class="item-filter-hidden pl-5 py-[3px] inline-flex items-center ml-auto">필터 숨기기<img src="/assets/icon24px/icon-filter.svg" alt="필터이미지" /></button>
+            <div class="sort-wrapper inline-flex flex-col">
+              <button class="item-filter-sort pl-8 mr-5 pr-3 py-[3px] inline-flex items-center ml-auto"><span class="sort-text">정렬기준:</span><img class="sort-btn-image" src="/assets/icon24px/icon-down.svg" alt="필터이미지" /></button>
+              <div class="sort-option inline-flex flex-col items-end mr-8 pr-6 pb-3 pt-4 bg-nike-white rounded-bl-[20px] z-0">
+                <button class="recommend-sort hidden">추천순</button>
+                <button class="recent-sort hidden">최신순</button>
+                <button class="price-high-sort hidden">높은 가격순</button>
+                <button class="price-low-sort hidden">낮은 가격순</button>
+              </div>
+            </div>
           </div>
           <button class="item-filter mr-5 px-5 py-[3px] inline-flex items-center gap-[3px] border-nike-gray-light border-solid border rounded-[50px] ml-auto nikeDesktop:hidden">필터<img src="/assets/icon24px/icon-filter.svg" alt="필터이미지" /></button>
         </div>
 
         <!-- 상품 목록 -->
-        <div class="item-list-wrapper flex w-full flex-wrap gap-x-1.5 gap-y-4.5 nikeDesktop:gap-x-0"></div>
+        <div class="item-list-wrapper flex w-full flex-wrap gap-x-1.5 gap-y-4.5 nikeDesktop:gap-x-0 z-0"></div>
       </aside>
     </main>
   </body>
