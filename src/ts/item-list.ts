@@ -150,6 +150,12 @@ hiddenBtn?.addEventListener('click', function () {
   const nikeTitle = document.querySelector('.nike-title');
   const hiddenTitle = document.querySelector('.hidden-desktop-title');
 
+  if (hiddenBtn.textContent === '필터 숨기기') {
+    hiddenBtn.innerHTML = `필터 표시<img src="/assets/icon24px/icon-filter.svg" alt="필터이미지" />`;
+  } else if (hiddenBtn.textContent === '필터 표시') {
+    hiddenBtn.innerHTML = `필터 숨기기<img src="/assets/icon24px/icon-filter.svg" alt="필터이미지" />`;
+  }
+
   categoryWrapper?.classList.toggle('nikeDesktop:hidden');
   nikeTitle?.classList.toggle('nikeDesktop:hidden');
   hiddenTitle?.classList.toggle('hidden');
