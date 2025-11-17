@@ -12,9 +12,9 @@ class HeaderComponent extends HTMLElement {
       </button>
       <div class="flex flex-row">
         <button class="px-3 items-center justify-between text-2xl leading-7 font-medium hidden nikeDesktop:block" data-new-only="true"><span><a href="/src/pages/itemlist?extra.isNew=true">New & Featured</a></span></button>
-        <button class="px-3 items-center justify-between text-2xl leading-7 font-medium hidden nikeDesktop:block"><span><a href="/src/pages/itemlist?extra.category.0=PC01">Men</a></span></button>
-        <button class="px-3 items-center justify-between text-2xl leading-7 font-medium hidden nikeDesktop:block"><span><a href="/src/pages/itemlist?extra.category.0=PC02">Women</a></span></button>
-        <button class="px-3 items-center justify-between text-2xl leading-7 font-medium hidden nikeDesktop:block"><span><a href="/src/pages/itemlist?extra.category.0=PC03">Kids</a></span></button>
+        <button class="px-3 items-center justify-between text-2xl leading-7 font-medium hidden nikeDesktop:block"><span><a href="/src/pages/itemlist?extra.gender=men">Men</a></span></button>
+        <button class="px-3 items-center justify-between text-2xl leading-7 font-medium hidden nikeDesktop:block"><span><a href="/src/pages/itemlist?extra.gender=women">Women</a></span></button>
+        <button class="px-3 items-center justify-between text-2xl leading-7 font-medium hidden nikeDesktop:block"><span><a href="/src/pages/itemlist?extra.gender=kids">Kids</a></span></button>
         <button class="px-3 items-center justify-between text-2xl leading-7 font-medium hidden nikeDesktop:block"><span><a href="/src/pages/itemlist?extra.isNew=true">Sale</a></span></button>
       </div>
         <div class="flex">
@@ -33,9 +33,9 @@ class HeaderComponent extends HTMLElement {
       </div>
       <div class="flex flex-col pl-8.5 gap-6">
         <button class="flex items-center justify-between text-2xl leading-7 font-medium" data-new-only="true"><span><a href="/src/pages/itemlist?extra.isNew=true">New & Featured</a></span><img src="/assets/icon36px/icon-next.svg"></button>
-        <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span><a href="/src/pages/itemlist?extra.category.0=PC01">Men</a></span><img src="/assets/icon36px/icon-next.svg"></button>
-        <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span><a href="/src/pages/itemlist?extra.category.0=PC02">Women</a></span><img src="/assets/icon36px/icon-next.svg"></button>
-        <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span><a href="/src/pages/itemlist?extra.category.0=PC03">Kids</a></span><img src="/assets/icon36px/icon-next.svg"></button>
+        <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span><a href="/src/pages/itemlist?extra.gender=men">Men</a></span><img src="/assets/icon36px/icon-next.svg"></button>
+        <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span><a href="/src/pages/itemlist?extra.gender=women">Women</a></span><img src="/assets/icon36px/icon-next.svg"></button>
+        <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span><a href="/src/pages/itemlist?extra.gender=kids">Kids</a></span><img src="/assets/icon36px/icon-next.svg"></button>
         <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span><a href="/src/pages/itemlist?extra.isNew=true">Sale</a></span><img src="/assets/icon36px/icon-next.svg"></button>
       </div>
       <div class="flex flex-col w-32.6 pl-8.5">
