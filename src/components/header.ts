@@ -3,6 +3,7 @@ class HeaderComponent extends HTMLElement {
   // 컴포넌트 렌더링과 이벤트 초기화 수행
   connectedCallback() {
     this.render();
+    this.initAuthUI();
   }
   // UI 렌더링
   render() {
@@ -28,8 +29,9 @@ class HeaderComponent extends HTMLElement {
       <div class="flex flex-col gap-9.5">
         <input type="checkbox" id="menu" class="peer hidden"><label for="menu" class="w-9 h-9 absolute right-2 p-1 z-30 box-border bg-[url(/assets/icon36px/icon-close.svg)] cursor-pointer"></label>
       <div class="flex gap-5 pl-8.5 pt-19">
-        <button class="w-22.5 h-10 rounded-full bg-nike-black text-nike-white text-base"><a href="../../src/pages/signin.html">가입하기</a></button>
-        <button class="w-19.5 h-10 rounded-full bg-nike-white text-nike-black border border-nike-gray-light text-base"><a href="../../src/pages/signin.html">로그인</a></button>
+        <button id="signup-btn" class="w-22.5 h-10 rounded-full bg-nike-black text-nike-white text-base"><a href="src/pages/signin.html">가입하기</a></button>
+        <button id="login-btn" class="w-19.5 h-10 rounded-full bg-nike-white text-nike-black border border-nike-gray-light text-base"><a href="src/pages/signin.html">로그인</a></button>
+        <button id="logout-btn" class="w-22.5 h-10 rounded-full bg-nike-black text-nike-white text-base hidden">로그아웃</button>
       </div>
       <div class="flex flex-col pl-8.5 gap-6">
         <button class="flex items-center justify-between text-2xl leading-7 font-medium" data-new-only="true"><span><a href="/src/pages/itemlist?extra.isNew=true">New & Featured</a></span><img src="/assets/icon36px/icon-next.svg"></button>
@@ -47,6 +49,36 @@ class HeaderComponent extends HTMLElement {
     </section>
     <label for="menu" class="fixed inset-0 bg-nike-black-35 opacity-0 pointer-events-none z-10 transition-opacity duration-300 [header:has(#menu:checked)~&]:opacity-100 [header:has(#menu:checked)~&]:pointer-events-auto" aria-label="배경 오버레이"></label>
     `;
+  }
+  private initAuthUI() {
+    // 토큰 존재하면 로그인 상태
+    const accessToken = localStorage.getItem("accessToken");
+    const isLoggedIn = !!accessToken;
+
+    const signupBtn = this.querySelector("#signup-btn") as HTMLButtonElement;
+    const loginBtn  = this.querySelector("#login-btn") as HTMLButtonElement;
+    const logoutBtn = this.querySelector("#logout-btn") as HTMLButtonElement;
+
+    if (!signupBtn || !loginBtn || !logoutBtn) return;
+
+    if (isLoggedIn) {
+      // 로그인 상태: 로그아웃 버튼만 보임
+      signupBtn.classList.add("hidden");
+      loginBtn.classList.add("hidden");
+      logoutBtn.classList.remove("hidden");
+    } else {
+      // 비로그인 상태: 가입/로그인 버튼만 보임
+      signupBtn.classList.remove("hidden");
+      loginBtn.classList.remove("hidden");
+      logoutBtn.classList.add("hidden");
+    }
+
+    // 로그아웃 클릭 시
+      logoutBtn.addEventListener("click", () => {
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        window.location.href ='/index.html';
+    });
   }
 }
 

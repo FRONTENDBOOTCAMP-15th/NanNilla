@@ -10,6 +10,7 @@ const passwordInput = document.querySelector('input[type="password"]') as HTMLIn
 const togglePw = document.getElementById('toggle-pw') as HTMLImageElement;
 const loginBtn = document.getElementById('login-btn') as HTMLButtonElement;
 
+// 이메일 입력 후 계속 버튼 클릭 시
 continueBtn.addEventListener('click', async () => {
   if (!emailInput.checkValidity()) {
     emailInput.reportValidity();
@@ -30,14 +31,15 @@ continueBtn.addEventListener('click', async () => {
       },
       validateStatus: (status) => status === 200 || status === 409
     });
-
+    // 로그인
     if (res.status === 409) {
       userEmail.textContent = email;
       pages.style.transform = "translateX(-50%)";
       return;
     }
-
+    // 회원가입
     if (res.status === 200) {
+      localStorage.setItem("signupEmail", emailInput.value.trim());
       window.location.href = "/src/pages/signup.html";
       return;
     }
@@ -48,10 +50,12 @@ continueBtn.addEventListener('click', async () => {
   }
 });
 
+// 이메일 입력 페이지로 이동
 backBtn.addEventListener('click', () => {
   pages.style.transform = 'translateX(0)';
 });
 
+// 비밀번호 보이기/숨기기
 togglePw.addEventListener('click', () => {
   if (passwordInput.type === 'password') {
     passwordInput.type = 'text';
@@ -62,11 +66,10 @@ togglePw.addEventListener('click', () => {
   }
 });
 
+// 로그인
 loginBtn.addEventListener ('click', async () => {
   const email = emailInput.value.trim();
   const password = passwordInput.value.trim();
-
-
   const axios = getAxios();
   try {
     const login = await axios.post('/users/login', {
