@@ -45,8 +45,10 @@ function renderItemList(prds: Products[]) {
           <a href="/src/pages/itemdetail?_id=${prd._id}">
             ${prd.extra.isNew ? `<p class="text-sm text-nike-red px-3 nikeDesktop:px-0">신제품</p>` : ''}
             <p class="text-sm px-3 nikeDesktop:px-0">${prd.name}</p>
-            <p class="text-sm text-nike-gray-dark font-normal px-3 nikeDesktop:px-0">${prd.name}</p>
-            <p class="text-sm text-nike-gray-dark font-normal px-3 nikeDesktop:px-0">${prd.name}</p>
+            ${prd.extra.gender === 'men' ? `<p class="text-sm text-nike-gray-dark font-normal px-3 nikeDesktop:px-0">남성 신발</p>` : ``}
+            ${prd.extra.gender === 'women' ? `<p class="text-sm text-nike-gray-dark font-normal px-3 nikeDesktop:px-0">여성 신발</p>` : ``}
+            ${prd.extra.gender === 'kids' ? `<p class="text-sm text-nike-gray-dark font-normal px-3 nikeDesktop:px-0">키즈 신발</p>` : ``}
+            <p class="text-sm text-nike-gray-dark font-normal px-3 nikeDesktop:px-0">${prd.extra.color ? prd.extra.color.split('/').length : 1}개 색상</p>
             <p class="text-base px-3 nikeDesktop:px-0">${prd.price.toLocaleString()} 원</p>
           </a>
         </figcaption>
