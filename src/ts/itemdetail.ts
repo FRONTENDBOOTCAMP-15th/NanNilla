@@ -116,30 +116,47 @@ if (data?.ok) {
 // getMainProduct();
 
 // 제품 사이즈 출력
-// const axiosInstace = getAxios();
-// const container = document.querySelector('.container');
-
+const axiosInstace = getAxios();
+const container = document.querySelector('.container');
+export let selectedSize: number | null = null;
 async function getSizeProduct() {
   try {
     const id = IdQuery;
-
     const { data } = await axiosInstace.get(`/products/${id}`);
     const { item } = data;
 
-    console.log(item);
-
     const sizeList = item.extra.size;
 
-    sizeList.map((data: number) => {
+    sizeList.forEach((sizeData: number) => {
       const productSize = document.createElement('button');
-      productSize.textContent = String(data);
+      productSize.id = String(sizeData);
+      productSize.textContent = String(sizeData);
+
+      // 초기 버튼 스타일
       productSize.classList.add('w-[56.4px]', 'px-4', 'py-2', 'border', 'border-gray-300', 'rounded-md', 'text-sm', 'hover:bg-gray-100');
 
+      productSize.addEventListener('click', () => {
+        selectedSize = sizeData; // 1. 값 업데이트
+
+        // 모든 버튼 초기화
+        const allButtons = container?.querySelectorAll('button');
+        allButtons?.forEach((btn) => {
+          btn.classList.remove('border-black', 'font-bold');
+          btn.classList.add('border-gray-300');
+        });
+
+        //  현재 버튼 활성화
+        productSize.classList.add('border-black', 'font-bold');
+        productSize.classList.remove('border-gray-300');
+
+        console.log(selectedSize); // 선택된 값 확인 (클릭 시마다 실행)
+      });
+
+      // 버튼을 컨테이너에 추가
       container?.append(productSize);
-    });
+    }); //
   } catch (err) {
     // 사이즈가 DB에 없을 때
-
     function noArray() {
       return `
 <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button ">250</button>
