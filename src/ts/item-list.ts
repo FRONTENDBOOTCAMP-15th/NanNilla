@@ -45,8 +45,10 @@ function renderItemList(prds: Products[]) {
           <a href="/src/pages/itemdetail?_id=${prd._id}">
             ${prd.extra.isNew ? `<p class="text-sm text-nike-red px-3 nikeDesktop:px-0">신제품</p>` : ''}
             <p class="text-sm px-3 nikeDesktop:px-0">${prd.name}</p>
-            <p class="text-sm text-nike-gray-dark font-normal px-3 nikeDesktop:px-0">${prd.name}</p>
-            <p class="text-sm text-nike-gray-dark font-normal px-3 nikeDesktop:px-0">${prd.name}</p>
+            ${prd.extra.gender === 'men' ? `<p class="text-sm text-nike-gray-dark font-normal px-3 nikeDesktop:px-0">남성 신발</p>` : ``}
+            ${prd.extra.gender === 'women' ? `<p class="text-sm text-nike-gray-dark font-normal px-3 nikeDesktop:px-0">여성 신발</p>` : ``}
+            ${prd.extra.gender === 'kids' ? `<p class="text-sm text-nike-gray-dark font-normal px-3 nikeDesktop:px-0">키즈 신발</p>` : ``}
+            <p class="text-sm text-nike-gray-dark font-normal px-3 nikeDesktop:px-0">${prd.extra.color ? prd.extra.color.split('/').length : 1}개 색상</p>
             <p class="text-base px-3 nikeDesktop:px-0">${prd.price.toLocaleString()} 원</p>
           </a>
         </figcaption>
@@ -81,6 +83,15 @@ function renderTitle(prds: Products[]) {
   }
 }
 
+function renderTotalItem(prds: Products[]) {
+  const result = `${prds.length}개의 결과`;
+
+  const totalItem = document.querySelector('.total-item');
+  if (totalItem) {
+    totalItem.textContent = result;
+  }
+}
+
 function renderHiddenTitle(prds: Products[]) {
   const divEl = document.createElement('div');
   const pEl = document.createElement('p');
@@ -106,6 +117,7 @@ if (data?.ok) {
   renderItemList(data.item);
   renderTitle(data.item);
   renderHiddenTitle(data.item);
+  renderTotalItem(data.item);
 }
 
 // 필터 숨기기
@@ -146,6 +158,7 @@ async function handleSort(sortUrl: string, label: string) {
     renderItemList(data.item);
     renderTitle(data.item);
     renderHiddenTitle(data.item);
+    renderTotalItem(data.item);
   }
 
   [recommendBtn, recentBtn, priceHighBtn, priceLowBtn].forEach((btn) => btn?.classList.add('hidden'));
@@ -154,8 +167,60 @@ async function handleSort(sortUrl: string, label: string) {
   sortBtnImage?.setAttribute('src', '/assets/icon24px/icon-down.svg');
 }
 
-// 각 정렬 버튼 이벤트
+// 각 정렬 버튼에 대한 이벤트
 priceHighBtn?.addEventListener('click', () => handleSort(url + `&sort={"price":-1}`, '높은 가격순'));
 priceLowBtn?.addEventListener('click', () => handleSort(url + `&sort={"price":1}`, '낮은 가격순'));
 recentBtn?.addEventListener('click', () => handleSort(url + `&sort={"createdAt":-1}`, '최신순'));
 recommendBtn?.addEventListener('click', () => handleSort(url + `&sort={"extra.isNew":-1,"extra.isBest":-1}`, '추천순'));
+
+// 모바일 필터 버튼
+const mobileFilterBtn = document.querySelector('.item-filter');
+const mobileFilterModal = document.querySelector('.mobile-filter-wrapper');
+const mobileFilterExit = document.querySelector('.mobile-filter-exit');
+const mobileFilterApply = document.querySelector('.mobile-filter-apply');
+
+// 모바일 필터에서 필터 버튼누르면 모달이 나오게함
+mobileFilterBtn?.addEventListener('click', function () {
+  mobileFilterModal?.classList.toggle('hidden');
+  document.body.style.overflow = 'hidden';
+});
+
+// 모바일 필터에서 닫기 버튼이나 적용 누르면 모달 끔
+mobileFilterExit?.addEventListener('click', function () {
+  mobileFilterModal?.classList.toggle('hidden');
+  document.body.style.overflow = ''; // 모달이 열렸을때 body 스크롤 해제
+});
+
+mobileFilterApply?.addEventListener('click', function () {
+  // 선택된 정렬 옵션 가져오기
+  const selectedSort = document.querySelector('input[name="mobile-sort"]:checked') as HTMLInputElement;
+
+  if (selectedSort) {
+    let sortUrl = '';
+    let sortLabel = '';
+
+    const sortId = selectedSort.id;
+
+    if (sortId === 'mobile-recommend-sort') {
+      sortUrl = url + `&sort={"extra.isNew":-1,"extra.isBest":-1}`;
+      sortLabel = '추천순';
+    } else if (sortId === 'mobile-recent-sort') {
+      sortUrl = url + `&sort={"createdAt":-1}`;
+      sortLabel = '최신순';
+    } else if (sortId === 'mobile-price-high-sort') {
+      sortUrl = url + `&sort={"price":-1}`;
+      sortLabel = '높은 가격순';
+    } else if (sortId === 'mobile-price-low-sort') {
+      sortUrl = url + `&sort={"price":1}`;
+      sortLabel = '낮은 가격순';
+    }
+
+    // 정렬 적용
+    if (sortUrl) {
+      handleSort(sortUrl, sortLabel);
+    }
+  }
+
+  mobileFilterModal?.classList.toggle('hidden');
+  document.body.style.overflow = ''; // 모달이 닫히면 body 스크롤 해제
+});

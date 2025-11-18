@@ -12,6 +12,72 @@
     <title>상품 리스트</title>
   </head>
   <body>
+    <!-- 모바일 버전 필터 -->
+    <div class="mobile-filter-wrapper hidden text-[16px] bg-nike-white w-screen h-screen fixed overflow-y-scroll nikeDesktop:hidden">
+      <div class="mobile-filter-title mt-9 ml-5">필터</div>
+      <button class="mobile-filter-exit w-8 h-8 absolute top-5 right-5"><img src="/assets/icon-etc/icon-exit.svg" alt="닫기 버튼" /></button>
+      <div class="mobile-sort-filter mx-5 py-7 border-b-nike-gray-lighter border-b">
+        <div>정렬기준</div>
+        <div class="flex pt-5 mt-1.5">
+          <input type="radio" id="mobile-recommend-sort" name="mobile-sort" class="mr-1.5" />
+          <label for="mobile-recommend-sort">추천순</label>
+        </div>
+        <div class="flex pt-5">
+          <input type="radio" id="mobile-recent-sort" name="mobile-sort" class="mr-1.5" />
+          <label for="mobile-recent-sort">최신순</label>
+        </div>
+        <div class="flex pt-5">
+          <input type="radio" id="mobile-price-high-sort" name="mobile-sort" class="mr-1.5" />
+          <label for="mobile-price-high-sort">높은 가격순</label>
+        </div>
+        <div class="flex pt-5">
+          <input type="radio" id="mobile-price-low-sort" name="mobile-sort" class="mr-1.5" />
+          <label for="mobile-price-low-sort">낮은 가격순</label>
+        </div>
+      </div>
+      <div class="mobile-gender-filter mx-5 py-7 border-b-nike-gray-lighter border-b">
+        <div>성별</div>
+        <div class="flex pt-5 mt-1.5">
+          <input type="checkbox" id="mobile-male" name="mobile-gender" class="mr-1.5" />
+          <label for="mobile-male">남성</label>
+        </div>
+        <div class="flex pt-5">
+          <input type="checkbox" id="mobile-female" name="mobile-gender" class="mr-1.5" />
+          <label for="mobile-female">여성</label>
+        </div>
+        <div class="flex pt-5">
+          <input type="checkbox" id="mobile-kids" name="mobile-gender" class="mr-1.5" />
+          <label for="mobile-kids">키즈</label>
+        </div>
+      </div>
+      <div class="mobile-price-filter mx-5 py-7 border-b-nike-gray-lighter border-b">
+        <div>가격대</div>
+        <div class="flex pt-5 mt-1.5">
+          <input type="checkbox" id="mobile-price-0-50" class="mr-1.5" />
+          <label for="mobile-price-0-50">0 - 50,000원</label>
+        </div>
+        <div class="flex pt-5">
+          <input type="checkbox" id="mobile-price-50-100" class="mr-1.5" />
+          <label for="mobile-price-50-100">50,000 - 100,000원</label>
+        </div>
+        <div class="flex pt-5">
+          <input type="checkbox" id="mobile-price-100-150" class="mr-1.5" />
+          <label for="mobile-price-100-150">100,000 - 150,000원</label>
+        </div>
+        <div class="flex pt-5">
+          <input type="checkbox" id="mobile-price-150-200" class="mr-1.5" />
+          <label for="mobile-price-150-200">150,000 - 200,000원</label>
+        </div>
+        <div class="flex pt-5">
+          <input type="checkbox" id="mobile-price-200-plus" class="mr-1.5" />
+          <label for="mobile-price-200-plus">200,000 원+</label>
+        </div>
+      </div>
+      <div class="mobile-filter-button flex my-9 justify-center">
+        <button class="border-nike-gray-lighter border rounded-4xl px-[41.525px] py-[9px] mr-1">지우기</button>
+        <button class="mobile-filter-apply bg-nike-black text-nike-white border rounded-4xl px-[47.75px] py-[9px] ml-1">적용</button>
+      </div>
+    </div>
     <nike-header></nike-header>
     <main class="flex flex-col min-w-[360px] nikeDesktop:flex-row nikeDesktop:h-screen">
       <section>
@@ -40,67 +106,67 @@
             <div class="flex flex-col ml-12 mt-1 gap-1">
               <p class="gender my-3 flex">성별<img src="/assets/icon24px/icon-up.svg" alt="" class="ml-auto mr-2.5" /></p>
               <div>
-                <input type="checkbox" id="male" />
-                <label for="male">남성</label>
+                <input type="checkbox" id="desktop-male" />
+                <label for="desktop-desktop-male">남성</label>
               </div>
               <div>
-                <input type="checkbox" id="female" />
-                <label for="female">여성</label>
+                <input type="checkbox" id="desktop-female" />
+                <label for="desktop-female">여성</label>
               </div>
               <div>
-                <input type="checkbox" id="unisex" />
-                <label for="unisex">유니섹스</label>
+                <input type="checkbox" id="desktop-unisex" />
+                <label for="desktop-unisex">유니섹스</label>
               </div>
             </div>
             <hr class="border-nike-gray-light ml-12 mt-6" />
             <div class="flex flex-col ml-12 mt-1 gap-1">
               <p class="is-kid my-3 flex">키즈<img src="/assets/icon24px/icon-up.svg" alt="" class="ml-auto mr-2.5" /></p>
               <div>
-                <input type="checkbox" id="boy" />
-                <label for="boy">남아</label>
+                <input type="checkbox" id="desktop-boy" />
+                <label for="desktop-boy">남아</label>
               </div>
               <div>
-                <input type="checkbox" id="girl" />
-                <label for="girl">여아</label>
+                <input type="checkbox" id="desktop-girl" />
+                <label for="desktop-girl">여아</label>
               </div>
             </div>
             <hr class="border-nike-gray-light ml-12 mt-6" />
             <div class="flex flex-col ml-12 mt-1 gap-1">
               <p class="kid-age my-3 flex">키즈 연령<img src="/assets/icon24px/icon-up.svg" alt="" class="ml-auto mr-2.5" /></p>
               <div>
-                <input type="checkbox" id="baby" />
-                <label for="baby">베이비(0-3세)</label>
+                <input type="checkbox" id="desktop-baby" />
+                <label for="desktop-baby">베이비(0-3세)</label>
               </div>
               <div>
-                <input type="checkbox" id="little" />
-                <label for="little">리틀키즈(3-7세)</label>
+                <input type="checkbox" id="desktop-little" />
+                <label for="desktop-little">리틀키즈(3-7세)</label>
               </div>
               <div>
-                <input type="checkbox" id="junior" />
-                <label for="junior">주니어(7-15세)</label>
+                <input type="checkbox" id="desktop-junior" />
+                <label for="desktop-junior">주니어(7-15세)</label>
               </div>
             </div>
             <hr class="border-nike-gray-light ml-12 mt-6" />
             <div class="flex flex-col ml-12 mt-1 gap-1">
               <p class="price-range my-3 flex">가격대<img src="/assets/icon24px/icon-up.svg" alt="" class="ml-auto mr-2.5" /></p>
               <div>
-                <input type="checkbox" id="price-0-50" />
-                <label for="price-0-50">0 - 50,000원</label>
+                <input type="checkbox" id="desktop-price-0-50" />
+                <label for="desktop-price-0-50">0 - 50,000원</label>
               </div>
 
               <div>
-                <input type="checkbox" id="price-50-100" />
-                <label for="price-50-100">50,000 - 100,000원</label>
+                <input type="checkbox" id="desktop-price-50-100" />
+                <label for="desktop-price-50-100">50,000 - 100,000원</label>
               </div>
 
               <div>
-                <input type="checkbox" id="price-100-150" />
-                <label for="price-100-150">100,000 - 150,000원</label>
+                <input type="checkbox" id="desktop-price-100-150" />
+                <label for="desktop-price-100-150">100,000 - 150,000원</label>
               </div>
 
               <div>
-                <input type="checkbox" id="price-150-200" />
-                <label for="price-150-200">150,000 - 200,000원</label>
+                <input type="checkbox" id="desktop-price-150-200" />
+                <label for="desktop-price-150-200">150,000 - 200,000원</label>
               </div>
             </div>
           </div>
@@ -110,13 +176,13 @@
       <aside>
         <!-- 필터 바 -->
         <div class="filter-bar pt-[16.5px] pb-[15px] mb-[15px] content-center inline-flex w-full h-[60px]">
-          <p class="total-item ml-5 inline-flex text-nike-gray-dark nikeDesktop:hidden">741개의 결과</p>
+          <p class="total-item ml-5 inline-flex text-nike-gray-dark nikeDesktop:hidden"></p>
           <!-- <div class="hidden nikeDesktop:block"><p class="hidden">신제품</p></div> -->
           <div class="desktop-button hidden nikeDesktop:block nikeDesktop:ml-auto">
             <button class="item-filter-hidden pl-5 py-[3px] inline-flex items-center ml-auto">필터 숨기기<img src="/assets/icon24px/icon-filter.svg" alt="필터이미지" /></button>
             <div class="sort-wrapper inline-flex flex-col">
               <button class="item-filter-sort pl-8 mr-5 pr-3 py-[3px] inline-flex items-center ml-auto"><span class="sort-text">정렬기준:</span><img class="sort-btn-image" src="/assets/icon24px/icon-down.svg" alt="필터이미지" /></button>
-              <div class="sort-option inline-flex flex-col items-end mr-8 pr-6 pb-3 pt-4 bg-nike-white rounded-bl-[20px] z-0">
+              <div class="sort-option inline-flex flex-col items-end absolute top-30 right-[31px] pr-6 bg-nike-white rounded-bl-[20px] z-0 w-[115px]">
                 <button class="recommend-sort hidden">추천순</button>
                 <button class="recent-sort hidden">최신순</button>
                 <button class="price-high-sort hidden">높은 가격순</button>

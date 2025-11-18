@@ -27,6 +27,7 @@ export interface Products {
     category: string[];
     sort: 1;
     gender: string;
+    color: string;
   };
   seller: {
     _id: number;
