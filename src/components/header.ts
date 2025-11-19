@@ -19,8 +19,8 @@ class HeaderComponent extends HTMLElement {
         <div class="flex flex-row">
           <button class="px-3 hidden nikeDesktop:block"><a href="/src/pages/itemlist?extra.isNew=true">New & Featured</a></button>
           <button id="menu-men"class="px-3 hidden nikeDesktop:block"><span>Men</span></button>
-          <button id="menu-women" class="px-3 hidden nikeDesktop:block"><a href="/src/pages/itemlist?extra.gender=women">Women</a></button>
-          <button id="menu-kids" class="px-3 hidden nikeDesktop:block"><a href="/src/pages/itemlist?extra.gender=kids">Kids</a></button>
+          <button id="menu-women" class="px-3 hidden nikeDesktop:block"><span>Women</span></button>
+          <button id="menu-kids" class="px-3 hidden nikeDesktop:block"><span>Kids</span></button>
           <button class="px-3 hidden nikeDesktop:block"><a href="/src/pages/itemlist?extra.isNew=true">Sale</a></button>
         </div>
         <!-- 메뉴 -->
@@ -53,7 +53,7 @@ class HeaderComponent extends HTMLElement {
 
           <!-- 의류 -->
           <div class="flex flex-col gap-3">
-            <a href="/src/pages/itemlist?extra.category.1=PC0103" class="font-semibold text-base mb-2">의류</a>
+            <a href="/src/pages/itemlist?extra.category.1=PC0103" class="font-medium text-sm mb-2">의류</a>
             <a href="/src/pages/itemlist?extra.category.2=PC010301" class="font-medium text-nike-gray-dark hover:underline text-xs">탑 & 티셔츠</a>
             <a href="/src/pages/itemlist?extra.category.2=PC010302" class="font-medium text-nike-gray-dark hover:underline text-xs">후디 & 크루</a>
             <a href="/src/pages/itemlist?extra.category.2=PC010303" class="font-medium text-nike-gray-dark hover:underline text-xs">재킷 & 베스트</a>
@@ -67,7 +67,7 @@ class HeaderComponent extends HTMLElement {
 
           <!-- 용품 -->
           <div class="flex flex-col gap-3">
-            <a href="/src/pages/itemlist?extra.category.1=PC0101" class="font-semibold text-base mb-2">용품</a>
+            <a href="/src/pages/itemlist?extra.category.1=PC0101" class="font-medium text-sm mb-2">용품</a>
             <a href="/src/pages/itemlist?extra.category.2=PC010101" class="font-medium text-nike-gray-dark hover:underline text-xs">가방</a>
             <a href="/src/pages/itemlist?extra.category.2=PC010102" class="font-medium text-nike-gray-dark hover:underline text-xs">모자 & 헤드밴드</a>
             <a href="/src/pages/itemlist?extra.category.2=PC010103" class="font-medium text-nike-gray-dark hover:underline text-xs">장갑</a>
@@ -82,7 +82,7 @@ class HeaderComponent extends HTMLElement {
         <div class="flex p-12 gap-65">
           <!-- 신발 -->
           <div class="flex flex-col gap-3">
-            <a href="/src/pages/itemlist?extra.category.1=PC0201" class="font-semibold text-base mb-2">신발</a>
+            <a href="/src/pages/itemlist?extra.category.1=PC0201" class="font-medium text-sm mb-2">신발</a>
             <a href="/src/pages/itemlist?extra.category.2=PC020101" class="font-medium text-nike-gray-dark hover:underline text-xs">라이프스타일</a>
             <a href="/src/pages/itemlist?extra.category.2=PC020102" class="font-medium text-nike-gray-dark hover:underline text-xs">러닝</a>
             <a href="/src/pages/itemlist?extra.category.2=PC020103" class="font-medium text-nike-gray-dark hover:underline text-xs">농구</a>
@@ -97,7 +97,7 @@ class HeaderComponent extends HTMLElement {
 
           <!-- 의류 -->
           <div class="flex flex-col gap-3">
-            <a href="/src/pages/itemlist?extra.category.1=PC0202" class="font-semibold text-base mb-2">의류</a>
+            <a href="/src/pages/itemlist?extra.category.1=PC0202" class="font-medium text-sm mb-2">의류</a>
             <a href="/src/pages/itemlist?extra.category.2=PC020201" class="font-medium text-nike-gray-dark hover:underline text-xs">탑 & 티셔츠</a>
             <a href="/src/pages/itemlist?extra.category.2=PC020202" class="font-medium text-nike-gray-dark hover:underline text-xs">스포츠 브라</a>
             <a href="/src/pages/itemlist?extra.category.2=PC020203" class="font-medium text-nike-gray-dark hover:underline text-xs">후디 & 크루</a>
@@ -113,7 +113,7 @@ class HeaderComponent extends HTMLElement {
 
           <!-- 용품 -->
           <div class="flex flex-col gap-3">
-            <a href="/src/pages/itemlist?extra.category.1=PC0203" class="font-semibold text-base mb-2">용품</a>
+            <a href="/src/pages/itemlist?extra.category.1=PC0203" class="font-medium text-sm mb-2">용품</a>
             <a href="/src/pages/itemlist?extra.category.2=PC020301" class="font-medium text-nike-gray-dark hover:underline text-xs">가방</a>
             <a href="/src/pages/itemlist?extra.category.2=PC020302" class="font-medium text-nike-gray-dark hover:underline text-xs">모자 & 헤드밴드</a>
             <a href="/src/pages/itemlist?extra.category.2=PC020303" class="font-medium text-nike-gray-dark hover:underline text-xs">장갑</a>
@@ -128,7 +128,7 @@ class HeaderComponent extends HTMLElement {
         <div class="flex p-12 gap-65">
           <!-- 신발 -->
           <div class="flex flex-col gap-3">
-            <a href="/src/pages/itemlist?extra.category.1=PC0301" class="font-semibold text-base mb-2">신발</a>
+            <a href="/src/pages/itemlist?extra.category.1=PC0301" class="font-medium text-sm mb-2">신발</a>
             <a href="/src/pages/itemlist?extra.category.2=PC030101" class="font-medium text-nike-gray-dark hover:underline text-xs">라이프스타일</a>
             <a href="/src/pages/itemlist?extra.category.2=PC030102" class="font-medium text-nike-gray-dark hover:underline text-xs">조던</a>
             <a href="/src/pages/itemlist?extra.category.2=PC030103" class="font-medium text-nike-gray-dark hover:underline text-xs">러닝</a>
@@ -141,7 +141,7 @@ class HeaderComponent extends HTMLElement {
 
           <!-- 의류 -->
           <div class="flex flex-col gap-3">
-            <a href="/src/pages/itemlist?extra.category.1=PC0302" class="font-semibold text-base mb-2">의류</a>
+            <a href="/src/pages/itemlist?extra.category.1=PC0302" class="font-medium text-sm mb-2">의류</a>
             <a href="/src/pages/itemlist?extra.category.2=PC030201" class="font-medium text-nike-gray-dark hover:underline text-xs">탑 & 티셔츠</a>
             <a href="/src/pages/itemlist?extra.category.2=PC030202" class="font-medium text-nike-gray-dark hover:underline text-xs">쇼츠</a>
             <a href="/src/pages/itemlist?extra.category.2=PC030203" class="font-medium text-nike-gray-dark hover:underline text-xs">상하의 세트</a>
@@ -156,7 +156,7 @@ class HeaderComponent extends HTMLElement {
 
           <!-- 용품 -->
           <div class="flex flex-col gap-3">
-            <a href="/src/pages/itemlist?extra.category.1=PC0303" class="font-semibold text-base mb-2">용품</a>
+            <a href="/src/pages/itemlist?extra.category.1=PC0303" class="font-medium text-sm mb-2">용품</a>
             <a href="/src/pages/itemlist?extra.category.2=PC030301" class="font-medium text-nike-gray-dark hover:underline text-xs">가방</a>
             <a href="/src/pages/itemlist?extra.category.2=PC030302" class="font-medium text-nike-gray-dark hover:underline text-xs">모자 & 헤드밴드</a>
             <a href="/src/pages/itemlist?extra.category.2=PC030303" class="font-medium text-nike-gray-dark hover:underline text-xs">양말</a>
@@ -168,8 +168,8 @@ class HeaderComponent extends HTMLElement {
       </div>
       <!-- 사이드바 -->
       <section class="sidebar fixed top-0 right-[-86%] w-77.5 h-full bg-nike-white transition-all duration-300 z-20 peer-checked:right-0 ">
-          <div class="flex flex-col gap-9.5">
-            <input type="checkbox" id="menu" class="peer hidden"><label for="menu-toggle" class="w-9 h-9 absolute right-2 top-2  p-1 z-30 box-border bg-[url(/assets/icon36px/icon-close.svg)] cursor-pointer"></label>
+        <div class="flex flex-col gap-9.5">
+          <input type="checkbox" id="menu" class="peer hidden"><label for="menu-toggle" class="w-9 h-9 absolute right-2 top-2  p-1 z-30 box-border bg-[url(/assets/icon36px/icon-close.svg)] cursor-pointer"></label>
           <div class="flex gap-5 pl-8.5 pt-19">
             <button id="signup-btn" class="w-22.5 h-10 rounded-full bg-nike-black text-nike-white text-base"><a href="src/pages/signin.html">가입하기</a></button>
             <button id="login-btn" class="w-19.5 h-10 rounded-full bg-nike-white text-nike-black border border-nike-gray-light text-base"><a href="src/pages/signin.html">로그인</a></button>
@@ -177,9 +177,9 @@ class HeaderComponent extends HTMLElement {
           </div>
           <div class="flex flex-col pl-8.5 gap-6">
             <button class="flex items-center justify-between text-2xl leading-7 font-medium" data-new-only="true"><span><a href="/src/pages/itemlist?extra.isNew=true">New & Featured</a></span><img src="/assets/icon36px/icon-next.svg"></button>
-            <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span><a href="/src/pages/itemlist?extra.gender=men">Men</a></span><img src="/assets/icon36px/icon-next.svg"></button>
-            <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span><a href="/src/pages/itemlist?extra.gender=women">Women</a></span><img src="/assets/icon36px/icon-next.svg"></button>
-            <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span><a href="/src/pages/itemlist?extra.gender=kids">Kids</a></span><img src="/assets/icon36px/icon-next.svg"></button>
+            <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span><a href="/src/pages/itemlist?extra.category.1=PC0102">Men</a></span><img src="/assets/icon36px/icon-next.svg"></button>
+            <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span><a href="/src/pages/itemlist?extra.category.1=PC0201">Women</a></span><img src="/assets/icon36px/icon-next.svg"></button>
+            <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span><a href="/src/pages/itemlist?extra.category.1=PC0301">Kids</a></span><img src="/assets/icon36px/icon-next.svg"></button>
             <button class="flex items-center justify-between text-2xl leading-7 font-medium"><span><a href="/src/pages/itemlist?extra.isNew=true">Sale</a></span><img src="/assets/icon36px/icon-next.svg"></button>
           </div>
           <div class="flex flex-col w-32.6 pl-8.5">
@@ -188,6 +188,7 @@ class HeaderComponent extends HTMLElement {
             <button class="flex items-center gap-3 text-base font-medium py-2"><img src="/assets/icon24px/icon-order.svg" alt=""><span>주문</span></button>
             <button class="flex items-center gap-3 text-base font-medium py-2"><img src="/assets/icon24px/icon-store.svg" alt=""><span>매장 찾기</span></button>
           </div>
+        </div>
       </section>
 
       <!-- 사이드바 백드랍 -->
