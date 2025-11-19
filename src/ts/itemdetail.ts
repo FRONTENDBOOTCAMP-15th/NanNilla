@@ -298,4 +298,4 @@ addCartBtn?.addEventListener('click', async () => {
 });
 
 getData();
-// 로그인 할 때 로컬스토리지를의 데이터를 DB로 병합하고 로컬스토리지 삭제키에엑
+// 로그인 할 때 로컬스토리지를의 데이터를 DB로 병합하고 로컬스토리지 삭제
