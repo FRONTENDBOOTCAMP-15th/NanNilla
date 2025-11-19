@@ -37,67 +37,45 @@ class HeaderComponent extends HTMLElement {
       <!-- 서브 메뉴 -->
       <div id="mega-menu-men" class="fixed left-0 top-15 w-screen h-[500px] bg-white shadow-lg border-t border-gray-300 opacity-0 invisible translate-y-2 transition-all duration-300 z-30">
         <div class="flex p-15 gap-65">
-        <!-- 1) New -->
-              <div class="flex flex-col gap-3">
-                <h3 class="font-semibold text-base mb-2">New</h3>
-
-                <a href="#" class="hover:underline text-sm">신제품 전체</a>
-                <a href="#" class="hover:underline text-sm">베스트셀러</a>
-
-                <h3 class="font-semibold text-base mt-6 mb-2">Collections</h3>
-
-                <a href="#" class="hover:underline text-sm flex items-center gap-1">
-                  올 겨울 ACG와 함께 🏔️
-                </a>
-                <a href="#" class="hover:underline text-sm">멈추지 않는 러닝</a>
-                <a href="#" class="hover:underline text-sm">윈터 아일렛 스타일</a>
-                <a href="#" class="hover:underline text-sm">올데이 플리스 셋업</a>
-                <a href="#" class="hover:underline text-sm">나이키 테크</a>
-                <a href="#" class="hover:underline text-sm flex items-center gap-1">
-                  새로운 농구 스타일 🏀
-                </a>
-              </div>
-
               <!-- 2) 신발 -->
               <div class="flex flex-col gap-3">
-                <h3 class="font-semibold text-base mb-2">신발</h3>
-
-                <a href="#" class="hover:underline text-sm">라이프스타일</a>
-                <a href="#" class="hover:underline text-sm">러닝</a>
-                <a href="#" class="hover:underline text-sm">축구</a>
-                <a href="#" class="hover:underline text-sm">조던</a>
-                <a href="#" class="hover:underline text-sm">농구</a>
-                <a href="#" class="hover:underline text-sm">트레이닝 & 짐</a>
-                <a href="#" class="hover:underline text-sm">골프</a>
-                <a href="#" class="hover:underline text-sm">테니스</a>
-                <a href="#" class="hover:underline text-sm">스케이트보딩</a>
-                <a href="#" class="hover:underline text-sm">10만원 이하 신발</a>
+                <a href="/src/pages/itemlist?extra.category.1=PC0102" class="font-semibold text-base mb-2">신발</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010201" class="hover:underline text-sm">라이프스타일</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010202" class="hover:underline text-sm">조던</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010203" class="hover:underline text-sm">러닝</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010204" class="hover:underline text-sm">농구</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010205" class="hover:underline text-sm">미식축구</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010206" class="hover:underline text-sm">축구</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010207" class="hover:underline text-sm">트레이닝 & 짐</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010208" class="hover:underline text-sm">스케이트보딩</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010209" class="hover:underline text-sm">골프</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC0102010" class="hover:underline text-sm">테니스</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC0102011" class="hover:underline text-sm">샌들 & 슬리퍼</a>
               </div>
 
               <!-- 3) 의류 -->
               <div class="flex flex-col gap-3">
-                <h3 class="font-semibold text-base mb-2">의류</h3>
-
-                <a href="#" class="hover:underline text-sm">아우터웨어</a>
-                <a href="#" class="hover:underline text-sm">재킷 & 베스트</a>
-                <a href="#" class="hover:underline text-sm">후디 & 크루</a>
-                <a href="#" class="hover:underline text-sm">탑 & 티셔츠</a>
-                <a href="#" class="hover:underline text-sm">팬츠 & 타이츠</a>
-                <a href="#" class="hover:underline text-sm">남성 셋업</a>
-                <a href="#" class="hover:underline text-sm">쇼츠</a>
-                <a href="#" class="hover:underline text-sm">24.7</a>
-                <a href="#" class="hover:underline text-sm">러닝</a>
-                <a href="#" class="hover:underline text-sm">조던</a>
+                <a href="/src/pages/itemlist?extra.category.1=PC0103" class="font-semibold text-base mb-2">의류</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010301" class="hover:underline text-sm">탑 & 티셔츠</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010302" class="hover:underline text-sm">후디 & 크루</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010303" class="hover:underline text-sm">재킷 & 베스트</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010304" class="hover:underline text-sm">팬츠 & 타이츠</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010305" class="hover:underline text-sm">트랙수트</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010306" class="hover:underline text-sm">쇼츠</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010307" class="hover:underline text-sm">점프수트 & 롬퍼스</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010308" class="hover:underline text-sm">서핑 & 수영복</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010309" class="hover:underline text-sm">양말</a>
               </div>
 
               <!-- 4) 용품 -->
               <div class="flex flex-col gap-3">
-                <h3 class="font-semibold text-base mb-2">용품</h3>
-
-                <a href="#" class="hover:underline text-sm">모자 & 헤드밴드</a>
-                <a href="#" class="hover:underline text-sm">가방</a>
-                <a href="#" class="hover:underline text-sm">양말</a>
-                <a href="#" class="hover:underline text-sm">장갑</a>
+                <a href="/src/pages/itemlist?extra.category.1=PC0101" class="font-semibold text-base mb-2">용품</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010101" class="hover:underline text-sm">가방</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010102" class="hover:underline text-sm">모자 & 헤드밴드</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010103" class="hover:underline text-sm">장갑</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010104" class="hover:underline text-sm">슬리브 & 암 밴드</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010105" class="hover:underline text-sm">공</a>
+                <a href="/src/pages/itemlist?extra.category.2=PC010106" class="hover:underline text-sm">보호대</a>
               </div>
         </div>
               
@@ -137,59 +115,58 @@ class HeaderComponent extends HTMLElement {
   }
   private initAuthUI() {
     // 토큰 존재하면 로그인 상태
-    const accessToken = localStorage.getItem("accessToken");
+    const accessToken = localStorage.getItem('accessToken');
     const isLoggedIn = !!accessToken;
 
-    const signupBtn = this.querySelector("#signup-btn") as HTMLButtonElement;
-    const loginBtn  = this.querySelector("#login-btn") as HTMLButtonElement;
-    const logoutBtn = this.querySelector("#logout-btn") as HTMLButtonElement;
+    const signupBtn = this.querySelector('#signup-btn') as HTMLButtonElement;
+    const loginBtn = this.querySelector('#login-btn') as HTMLButtonElement;
+    const logoutBtn = this.querySelector('#logout-btn') as HTMLButtonElement;
 
     if (!signupBtn || !loginBtn || !logoutBtn) return;
 
     if (isLoggedIn) {
       // 로그인 상태: 로그아웃 버튼만 보임
-      signupBtn.classList.add("hidden");
-      loginBtn.classList.add("hidden");
-      logoutBtn.classList.remove("hidden");
+      signupBtn.classList.add('hidden');
+      loginBtn.classList.add('hidden');
+      logoutBtn.classList.remove('hidden');
     } else {
       // 비로그인 상태: 가입/로그인 버튼만 보임
-      signupBtn.classList.remove("hidden");
-      loginBtn.classList.remove("hidden");
-      logoutBtn.classList.add("hidden");
+      signupBtn.classList.remove('hidden');
+      loginBtn.classList.remove('hidden');
+      logoutBtn.classList.add('hidden');
     }
 
     // 로그아웃 클릭 시
-      logoutBtn.addEventListener("click", () => {
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("refreshToken");
-        window.location.href ='/index.html';
+    logoutBtn.addEventListener('click', () => {
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+      window.location.href = '/index.html';
     });
   }
 
-
- private initMegaMenu() {
-    const menBtn = this.querySelector("#menu-men") as HTMLElement;
-    const megaMenu = this.querySelector("#mega-menu-men") as HTMLElement;
+  private initMegaMenu() {
+    const menBtn = this.querySelector('#menu-men') as HTMLElement;
+    const megaMenu = this.querySelector('#mega-menu-men') as HTMLElement;
 
     if (!menBtn || !megaMenu) return;
 
     // 버튼 hover → 메뉴 열기
-    menBtn.addEventListener("mouseenter", () => {
-      megaMenu.classList.remove("opacity-0", "invisible", "translate-y-2");
+    menBtn.addEventListener('mouseenter', () => {
+      megaMenu.classList.remove('opacity-0', 'invisible', 'translate-y-2');
     });
 
     // 버튼에서 나갔는데 메뉴에 안 들어가면 닫기
-    menBtn.addEventListener("mouseleave", () => {
+    menBtn.addEventListener('mouseleave', () => {
       setTimeout(() => {
-        if (!megaMenu.matches(":hover")) {
-          megaMenu.classList.add("opacity-0", "invisible", "translate-y-2");
+        if (!megaMenu.matches(':hover')) {
+          megaMenu.classList.add('opacity-0', 'invisible', 'translate-y-2');
         }
       }, 80);
     });
 
     // 메뉴에서 마우스 떠나면 닫기
-    megaMenu.addEventListener("mouseleave", () => {
-      megaMenu.classList.add("opacity-0", "invisible", "translate-y-2");
+    megaMenu.addEventListener('mouseleave', () => {
+      megaMenu.classList.add('opacity-0', 'invisible', 'translate-y-2');
     });
   }
 }
