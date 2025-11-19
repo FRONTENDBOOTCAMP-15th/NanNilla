@@ -3,8 +3,8 @@ import { getAxios } from '../utils/axios';
 // 로그인 상태 false true 확인
 const isLoggedIn = !!localStorage.getItem('accessToken');
 console.log('로그인 상태:', isLoggedIn);
+/*---------------------- 장바구니 목록 ----------------------*/
 /*----------------- 타입 ------------------*/
-
 // 랜더링 시 저장되는 타입
 export interface CartItem {
   id: number;
@@ -36,6 +36,19 @@ export interface ServerCartItem {
   size: string;
   createdAt: string;
   updatedAt: string;
+}
+
+// 추천상품 타입
+interface BestItem {
+  _id: number;
+  name: string;
+  price: number;
+  mainImages?: { path: string; name: string }[];
+  extra?: {
+    gender?: string;
+    styleNo?: string;
+    category?: string;
+  };
 }
 
 const axiosInstance = getAxios();
@@ -273,7 +286,7 @@ function renderCartCost(totalPrice: number) {
 
   container.appendChild(card);
 }
-/*----------------- 서버 업데이트 ------------------*/
+/*----------------- 서버 수량 업데이트 ------------------*/
 
 async function updateServerCartItem(serverId: number, quantity: number) {
   const token = localStorage.getItem('accessToken');
@@ -301,3 +314,80 @@ async function deleteServerCartItem(serverId: number) {
 /*----------------- 초기 실행 ------------------*/
 
 loadCart();
+/*------------------------------------------------------*/
+
+/*---------------------- 추천 상품 ----------------------*/
+
+/*----------------- 추천상품 불러오기 ------------------*/
+async function bestItem(): Promise<CartItem[]> {
+  try {
+    const { data } = await axiosInstance.get<{ item: BestItem[] }>('/products?sort={ "extra.isBest": -1}');
+
+    const productsArray = Array.isArray(data.item) ? data.item : [];
+    return productsArray.map((item) => ({
+      id: item._id,
+      serverId: item._id,
+      name: item.name,
+      price: Number(item.price) || 0,
+      size: '',
+      image: item.mainImages?.[0]?.path || '',
+      quantity: 1,
+      category: item.extra?.category?.[0] || '',
+      gender: item.extra?.gender || '',
+      styleNo: item.extra?.styleNo || '',
+    }));
+  } catch (error) {
+    console.error('추천상품 불러오기 실패:', error);
+    return [];
+  }
+}
+bestItem();
+
+/*----------------- 추천상품 랜더링 ------------------*/
+async function renderBestItems() {
+  const container = document.querySelector('.best-item') as HTMLElement;
+  if (!container) return;
+
+  // 추천상품 불러오기
+  const bestItems = await bestItem();
+
+  // 기존 내용 초기화
+  container.innerHTML = '';
+
+  bestItems.forEach((item) => {
+    const card = document.createElement('div');
+    card.className = 'flex-[0_0_calc((100%-16px)/2)] md:flex-[0_0_calc((100%-16px)/3)]';
+
+    card.innerHTML = `
+      <div class="aspect-square bg-nike-gray-lightest overflow-hidden">
+        <img src="${item.image}" alt="${item.name}" class="w-full h-full rounded object-cover transition-transform duration-300" />
+      </div>
+      <div class="mt-2">
+        <p class="font-medium">${item.name}</p>
+        <p class="text-xs font-extralight text-nike-gray-dark">${item.name}</p>
+        <p class="font-bold text-base mt-1">${item.price.toLocaleString()} 원</p>
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+/*----------------- 좌 우 버튼 ------------------*/
+
+const container = document.querySelector('.best-item') as HTMLElement;
+
+const prevBtn = document.querySelector('.prev') as HTMLElement;
+const nextBtn = document.querySelector('.next') as HTMLElement;
+
+// 왼쪽으로 이동
+prevBtn.addEventListener('click', () => {
+  container.scrollBy({ left: -700, behavior: 'smooth' });
+});
+// 오른쪽으로 이동
+nextBtn.addEventListener('click', () => {
+  container.scrollBy({ left: 700, behavior: 'smooth' });
+});
+
+// 실행
+renderBestItems();
