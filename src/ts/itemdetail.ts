@@ -6,22 +6,16 @@ const params = new URLSearchParams(window.location.search);
 const newQuery = params.get('extra.isNew');
 const categoryQuery = params.get('extra.category.0');
 const IdQuery: string | null = params.get('_id');
-console.log('name 파라미터:', newQuery);
-console.log('category 파라미터:', categoryQuery);
-console.log('현재 URL:', window.location.href);
-console.log('Id값 출력', IdQuery);
 
 async function getData() {
   const axios = getAxios();
   try {
-    // categoryQuery가 있으면 쿼리를 포함해서 요청
     let url = '/products';
     if (IdQuery) {
       url = `/products?extra.category.0=${encodeURIComponent(IdQuery)}`;
     } else if (newQuery) {
       url = `/products?extra.isNew=${encodeURIComponent(newQuery)}`;
     }
-    console.log('요청 URL:', url);
     const { data } = await axios.get<ItemListRes>(url);
     return data;
   } catch (err) {
@@ -29,96 +23,134 @@ async function getData() {
   }
 }
 
+const itemList = document.querySelector('.item-list-wrapper');
+let selectedProduct = {};
+
 // 상품 이름, 가격, 이미지 출력
 function render(prds: Products[]) {
-  const result = prds?.map((prd) => {
-    const imageHtml = prd.mainImages
-      .map((image) => {
-        return `
-        <button class="cursor: pointer;">
-          <img class="w-[125px] h-[125px]" src="${image.path}" alt="${prd.name} - ${image.name}" />
-        </button>
-      `;
-      })
-      .join('');
+  const div2Tag = document.createElement('div');
+  div2Tag.classList.add('detail-item-color', 'pt-0.75', 'flex', 'gap-2.5', 'overflow-x-auto');
 
-    return `
-      <main class="detail-main pt-20 flow-root">
-        <h1 class=" h-8.75 ml-6 font-medium text-xl font-Noto">${prd?.name}</h1>
-        <p class=" h-7 ml-6 font-medium font-Noto">${prd.name}</p>
-        <div class="detail-price-info pt-3 ml-6 flex">
-          <span class="inline-block h-7 mr-2 font-medium font-Noto">${prd.price}</span>
-          <s class="inline-block h-7 mr-2 font-medium font-Noto text-nike-gray-medium">${prd.price}</s>
-          <span class="inline-block h-7 font-medium font-Noto text-nike-green">${prd.price}</span>
-        </div>
+  prds?.map((prd) => {
+    const figureTag = document.createElement('figure');
+    figureTag.classList.add('min-w-[360px]', 'detail-item-image', 'overflow-x-auto', 'pt-6', 'justify-center', 'items-center');
 
-        <figure class="detail-item-image flex overflow-x-auto pt-6">
-          
-          <img class="" src="${prd.mainImages[0].path}" alt="${prd.name} 이미지" />
-          
-        </figure>
-        
-        <div class="detail-item-color pt-0.75 flex gap-2.5 overflow-x-auto">
-          ${imageHtml}
-        </div>
-      </main>
+    const imgTag = document.createElement('img');
+    if (prd.mainImages && prd.mainImages.length > 0) {
+      imgTag.src = prd.mainImages[0].path;
+    }
+    imgTag.alt = prd.name + '이미지';
+    figureTag.appendChild(imgTag);
 
-   
-    `;
+    // 색상 버튼 생성 루프
+    prd.mainImages.map((image, index) => {
+      const itemColorButton = document.createElement('button') as HTMLButtonElement;
+      const itemImage = document.createElement('img') as HTMLImageElement;
+
+      // 버튼 스타일 설정
+      itemColorButton.classList.add(
+        'itemColorButton',
+        'w-[125px]', // 버튼 크기 고정
+        'h-[125px]',
+        'flex-shrink-0',
+        'cursor-pointer',
+        'p-0',
+        'overflow-hidden',
+        'border-2', // [수정] 테두리 두께 2px (항상 존재)
+        'box-border' // [수정] 테두리를 포함한 크기 계산
+      );
+
+      // 이미지 스타일 설정
+      itemImage.classList.add('w-full', 'h-full', 'object-cover', 'block');
+      itemImage.src = image.path;
+      itemImage.alt = `${prd.name} - ${image.name}`;
+
+      // [초기 상태 설정]
+      // 첫 번째는 검은 테두리, 나머지는 투명 테두리
+      if (index === 0) {
+        itemColorButton.classList.add('border-black');
+        itemColorButton.classList.remove('border-transparent');
+      } else {
+        itemColorButton.classList.add('border-transparent'); // 안 보일 뿐 공간은 차지
+        itemColorButton.classList.remove('border-black');
+      }
+
+      // [클릭 이벤트]
+      itemColorButton.addEventListener('click', () => {
+        // 메인 이미지 변경
+        imgTag.src = image.path;
+        selectedProduct = image;
+
+        //  모든 버튼을 투명 테두리로 초기화
+        const allButtons = div2Tag.querySelectorAll('.itemColorButton');
+        allButtons.forEach((btn) => {
+          btn.classList.remove('border-black');
+          btn.classList.add('border-transparent');
+        });
+
+        //  클릭된 버튼만 검은 테두리 적용
+        itemColorButton.classList.remove('border-transparent');
+        itemColorButton.classList.add('border-black');
+
+        console.log('선택된 상품:', selectedProduct);
+      });
+
+      itemColorButton.appendChild(itemImage);
+      div2Tag.appendChild(itemColorButton);
+    });
+
+    const mainTag = document.createElement('main');
+    mainTag.classList.add('detail-main', 'pt-20', 'flow-root');
+
+    const h1Tag = document.createElement('h1');
+    h1Tag.classList.add('h-8.75', 'ml-6', 'font-medium', 'text-xl', 'font-Noto');
+    h1Tag.textContent = prd.name;
+
+    const pTag = document.createElement('p');
+    pTag.classList.add('h-7', 'ml-6', 'font-medium', 'font-Noto');
+    pTag.textContent = prd.name;
+
+    const div1Tag = document.createElement('div');
+    div1Tag.classList.add('detail-price-info', 'pt-3', 'ml-6', 'flex');
+
+    const span1Tag = document.createElement('span');
+    span1Tag.classList.add('inline-block', 'h-7', 'mr-2', 'font-medium', 'font-Noto');
+    span1Tag.textContent = String(prd.price);
+
+    const sTag = document.createElement('s');
+    sTag.classList.add('inline-block', 'h-7', 'mr-2', 'font-medium', 'font-Noto', 'text-nike-gray-medium');
+    sTag.textContent = String(prd.price);
+
+    const span2Tag = document.createElement('span');
+    span2Tag.classList.add('inline-block', 'h-7', 'font-medium', 'font-Noto', 'text-nike-green');
+    span2Tag.textContent = String(prd.price);
+
+    div1Tag.appendChild(span1Tag);
+    div1Tag.appendChild(sTag);
+    div1Tag.appendChild(span2Tag);
+
+    itemList?.appendChild(mainTag);
+    itemList?.appendChild(h1Tag);
+    itemList?.appendChild(pTag);
+    itemList?.appendChild(div1Tag);
+    itemList?.appendChild(figureTag); // 위에서 미리 만든 figureTag 추가
+
+    itemList?.appendChild(div2Tag);
   });
-  const itemList = document.querySelector('.item-list-wrapper');
-  if (itemList) {
-    itemList.innerHTML = result.join('');
-  }
 }
 
 const data = await getData();
 if (data?.ok) {
-  // 쿼리 파라미터가 있으면 필터링, 없으면 전체 출력
   let filteredData = data?.item;
-  console.log('1', filteredData);
-  console.log('2', IdQuery);
   if (IdQuery) {
     filteredData = data.item.filter((item: Products) => String(item._id) === IdQuery);
   }
-  // else if (newQuery) {
-  //   filteredData = data.item.filter((item: Products) => item.extra?.isNew === true);
-  // }
-  console.log('3', filteredData);
-
   render(filteredData);
 }
-
-// 제품 이미지 출력
-// const axiosInstace = getAxios();
-// const container = document.querySelector('.item-list-wrapper');
-
-// async function getMainProduct() {
-//   try {
-//     const id = IdQuery;
-
-//     const { data } = await axiosInstace.get(`/products/${id}`);
-//     const { item } = data;
-//     console.log(item);
-
-//     const imagesArray = item.mainImages;
-
-//     imagesArray.map((image) => {
-//       const productImg = document.createElement('img');
-//       productImg.src = image.path;
-//       productImg.classList.add('flex', 'overflow-x-auto', 'pt-6');
-//       container?.append(productImg);
-//     });
-//   } catch (err) {
-//     console.log('제품 이미지를 가져오는 중 오류 발생');
-//   }
-// }
-// getMainProduct();
-
 // 제품 사이즈 출력
 const axiosInstace = getAxios();
 const container = document.querySelector('.container');
-export let selectedSize: number | null = null;
+export let selectedSize: string | null = null;
 async function getSizeProduct() {
   try {
     const id = IdQuery;
@@ -127,7 +159,7 @@ async function getSizeProduct() {
 
     const sizeList = item.extra.size;
 
-    sizeList.forEach((sizeData: number) => {
+    sizeList.forEach((sizeData: string) => {
       const productSize = document.createElement('button');
       productSize.id = String(sizeData);
       productSize.textContent = String(sizeData);
@@ -178,23 +210,18 @@ async function getSizeProduct() {
     if (itemList) {
       itemList.innerHTML = noArray();
     }
-
     console.log('사이즈 배열 존재하지 않음', err);
     noArray();
   }
 }
-
 getSizeProduct();
 
 // 비회원 일때 로컬스토리지에 상품 담는 기능 ( 장바구니 )
 const addCartBtn = document.querySelector('.addCartBtn') as HTMLButtonElement;
 console.log('버튼의 id 값', IdQuery);
-
 addCartBtn.addEventListener('click', () => {
   localStorage.setItem('cart', IdQuery);
   alert('장바구니에 상품이 추가되었습니다');
 });
-
 // 로그인 할 때 로컬스토리지를의 데이터를 DB로 병합하고 로컬스토리지 삭제
-
 // 로그인 후
