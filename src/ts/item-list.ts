@@ -152,7 +152,7 @@ function renderFiliterList(currentQuery: string, currentNewQeury: string | null)
             ${currentQuery.includes('PC0301') ? PC0301.map((item, index) => `<button class="text-nike-black text-[1rem] font-medium px-4 pb-3.5 nikeDesktop:ml-8 nikeDesktop:pb-[10.79px]"><a href="/src/pages/itemlist?extra.category.2=PC0301${index + 1 >= 10 ? index + 1 : '0' + (index + 1)}">${item}</a></button>`).join('') : ``}
             ${currentQuery.includes('PC0302') ? PC0302.map((item, index) => `<button class="text-nike-black text-[1rem] font-medium px-4 pb-3.5 nikeDesktop:ml-8 nikeDesktop:pb-[10.79px]"><a href="/src/pages/itemlist?extra.category.2=PC0302${index + 1 >= 10 ? index + 1 : '0' + (index + 1)}">${item}</a></button>`).join('') : ``}
             ${currentQuery.includes('PC0303') ? PC0303.map((item, index) => `<button class="text-nike-black text-[1rem] font-medium px-4 pb-3.5 nikeDesktop:ml-8 nikeDesktop:pb-[10.79px]"><a href="/src/pages/itemlist?extra.category.2=PC0303${index + 1 >= 10 ? index + 1 : '0' + (index + 1)}">${item}</a></button>`).join('') : ``}
-            <hr class="border-nike-gray-light ml-12 mt-6 w-53" />
+            <hr class="nikeDesktop:border-nike-gray-light nikeDesktop:ml-12 nikeDesktop:mt-6 nikeDesktop:w-53" />
             <!-- 추가 목록 -->
             <div class="additional-category w-full hidden nikeDesktop:block">
               <div class="flex flex-col ml-12 mt-1 gap-1">
