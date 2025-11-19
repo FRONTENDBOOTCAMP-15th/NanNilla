@@ -11,7 +11,7 @@ const PC0102 = ['라이프스타일', '조던', '러닝', '농구', '미식축�
 const PC0103 = ['탑 & 티셔츠', '후디 & 크루', '재킷 & 베스트', '팬츠 & 타이즈', '트랙수트', '쇼츠', '점프수트 & 롬퍼스', '서핑 & 수영복', '양말'];
 
 // 여성
-const PC0201 = ['라이프스타일', '러닝', '농구', '축구', '드레이닝 & 짐', '조던', '스케이트보딩', '골프', '테니스', '샌들 & 슬리퍼'];
+const PC0201 = ['라이프스타일', '러닝', '농구', '축구', '트레이닝 & 짐', '조던', '스케이트보딩', '골프', '테니스', '샌들 & 슬리퍼'];
 const PC0202 = ['탑 & 티셔츠', '스포츠 브라', '후디 & 크루', '쇼츠', '팬츠 & 타이츠', '재킷 & 베스트', '트랙수트', '점프수트 & 롬퍼스', '스커트 & 드레스', '서핑 & 수영복', '양말'];
 const PC0203 = ['가방', '모자 & 헤드밴드', '장갑', '슬리브 & 암 밴드', '공', '보호대'];
 
@@ -55,6 +55,58 @@ if (newQuery) {
   url += `?custom=${urlParams}`;
   currentQuery = thirdItemQuery;
 }
+let gender = '';
+let category = '';
+let detailed: string[] = [];
+
+// 성별과 어떤용도이고 더 구체적인
+if (secondItemQuery) {
+  gender = secondItemQuery.substring(2, 4) === '01' ? '남성' : secondItemQuery.substring(2, 4) === '02' ? '여성' : '키즈';
+  if (gender === '남성') {
+    category = secondItemQuery.substring(4) === '01' ? '용품' : secondItemQuery.substring(4) === '02' ? '신발' : '의류';
+  } else {
+    category = secondItemQuery.substring(4) === '01' ? '신발' : secondItemQuery.substring(4) === '02' ? '의류' : '용품';
+  }
+}
+
+if (thirdItemQuery) {
+  gender = thirdItemQuery.substring(2, 4) === '01' ? '남성' : thirdItemQuery.substring(2, 4) === '02' ? '여성' : '키즈';
+  if (gender === '남성') {
+    category = thirdItemQuery.substring(4, 6) === '01' ? '용품' : thirdItemQuery.substring(4, 6) === '02' ? '신발' : '의류';
+  } else {
+    category = thirdItemQuery.substring(4, 6) === '01' ? '신발' : thirdItemQuery.substring(4, 6) === '02' ? '의류' : '용품';
+  }
+
+  const index = Number(thirdItemQuery.substring(6));
+
+  if (thirdItemQuery.substring(0, 6) === 'PC0101') {
+    detailed = PC0101.filter((_item, idx) => index === idx + 1);
+  }
+  if (thirdItemQuery.substring(0, 6) === 'PC0102') {
+    detailed = PC0102.filter((_item, idx) => index === idx + 1);
+  }
+  if (thirdItemQuery.substring(0, 6) === 'PC0103') {
+    detailed = PC0103.filter((_item, idx) => index === idx + 1);
+  }
+  if (thirdItemQuery.substring(0, 6) === 'PC0201') {
+    detailed = PC0201.filter((_item, idx) => index === idx + 1);
+  }
+  if (thirdItemQuery.substring(0, 6) === 'PC0202') {
+    detailed = PC0202.filter((_item, idx) => index === idx + 1);
+  }
+  if (thirdItemQuery.substring(0, 6) === 'PC0203') {
+    detailed = PC0203.filter((_item, idx) => index === idx + 1);
+  }
+  if (thirdItemQuery.substring(0, 6) === 'PC0301') {
+    detailed = PC0301.filter((_item, idx) => index === idx + 1);
+  }
+  if (thirdItemQuery.substring(0, 6) === 'PC0302') {
+    detailed = PC0302.filter((_item, idx) => index === idx + 1);
+  }
+  if (thirdItemQuery.substring(0, 6) === 'PC0303') {
+    detailed = PC0303.filter((_item, idx) => index === idx + 1);
+  }
+}
 
 // 데이터 가져오기
 async function getData(currentUrl: string) {
@@ -85,33 +137,12 @@ function renderItemList(prds: Products[]) {
       </figure>
       `;
   } else {
-    let gender = '';
-    let category = '';
-
-    if (secondItemQuery) {
-      gender = secondItemQuery.substring(2, 4) === '01' ? '남성' : secondItemQuery.substring(2, 4) === '02' ? '여성' : '키즈';
-      if (gender === '남성') {
-        category = secondItemQuery.substring(4) === '01' ? '용품' : secondItemQuery.substring(4) === '02' ? '신발' : '의류';
-      } else {
-        category = secondItemQuery.substring(4) === '01' ? '신발' : secondItemQuery.substring(4) === '02' ? '의류' : '용품';
-      }
-    }
-
-    if (thirdItemQuery) {
-      gender = thirdItemQuery.substring(2, 4) === '01' ? '남성' : thirdItemQuery.substring(2, 4) === '02' ? '여성' : '키즈';
-      if (gender === '남성') {
-        category = thirdItemQuery.substring(4, 6) === '01' ? '용품' : thirdItemQuery.substring(4, 6) === '02' ? '신발' : '의류';
-      } else {
-        category = thirdItemQuery.substring(4, 6) === '01' ? '신발' : thirdItemQuery.substring(4, 6) === '02' ? '의류' : '용품';
-      }
-    } // pc010101
-
     result = prds
       .map((prd) => {
         return `
       <figure class="prod1 w-[calc((100%-6px)/2)] nikeDesktop:w-[calc((100%-24px)/3)] nikeDesktop:px-2">
         <a href="/src/pages/itemdetail?_id=${prd._id}">
-          <img class="aspect-[1/1.25]" src="${prd.mainImages[0].path}" alt="${prd.name} ${category} 이미지" />
+          <img class="aspect-[1/1.25] w-full" src="${prd.mainImages[0].path}" alt="${prd.name} ${category} 이미지" />
         </a>
         <figcaption>
           <a href="/src/pages/itemdetail?_id=${prd._id}">
@@ -233,57 +264,6 @@ function renderFiliterList(currentQuery: string, currentNewQeury: string | null)
 
 function renderTitle(prds: Products[]) {
   let result = '';
-  let gender = '';
-  let category = '';
-  let detailed: string[] = [];
-  //PC0101
-  if (secondItemQuery) {
-    gender = secondItemQuery.substring(2, 4) === '01' ? '남성' : secondItemQuery.substring(2, 4) === '02' ? '여성' : '키즈';
-    if (gender === '남성') {
-      category = secondItemQuery.substring(4) === '01' ? '용품' : secondItemQuery.substring(4) === '02' ? '신발' : '의류';
-    } else {
-      category = secondItemQuery.substring(4) === '01' ? '신발' : secondItemQuery.substring(4) === '02' ? '의류' : '용품';
-    }
-  }
-
-  // ex) PC010103
-  if (thirdItemQuery) {
-    gender = thirdItemQuery.substring(2, 4) === '01' ? '남성' : thirdItemQuery.substring(2, 4) === '02' ? '여성' : '키즈';
-    if (gender === '남성') {
-      category = thirdItemQuery.substring(4, 6) === '01' ? '용품' : thirdItemQuery.substring(4, 6) === '02' ? '신발' : '의류';
-    } else {
-      category = thirdItemQuery.substring(4, 6) === '01' ? '신발' : thirdItemQuery.substring(4, 6) === '02' ? '의류' : '용품';
-    }
-    const index = Number(thirdItemQuery.substring(6));
-
-    if (thirdItemQuery.substring(0, 6) === 'PC0101') {
-      detailed = PC0101.filter((_item, idx) => index === idx + 1);
-    }
-    if (thirdItemQuery.substring(0, 6) === 'PC0102') {
-      detailed = PC0102.filter((_item, idx) => index === idx + 1);
-    }
-    if (thirdItemQuery.substring(0, 6) === 'PC0103') {
-      detailed = PC0103.filter((_item, idx) => index === idx + 1);
-    }
-    if (thirdItemQuery.substring(0, 6) === 'PC0201') {
-      detailed = PC0201.filter((_item, idx) => index === idx + 1);
-    }
-    if (thirdItemQuery.substring(0, 6) === 'PC0202') {
-      detailed = PC0202.filter((_item, idx) => index === idx + 1);
-    }
-    if (thirdItemQuery.substring(0, 6) === 'PC0203') {
-      detailed = PC0203.filter((_item, idx) => index === idx + 1);
-    }
-    if (thirdItemQuery.substring(0, 6) === 'PC0301') {
-      detailed = PC0301.filter((_item, idx) => index === idx + 1);
-    }
-    if (thirdItemQuery.substring(0, 6) === 'PC0302') {
-      detailed = PC0302.filter((_item, idx) => index === idx + 1);
-    }
-    if (thirdItemQuery.substring(0, 6) === 'PC0303') {
-      detailed = PC0303.filter((_item, idx) => index === idx + 1);
-    }
-  }
 
   if (firstItemQuery) {
     result = `
@@ -325,10 +305,10 @@ function renderTotalItem(prds: Products[]) {
 function renderHiddenTitle(prds: Products[]) {
   const divEl = document.createElement('div');
   const pEl = document.createElement('p');
-  if (prds.length === 0) {
-    pEl.textContent = `상품없음 (0)`;
-  } else {
-    pEl.textContent = firstItemQuery ? `${prds[0].extra.gender} (${prds.length})` : secondItemQuery ? `${prds[0].extra.gender} (${prds.length})` : thirdItemQuery ? `${prds[0].extra.gender} (${prds.length})` : `신제품 (${prds.length})`;
+  if (secondItemQuery) {
+    pEl.textContent = `${gender} ${category}(${prds.length})`;
+  } else if (thirdItemQuery) {
+    pEl.textContent = category === '신발' ? `${gender} ${detailed[0]} ${category}(${prds.length})` : `${gender} ${detailed[0]}(${prds.length})`;
   }
   divEl.appendChild(pEl);
   divEl.classList.add('hidden', 'nikeDesktop:block');
@@ -359,6 +339,10 @@ hiddenBtn?.addEventListener('click', () => {
   const categoryWrapper = document.querySelector('.category-wrapper');
   const nikeTitle = document.querySelector('.nike-title');
   const hiddenTitle = document.querySelector('.hidden-desktop-title');
+  const itemList = document.querySelector('.item-list-wrapper');
+  itemList?.classList.toggle('ml-3');
+
+  hiddenBtn.classList.toggle('open');
 
   const isHidden = hiddenBtn.textContent === '필터 숨기기';
   hiddenBtn.innerHTML = isHidden ? `필터 표시<img src="/assets/icon24px/icon-filter.svg" alt="필터이미지" />` : `필터 숨기기<img src="/assets/icon24px/icon-filter.svg" alt="필터이미지" />`;
@@ -386,6 +370,9 @@ sortBtn?.addEventListener('click', () => {
 // 공통 정렬 함수
 async function handleSort(sortUrl: string, label: string) {
   const data = await getData(sortUrl);
+  const nikeTitle = document.querySelector('.nike-title');
+  const categoryWrapper = document.querySelector('.category-wrapper');
+  const hiddenTitle = document.querySelector('.hidden-desktop-title');
 
   if (data?.ok) {
     renderItemList(data.item);
@@ -399,6 +386,12 @@ async function handleSort(sortUrl: string, label: string) {
 
   sortText.textContent = `정렬기준:${label}`;
   sortBtnImage?.setAttribute('src', '/assets/icon24px/icon-down.svg');
+
+  if (!hiddenBtn?.classList.contains('open')) {
+    nikeTitle?.classList.toggle('nikeDesktop:hidden');
+    categoryWrapper?.classList.toggle('nikeDesktop:hidden');
+    hiddenTitle?.classList.toggle('hidden');
+  }
 }
 
 // 각 정렬 버튼에 대한 이벤트
