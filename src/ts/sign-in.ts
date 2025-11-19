@@ -84,8 +84,8 @@ loginBtn.addEventListener ('click', async () => {
 );
     const data = login.data;
     console.log('로그인 성공: ', data);
-    localStorage.setItem('accessToken', data.accessToken);
-    localStorage.setItem('refreshToken', data.refreshToken);
+    localStorage.setItem('accessToken', data.item.token.accessToken);
+    localStorage.setItem('refreshToken', data.item.token.refreshToken);
     window.location.href = '/index.html';
   } catch (err) {
     const axiosError = err as AxiosError<{ message?: string }>;
