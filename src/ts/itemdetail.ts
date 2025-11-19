@@ -6,29 +6,25 @@ const params = new URLSearchParams(window.location.search);
 const newQuery = params.get('extra.isNew');
 const categoryQuery = params.get('extra.category.0');
 const IdQuery: string | null = params.get('_id');
-console.log('name 파라미터:', newQuery);
-console.log('category 파라미터:', categoryQuery);
-console.log('현재 URL:', window.location.href);
-console.log('Id값 출력', IdQuery);
 
 async function getData() {
   const axios = getAxios();
   try {
-    // categoryQuery가 있으면 쿼리를 포함해서 요청
     let url = '/products';
     if (IdQuery) {
       url = `/products?extra.category.0=${encodeURIComponent(IdQuery)}`;
     } else if (newQuery) {
       url = `/products?extra.isNew=${encodeURIComponent(newQuery)}`;
     }
-    console.log('요청 URL:', url);
     const { data } = await axios.get<ItemListRes>(url);
     return data;
   } catch (err) {
     console.log(err);
   }
 }
+
 const itemList = document.querySelector('.item-list-wrapper');
+let selectedProduct = {};
 
 // 상품 이름, 가격, 이미지 출력
 function render(prds: Products[]) {
@@ -36,16 +32,52 @@ function render(prds: Products[]) {
   div2Tag.classList.add('detail-item-color', 'pt-0.75', 'flex', 'gap-2.5', 'overflow-x-auto');
 
   prds?.map((prd) => {
-    prd.mainImages.map((image) => {
+    // map에서 index를 추가로 받아옵니다 (초기 선택 상태를 위해)
+    prd.mainImages.map((image, index) => {
       const itemColorButton = document.createElement('button') as HTMLButtonElement;
       const itemImage = document.createElement('img') as HTMLImageElement;
-      itemColorButton.classList.add('itemColorButton', 'min-h-[125px]', 'cursor:pointer');
+
+      // 기본 클래스 추가: border-2와 border-transparent를 추가하여 레이아웃 흔들림 방지
+      itemColorButton.classList.add(
+        'itemColorButton',
+        'min-h-[125px]',
+        'flex',
+        'w-[125px]',
+        'flex-shrink-0',
+        'cursor-pointer',
+        'border-2', // 테두리 두께
+        'border-transparent' // 기본은 투명 테두리
+      );
+
       itemImage.classList.add('min-w-[125px]', 'min-h-[125px]');
       itemImage.src = image.path;
       itemImage.alt = `${prd.name} - ${image.name}`;
 
+      // [초기 상태 설정] 첫 번째 이미지인 경우 선택된 스타일(검은 테두리) 적용
+      if (index === 0) {
+        itemColorButton.classList.add('border-black');
+        itemColorButton.classList.remove('border-transparent');
+      }
+
+      // [클릭 이벤트 설정] 버튼 생성 시점에 리스너 부착
       itemColorButton.addEventListener('click', () => {
+        // 메인 이미지 변경
         imgTag.src = image.path;
+        selectedProduct = image;
+
+        //  테두리 스타일 변경 로직
+        // div2Tag 안에 있는 모든 버튼의 active 스타일 제거
+        const allButtons = div2Tag.querySelectorAll('.itemColorButton');
+        allButtons.forEach((btn) => {
+          btn.classList.remove('border-black');
+          btn.classList.add('border-transparent');
+        });
+
+        // 현재 클릭된 버튼에만 active 스타일 추가
+        itemColorButton.classList.add('border-black');
+        itemColorButton.classList.remove('border-transparent');
+
+        console.log('선택된 이미지:', selectedProduct);
       });
 
       itemColorButton.appendChild(itemImage);
@@ -86,7 +118,9 @@ function render(prds: Products[]) {
     figureTag.classList.add('min-w-[360px]', 'detail-item-image', 'overflow-x-auto', 'pt-6', 'justify-center', 'items-center');
 
     const imgTag = document.createElement('img');
-    imgTag.src = prd.mainImages[0].path;
+    if (prd.mainImages && prd.mainImages.length > 0) {
+      imgTag.src = prd.mainImages[0].path;
+    }
     imgTag.alt = prd.name + '이미지';
 
     figureTag.appendChild(imgTag);
@@ -101,32 +135,12 @@ function render(prds: Products[]) {
   });
 }
 
-const btn = document.querySelector('.itemColorButton');
-
-btn?.addEventListener('click', function () {
-  // 기존 active 클래스 제거 (다른 버튼이 있다면)
-  const activeBtn = document.querySelector('.btn.active');
-  if (activeBtn) {
-    activeBtn.classList.remove('active');
-  }
-  // 현재 버튼에 active 클래스 추가
-  this.classList.add('active');
-});
-
 const data = await getData();
 if (data?.ok) {
-  // 쿼리 파라미터가 있으면 필터링, 없으면 전체 출력
   let filteredData = data?.item;
-  console.log('1', filteredData);
-  console.log('2', IdQuery);
   if (IdQuery) {
     filteredData = data.item.filter((item: Products) => String(item._id) === IdQuery);
   }
-  // else if (newQuery) {
-  //   filteredData = data.item.filter((item: Products) => item.extra?.isNew === true);
-  // }
-  console.log('3', filteredData);
-
   render(filteredData);
 }
 
@@ -159,7 +173,7 @@ if (data?.ok) {
 // 제품 사이즈 출력
 const axiosInstace = getAxios();
 const container = document.querySelector('.container');
-export let selectedSize: number | null = null;
+export let selectedSize: string | null = null;
 async function getSizeProduct() {
   try {
     const id = IdQuery;
@@ -168,7 +182,7 @@ async function getSizeProduct() {
 
     const sizeList = item.extra.size;
 
-    sizeList.forEach((sizeData: number) => {
+    sizeList.forEach((sizeData: string) => {
       const productSize = document.createElement('button');
       productSize.id = String(sizeData);
       productSize.textContent = String(sizeData);
