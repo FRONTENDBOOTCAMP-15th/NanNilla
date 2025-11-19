@@ -1,6 +1,7 @@
 import type { Products } from '../types/products';
 import { getAxios } from '../utils/axios';
 import type { ItemListRes } from '../types/response';
+import type { CartItem } from './cart';
 
 const params = new URLSearchParams(window.location.search);
 const newQuery = params.get('extra.isNew');
@@ -140,8 +141,9 @@ function render(prds: Products[]) {
 }
 
 const data = await getData();
+let filteredData: any;
 if (data?.ok) {
-  let filteredData = data?.item;
+  filteredData = data?.item;
   if (IdQuery) {
     filteredData = data.item.filter((item: Products) => String(item._id) === IdQuery);
   }
@@ -216,12 +218,84 @@ async function getSizeProduct() {
 }
 getSizeProduct();
 
-// 비회원 일때 로컬스토리지에 상품 담는 기능 ( 장바구니 )
-const addCartBtn = document.querySelector('.addCartBtn') as HTMLButtonElement;
-console.log('버튼의 id 값', IdQuery);
-addCartBtn.addEventListener('click', () => {
-  localStorage.setItem('cart', IdQuery);
-  alert('장바구니에 상품이 추가되었습니다');
+// 사이즈 선택
+container?.addEventListener('click', (event) => {
+  const btn = event.target as HTMLElement;
+  if (btn.tagName === 'BUTTON') {
+    selectedSize = btn.textContent || null;
+    console.log('선택된 사이즈:', selectedSize);
+  }
 });
+
+const addCartBtn = document.querySelector('.addCartBtn') as HTMLButtonElement;
+
+addCartBtn?.addEventListener('click', async () => {
+  if (!IdQuery) return alert('상품 정보를 불러오지 못했어요...');
+  if (!selectedSize) return alert('사이즈가 선택되지 않았습니다.');
+
+  const productElement = filteredData[0];
+  if (!productElement) return;
+
+  const token = localStorage.getItem('accessToken');
+
+  // 로그인 후
+  if (token) {
+    try {
+      await axiosInstace.post(
+        '/carts',
+        {
+          product_id: productElement._id,
+          quantity: 1,
+          size: selectedSize,
+          color: '',
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      alert('장바구니에 담겼습니다.');
+      window.location.href = '/src/pages/cart.html';
+      return; // 로컬 스토리지로 내려가지 않도록
+    } catch (err) {
+      console.error('서버 장바구니 추가 실패:', err);
+      return;
+    }
+  }
+  // 비회원 로컬스토리지 장바구니
+  const product: CartItem = {
+    id: productElement._id,
+    name: productElement.name,
+    price: productElement.price,
+    size: selectedSize,
+    image: productElement.mainImages[0].path,
+    quantity: 1,
+    category: productElement.extra.category[0] || '',
+    gender: productElement.extra.gender,
+    styleNo: String(productElement._id),
+  };
+
+  // 기존 장바구니 가져오기
+  const cart: CartItem[] = JSON.parse(localStorage.getItem('cart') || '[]');
+  console.log(cart);
+  const cartitem = Array.isArray(cart) ? cart : [cart];
+  console.log(cartitem);
+  // 같은 상품 + 같은 사이즈인지 체크
+  const exist = cartitem.find((item) => item.id === product.id && item.size === product.size && item.category === product.category && item.gender === product.gender && item.styleNo === product.styleNo);
+
+  if (exist) {
+    exist.quantity += 1;
+  } else {
+    cartitem.push(product);
+  }
+
+  // 저장
+  localStorage.setItem('cart', JSON.stringify(cartitem));
+
+  alert('장바구니에 담겼습니다.');
+  window.location.href = '/src/pages/cart.html';
+});
+
+getData();
 // 로그인 할 때 로컬스토리지를의 데이터를 DB로 병합하고 로컬스토리지 삭제
-// 로그인 후
