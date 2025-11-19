@@ -138,11 +138,11 @@ function renderCart(cartItems: CartItem[]) {
 
               <div class="flex items-center gap-2 mt-1 text-sm text-nike-gray-dark">
                 <button type="button" class="cursor-pointer rounded-4xl hover:bg-nike-gray-lighter">
-                  <img src="../../public/assets/icon36px/icon-favorite.svg" alt="위시리스트" />
+                  <img src="/assets/icon36px/icon-favorite.svg" alt="위시리스트" />
                 </button>
 
                 <button type="button" class="cursor-pointer p-1.5 rounded-4xl hover:bg-nike-gray-lighter delete">
-                  <img src="../../public/assets/icon24px/icon-delete.svg" alt="삭제" />
+                  <img src="/assets/icon24px/icon-delete.svg" alt="삭제" />
                 </button>
               </div>
             </div>
@@ -249,7 +249,7 @@ function renderCartCost(totalPrice: number) {
   const card = document.createElement('div');
   card.className = 'cart-cost flex flex-col gap-3 text-base';
   card.innerHTML = `
-    <div class="flex justify-between">
+    <div class="flex justify-between ">
       <span class="flex items-center">
         상품 금액
         <span class="w-[13px] h-[13px] pl-1 cursor-pointer">
@@ -266,7 +266,7 @@ function renderCartCost(totalPrice: number) {
       <span class="font-semibold">총 결제 금액</span>
       <span class="font-semibold">${totalPrice.toLocaleString()} 원</span>
     </div>
-    <button class="rounded-3xl bg-nike-black text-nike-white py-2 font-bold mt-4 hover:bg-nike-gray-dark">
+    <button class="md:py-4 rounded-4xl bg-nike-black text-nike-white py-2 font-bold mt-4 hover:bg-nike-gray-dark">
       주문결제
     </button>
   `;
