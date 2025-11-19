@@ -32,52 +32,67 @@ function render(prds: Products[]) {
   div2Tag.classList.add('detail-item-color', 'pt-0.75', 'flex', 'gap-2.5', 'overflow-x-auto');
 
   prds?.map((prd) => {
-    // map에서 index를 추가로 받아옵니다 (초기 선택 상태를 위해)
+    const figureTag = document.createElement('figure');
+    figureTag.classList.add('min-w-[360px]', 'detail-item-image', 'overflow-x-auto', 'pt-6', 'justify-center', 'items-center');
+
+    const imgTag = document.createElement('img');
+    if (prd.mainImages && prd.mainImages.length > 0) {
+      imgTag.src = prd.mainImages[0].path;
+    }
+    imgTag.alt = prd.name + '이미지';
+    figureTag.appendChild(imgTag);
+
+    // 색상 버튼 생성 루프
     prd.mainImages.map((image, index) => {
       const itemColorButton = document.createElement('button') as HTMLButtonElement;
       const itemImage = document.createElement('img') as HTMLImageElement;
 
-      // 기본 클래스 추가: border-2와 border-transparent를 추가하여 레이아웃 흔들림 방지
+      // 버튼 스타일 설정
       itemColorButton.classList.add(
         'itemColorButton',
-        'min-h-[125px]',
-        'flex',
-        'w-[125px]',
+        'w-[125px]', // 버튼 크기 고정
+        'h-[125px]',
         'flex-shrink-0',
         'cursor-pointer',
-        'border-2', // 테두리 두께
-        'border-transparent' // 기본은 투명 테두리
+        'p-0',
+        'overflow-hidden',
+        'border-2', // [수정] 테두리 두께 2px (항상 존재)
+        'box-border' // [수정] 테두리를 포함한 크기 계산
       );
 
-      itemImage.classList.add('min-w-[125px]', 'min-h-[125px]');
+      // 이미지 스타일 설정
+      itemImage.classList.add('w-full', 'h-full', 'object-cover', 'block');
       itemImage.src = image.path;
       itemImage.alt = `${prd.name} - ${image.name}`;
 
-      // [초기 상태 설정] 첫 번째 이미지인 경우 선택된 스타일(검은 테두리) 적용
+      // [초기 상태 설정]
+      // 첫 번째는 검은 테두리, 나머지는 투명 테두리
       if (index === 0) {
         itemColorButton.classList.add('border-black');
         itemColorButton.classList.remove('border-transparent');
+      } else {
+        itemColorButton.classList.add('border-transparent'); // 안 보일 뿐 공간은 차지
+        itemColorButton.classList.remove('border-black');
       }
 
-      // [클릭 이벤트 설정] 버튼 생성 시점에 리스너 부착
+      // [클릭 이벤트]
       itemColorButton.addEventListener('click', () => {
         // 메인 이미지 변경
         imgTag.src = image.path;
         selectedProduct = image;
 
-        //  테두리 스타일 변경 로직
-        // div2Tag 안에 있는 모든 버튼의 active 스타일 제거
+        //  모든 버튼을 투명 테두리로 초기화
         const allButtons = div2Tag.querySelectorAll('.itemColorButton');
         allButtons.forEach((btn) => {
           btn.classList.remove('border-black');
           btn.classList.add('border-transparent');
         });
 
-        // 현재 클릭된 버튼에만 active 스타일 추가
-        itemColorButton.classList.add('border-black');
+        //  클릭된 버튼만 검은 테두리 적용
         itemColorButton.classList.remove('border-transparent');
+        itemColorButton.classList.add('border-black');
 
-        console.log('선택된 이미지:', selectedProduct);
+        console.log('선택된 상품:', selectedProduct);
       });
 
       itemColorButton.appendChild(itemImage);
@@ -114,22 +129,11 @@ function render(prds: Products[]) {
     div1Tag.appendChild(sTag);
     div1Tag.appendChild(span2Tag);
 
-    const figureTag = document.createElement('figure');
-    figureTag.classList.add('min-w-[360px]', 'detail-item-image', 'overflow-x-auto', 'pt-6', 'justify-center', 'items-center');
-
-    const imgTag = document.createElement('img');
-    if (prd.mainImages && prd.mainImages.length > 0) {
-      imgTag.src = prd.mainImages[0].path;
-    }
-    imgTag.alt = prd.name + '이미지';
-
-    figureTag.appendChild(imgTag);
-
     itemList?.appendChild(mainTag);
     itemList?.appendChild(h1Tag);
     itemList?.appendChild(pTag);
     itemList?.appendChild(div1Tag);
-    itemList?.appendChild(figureTag);
+    itemList?.appendChild(figureTag); // 위에서 미리 만든 figureTag 추가
 
     itemList?.appendChild(div2Tag);
   });
@@ -143,33 +147,6 @@ if (data?.ok) {
   }
   render(filteredData);
 }
-
-// 제품 이미지 출력
-// const axiosInstace = getAxios();
-// const container = document.querySelector('.item-list-wrapper');
-
-// async function getMainProduct() {
-//   try {
-//     const id = IdQuery;
-
-//     const { data } = await axiosInstace.get(`/products/${id}`);
-//     const { item } = data;
-//     console.log(item);
-
-//     const imagesArray = item.mainImages;
-
-//     imagesArray.map((image) => {
-//       const productImg = document.createElement('img');
-//       productImg.src = image.path;
-//       productImg.classList.add('flex', 'overflow-x-auto', 'pt-6');
-//       container?.append(productImg);
-//     });
-//   } catch (err) {
-//     console.log('제품 이미지를 가져오는 중 오류 발생');
-//   }
-// }
-// getMainProduct();
-
 // 제품 사이즈 출력
 const axiosInstace = getAxios();
 const container = document.querySelector('.container');
@@ -238,6 +215,7 @@ async function getSizeProduct() {
   }
 }
 getSizeProduct();
+
 // 비회원 일때 로컬스토리지에 상품 담는 기능 ( 장바구니 )
 const addCartBtn = document.querySelector('.addCartBtn') as HTMLButtonElement;
 console.log('버튼의 id 값', IdQuery);
