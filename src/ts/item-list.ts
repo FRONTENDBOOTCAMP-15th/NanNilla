@@ -85,20 +85,41 @@ function renderItemList(prds: Products[]) {
       </figure>
       `;
   } else {
+    let gender = '';
+    let category = '';
+
+    if (secondItemQuery) {
+      gender = secondItemQuery.substring(2, 4) === '01' ? '남성' : secondItemQuery.substring(2, 4) === '02' ? '여성' : '키즈';
+      if (gender === '남성') {
+        category = secondItemQuery.substring(4) === '01' ? '용품' : secondItemQuery.substring(4) === '02' ? '신발' : '의류';
+      } else {
+        category = secondItemQuery.substring(4) === '01' ? '신발' : secondItemQuery.substring(4) === '02' ? '의류' : '용품';
+      }
+    }
+
+    if (thirdItemQuery) {
+      gender = thirdItemQuery.substring(2, 4) === '01' ? '남성' : thirdItemQuery.substring(2, 4) === '02' ? '여성' : '키즈';
+      if (gender === '남성') {
+        category = thirdItemQuery.substring(4, 6) === '01' ? '용품' : thirdItemQuery.substring(4, 6) === '02' ? '신발' : '의류';
+      } else {
+        category = thirdItemQuery.substring(4, 6) === '01' ? '신발' : thirdItemQuery.substring(4, 6) === '02' ? '의류' : '용품';
+      }
+    } // pc010101
+
     result = prds
       .map((prd) => {
         return `
       <figure class="prod1 w-[calc((100%-6px)/2)] nikeDesktop:w-[calc((100%-24px)/3)] nikeDesktop:px-2">
         <a href="/src/pages/itemdetail?_id=${prd._id}">
-          <img src="${prd.mainImages[0].path}" alt="${prd.name} 신발 이미지" />
+          <img class="aspect-[1/1.25]" src="${prd.mainImages[0].path}" alt="${prd.name} ${category} 이미지" />
         </a>
         <figcaption>
           <a href="/src/pages/itemdetail?_id=${prd._id}">
             ${prd.extra.isNew ? `<p class="text-sm text-nike-red px-3 nikeDesktop:px-0">신제품</p>` : ''}
             <p class="text-sm px-3 nikeDesktop:px-0">${prd.name}</p>
-            ${prd.extra.gender === 'men' ? `<p class="text-sm text-nike-gray-dark font-normal px-3 nikeDesktop:px-0">남성 신발</p>` : ``}
-            ${prd.extra.gender === 'women' ? `<p class="text-sm text-nike-gray-dark font-normal px-3 nikeDesktop:px-0">여성 신발</p>` : ``}
-            ${prd.extra.gender === 'kids' ? `<p class="text-sm text-nike-gray-dark font-normal px-3 nikeDesktop:px-0">키즈 신발</p>` : ``}
+            ${gender === '남성' ? `<p class="text-sm text-nike-gray-dark font-normal px-3 nikeDesktop:px-0">남성 ${category}</p>` : ``}
+            ${gender === '여성' ? `<p class="text-sm text-nike-gray-dark font-normal px-3 nikeDesktop:px-0">여성 ${category}</p>` : ``}
+            ${gender === '키즈' ? `<p class="text-sm text-nike-gray-dark font-normal px-3 nikeDesktop:px-0">키즈 ${category}</p>` : ``}
             <p class="text-sm text-nike-gray-dark font-normal px-3 nikeDesktop:px-0">${prd.extra.color ? prd.extra.color.split('/').length : 1}개 색상</p>
             <p class="text-base px-3 nikeDesktop:px-0">${prd.price.toLocaleString()} 원</p>
           </a>
@@ -229,12 +250,11 @@ function renderTitle(prds: Products[]) {
   if (thirdItemQuery) {
     gender = thirdItemQuery.substring(2, 4) === '01' ? '남성' : thirdItemQuery.substring(2, 4) === '02' ? '여성' : '키즈';
     if (gender === '남성') {
-      category = thirdItemQuery.substring(4) === '01' ? '용품' : thirdItemQuery.substring(4) === '02' ? '신발' : '의류';
+      category = thirdItemQuery.substring(4, 6) === '01' ? '용품' : thirdItemQuery.substring(4, 6) === '02' ? '신발' : '의류';
     } else {
-      category = thirdItemQuery.substring(4) === '01' ? '신발' : thirdItemQuery.substring(4) === '02' ? '의류' : '용품';
+      category = thirdItemQuery.substring(4, 6) === '01' ? '신발' : thirdItemQuery.substring(4, 6) === '02' ? '의류' : '용품';
     }
     const index = Number(thirdItemQuery.substring(6));
-    console.log('맞나?', index); // 3
 
     if (thirdItemQuery.substring(0, 6) === 'PC0101') {
       detailed = PC0101.filter((_item, idx) => index === idx + 1);
