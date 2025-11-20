@@ -266,7 +266,7 @@ function renderCartCost(totalPrice: number) {
       <span class="flex items-center">
         상품 금액
         <span class="w-[13px] h-[13px] pl-1 cursor-pointer">
-          <img src="../../public/assets/icon24px/icon-cs.svg" alt="" />
+          <img src="/assets/icon24px/icon-cs.svg" alt="" />
         </span>
       </span>
       <span class="font-semibold">${totalPrice.toLocaleString()} 원</span>
