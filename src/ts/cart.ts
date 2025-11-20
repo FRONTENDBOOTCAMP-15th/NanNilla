@@ -11,9 +11,9 @@ export interface CartItem {
   serverId?: number;
   name: string;
   price: number;
-  size: string;
+  size?: string;
   image: string;
-  quantity: number;
+  quantity?: number;
   category?: string;
   gender?: string;
   styleNo?: string;
@@ -163,7 +163,7 @@ function renderCart(cartItems: CartItem[]) {
         </div>
 
         <div class="flex flex-col mt-2">
-          <p class="pb-2">무료 배송</p>
+          <p class="pb-2 font-semibold">무료 배송</p>
           <span>
             도착 예정일: 7월 27일 (토) 
             배송 지역: 
@@ -216,8 +216,6 @@ function renderCart(cartItems: CartItem[]) {
 
     container.appendChild(card);
   });
-
-  updateTotalPrice(totalPrice);
 }
 
 /*----------------- 계산 함수 따로 뺌 ------------------*/
@@ -279,7 +277,7 @@ function renderCartCost(totalPrice: number) {
       <span class="font-semibold">총 결제 금액</span>
       <span class="font-semibold">${totalPrice.toLocaleString()} 원</span>
     </div>
-    <button class="md:py-4 rounded-4xl bg-nike-black text-nike-white py-2 font-bold mt-4 hover:bg-nike-gray-dark">
+    <button class="md:py-4 cursor-pointer rounded-4xl bg-nike-black text-nike-white py-2 font-bold mt-4 hover:bg-nike-gray-dark">
       주문결제
     </button>
   `;
@@ -329,9 +327,7 @@ async function bestItem(): Promise<CartItem[]> {
       serverId: item._id,
       name: item.name,
       price: Number(item.price) || 0,
-      size: '',
       image: item.mainImages?.[0]?.path || '',
-      quantity: 1,
       category: item.extra?.category?.[0] || '',
       gender: item.extra?.gender || '',
       styleNo: item.extra?.styleNo || '',
@@ -341,11 +337,11 @@ async function bestItem(): Promise<CartItem[]> {
     return [];
   }
 }
-bestItem();
 
 /*----------------- 추천상품 랜더링 ------------------*/
 async function renderBestItems() {
   const container = document.querySelector('.best-item') as HTMLElement;
+
   if (!container) return;
 
   // 추천상품 불러오기
@@ -355,17 +351,18 @@ async function renderBestItems() {
   container.innerHTML = '';
 
   bestItems.forEach((item) => {
-    const card = document.createElement('div');
-    card.className = 'flex-[0_0_calc((100%-16px)/2)] md:flex-[0_0_calc((100%-16px)/3)]';
+    const card = document.createElement('a');
+    card.href = `/src/pages/itemdetail?_id=${item.id}`;
+    card.className = 'flex-[0_0_calc((100%-48px)/2)] md:flex-[0_0_calc((100%-48px)/3)]';
 
     card.innerHTML = `
-      <div class="aspect-square bg-nike-gray-lightest overflow-hidden">
+      <div class="aspect-square">
         <img src="${item.image}" alt="${item.name}" class="w-full h-full rounded object-cover transition-transform duration-300" />
       </div>
       <div class="mt-2">
-        <p class="font-medium">${item.name}</p>
-        <p class="text-xs font-extralight text-nike-gray-dark">${item.name}</p>
-        <p class="font-bold text-base mt-1">${item.price.toLocaleString()} 원</p>
+        <p class="font-medium whitespace-normal">${item.name}</p>
+        <p class="text-sm whitespace-normal text-nike-gray-dark">${item.gender}</p>
+        <p class="font-bold text-base ">${item.price.toLocaleString()} 원</p>
       </div>
     `;
 
@@ -382,11 +379,11 @@ const nextBtn = document.querySelector('.next') as HTMLElement;
 
 // 왼쪽으로 이동
 prevBtn.addEventListener('click', () => {
-  container.scrollBy({ left: -700, behavior: 'smooth' });
+  container.scrollBy({ left: -500, behavior: 'smooth' });
 });
 // 오른쪽으로 이동
 nextBtn.addEventListener('click', () => {
-  container.scrollBy({ left: 700, behavior: 'smooth' });
+  container.scrollBy({ left: 500, behavior: 'smooth' });
 });
 
 // 실행
