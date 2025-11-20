@@ -112,7 +112,7 @@ if (thirdItemQuery) {
 async function getData(currentUrl: string) {
   const axios = getAxios();
   try {
-    console.log('요청 URL:', url);
+    console.log('요청 URL:', currentUrl);
     const { data } = await axios.get<ItemListRes>(currentUrl);
     console.log(data);
     return data;
@@ -170,9 +170,6 @@ function renderItemList(prds: Products[]) {
 // 서브 카테고리 필터 랜더 함수
 function renderFiliterList(currentQuery: string, currentNewQeury: string | null) {
   const result = `
-      <div
-            class="category-wrapper flex border-b border-nike-gray-light pt-2 px-1 w-full h-[50px] overflow-x-scroll whitespace-nowrap no-scrollbar nikeDesktop:flex-col nikeDesktop:h-screen nikeDesktop:w-[260px] nikeDesktop:items-start nikeDesktop:pt-0 nikeDesktop:px-0 nikeDesktop:mr-10 nikeDesktop:overflow-y-scroll nikeDesktop:border-b-0 nikeDesktop:overflow-x-hidden nikeDesktop:pb-26"
-          >
             ${currentNewQeury ? newPrd.map((item) => `<button class="text-nike-black text-[1rem] font-medium px-4 pb-3.5 nikeDesktop:ml-8 nikeDesktop:pb-[10.79px]">${item}</button>`).join('') : ``}
             ${currentQuery.includes('PC0101') ? PC0101.map((item, index) => `<button class="text-nike-black text-[1rem] font-medium px-4 pb-3.5 nikeDesktop:ml-8 nikeDesktop:pb-[10.79px]"><a href="/src/pages/itemlist?extra.category.2=PC0101${index + 1 >= 10 ? index + 1 : '0' + (index + 1)}">${item}</a></button>`).join('') : ``}
             ${currentQuery.includes('PC0102') ? PC0102.map((item, index) => `<button class="text-nike-black text-[1rem] font-medium px-4 pb-3.5 nikeDesktop:ml-8 nikeDesktop:pb-[10.79px]"><a href="/src/pages/itemlist?extra.category.2=PC0102${index + 1 >= 10 ? index + 1 : '0' + (index + 1)}">${item}</a></button>`).join('') : ``}
@@ -183,82 +180,11 @@ function renderFiliterList(currentQuery: string, currentNewQeury: string | null)
             ${currentQuery.includes('PC0301') ? PC0301.map((item, index) => `<button class="text-nike-black text-[1rem] font-medium px-4 pb-3.5 nikeDesktop:ml-8 nikeDesktop:pb-[10.79px]"><a href="/src/pages/itemlist?extra.category.2=PC0301${index + 1 >= 10 ? index + 1 : '0' + (index + 1)}">${item}</a></button>`).join('') : ``}
             ${currentQuery.includes('PC0302') ? PC0302.map((item, index) => `<button class="text-nike-black text-[1rem] font-medium px-4 pb-3.5 nikeDesktop:ml-8 nikeDesktop:pb-[10.79px]"><a href="/src/pages/itemlist?extra.category.2=PC0302${index + 1 >= 10 ? index + 1 : '0' + (index + 1)}">${item}</a></button>`).join('') : ``}
             ${currentQuery.includes('PC0303') ? PC0303.map((item, index) => `<button class="text-nike-black text-[1rem] font-medium px-4 pb-3.5 nikeDesktop:ml-8 nikeDesktop:pb-[10.79px]"><a href="/src/pages/itemlist?extra.category.2=PC0303${index + 1 >= 10 ? index + 1 : '0' + (index + 1)}">${item}</a></button>`).join('') : ``}
-            <hr class="nikeDesktop:border-nike-gray-light nikeDesktop:ml-12 nikeDesktop:mt-6 nikeDesktop:w-53" />
-            <!-- 추가 목록 -->
-            <div class="additional-category w-full hidden nikeDesktop:block">
-              <div class="flex flex-col ml-12 mt-1 gap-1">
-                <p class="gender my-3 flex">성별<img src="/assets/icon24px/icon-up.svg" alt="" class="ml-auto mr-2.5" /></p>
-                <div>
-                  <input type="checkbox" id="desktop-male" />
-                  <label for="desktop-desktop-male">남성</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="desktop-female" />
-                  <label for="desktop-female">여성</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="desktop-unisex" />
-                  <label for="desktop-unisex">유니섹스</label>
-                </div>
-              </div>
-              <hr class="border-nike-gray-light ml-12 mt-6" />
-              <div class="flex flex-col ml-12 mt-1 gap-1">
-                <p class="is-kid my-3 flex">키즈<img src="/assets/icon24px/icon-up.svg" alt="" class="ml-auto mr-2.5" /></p>
-                <div>
-                  <input type="checkbox" id="desktop-boy" />
-                  <label for="desktop-boy">남아</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="desktop-girl" />
-                  <label for="desktop-girl">여아</label>
-                </div>
-              </div>
-              <hr class="border-nike-gray-light ml-12 mt-6" />
-              <div class="flex flex-col ml-12 mt-1 gap-1">
-                <p class="kid-age my-3 flex">키즈 연령<img src="/assets/icon24px/icon-up.svg" alt="" class="ml-auto mr-2.5" /></p>
-                <div>
-                  <input type="checkbox" id="desktop-baby" />
-                  <label for="desktop-baby">베이비(0-3세)</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="desktop-little" />
-                  <label for="desktop-little">리틀키즈(3-7세)</label>
-                </div>
-                <div>
-                  <input type="checkbox" id="desktop-junior" />
-                  <label for="desktop-junior">주니어(7-15세)</label>
-                </div>
-              </div>
-              <hr class="border-nike-gray-light ml-12 mt-6" />
-              <div class="flex flex-col ml-12 mt-1 gap-1">
-                <p class="price-range my-3 flex">가격대<img src="/assets/icon24px/icon-up.svg" alt="" class="ml-auto mr-2.5" /></p>
-                <div>
-                  <input type="checkbox" id="desktop-price-0-50" />
-                  <label for="desktop-price-0-50">0 - 50,000원</label>
-                </div>
-
-                <div>
-                  <input type="checkbox" id="desktop-price-50-100" />
-                  <label for="desktop-price-50-100">50,000 - 100,000원</label>
-                </div>
-
-                <div>
-                  <input type="checkbox" id="desktop-price-100-150" />
-                  <label for="desktop-price-100-150">100,000 - 150,000원</label>
-                </div>
-
-                <div>
-                  <input type="checkbox" id="desktop-price-150-200" />
-                  <label for="desktop-price-150-200">150,000 - 200,000원</label>
-                </div>
-              </div>
-            </div>
-          </div>
     `;
 
-  const categoryMainWrapper = document.querySelector('.category-main-wrapper');
-  if (categoryMainWrapper) {
-    categoryMainWrapper.innerHTML = result;
+  const subWrapper = document.querySelector('.sub-categoty-wrapper');
+  if (subWrapper) {
+    subWrapper.innerHTML = result;
   }
 }
 
@@ -333,6 +259,29 @@ if (data?.ok) {
   renderFiliterList(currentQuery, currentNewQeury);
 }
 
+//필터바 닫힘 기능(성별, 키즈, 키즈연령, 가격대)
+function setupToggle(triggerSelector: string, wrapperSelector: string) {
+  const trigger = document.querySelector(triggerSelector);
+  if (!trigger) return;
+
+  trigger.addEventListener('click', () => {
+    const wrapper = document.querySelector(wrapperSelector);
+    const img = trigger.querySelector('img');
+
+    wrapper?.classList.toggle('hidden');
+
+    if (img) {
+      const isUp = img.getAttribute('src') === '/assets/icon24px/icon-up.svg';
+      img.setAttribute('src', isUp ? '/assets/icon24px/icon-down.svg' : '/assets/icon24px/icon-up.svg');
+    }
+  });
+}
+
+setupToggle('.gender', '.checkbox-gender-wrapper');
+setupToggle('.is-kid', '.checkbox-kids-wrapper');
+setupToggle('.kid-age', '.checkbox-kids-age-wrapper');
+setupToggle('.price-range', '.checkbox-price-wrapper');
+
 // 필터 숨기기
 const hiddenBtn = document.querySelector('.item-filter-hidden');
 hiddenBtn?.addEventListener('click', () => {
@@ -370,6 +319,7 @@ sortBtn?.addEventListener('click', () => {
 // 공통 정렬 함수
 async function handleSort(sortUrl: string, label: string) {
   const data = await getData(sortUrl);
+
   const nikeTitle = document.querySelector('.nike-title');
   const categoryWrapper = document.querySelector('.category-wrapper');
   const hiddenTitle = document.querySelector('.hidden-desktop-title');
@@ -384,8 +334,10 @@ async function handleSort(sortUrl: string, label: string) {
 
   [recommendBtn, recentBtn, priceHighBtn, priceLowBtn].forEach((btn) => btn?.classList.add('hidden'));
 
-  sortText.textContent = `정렬기준:${label}`;
-  sortBtnImage?.setAttribute('src', '/assets/icon24px/icon-down.svg');
+  if (label) {
+    sortText.textContent = `정렬기준:${label}`;
+    sortBtnImage?.setAttribute('src', '/assets/icon24px/icon-down.svg');
+  }
 
   if (!hiddenBtn?.classList.contains('open')) {
     nikeTitle?.classList.toggle('nikeDesktop:hidden');
@@ -418,14 +370,83 @@ mobileFilterExit?.addEventListener('click', function () {
   document.body.style.overflow = ''; // 모달이 열렸을때 body 스크롤 해제
 });
 
+let selectedPriceId = ''; // 선택된 가격대 저장
+
 mobileFilterApply?.addEventListener('click', function () {
   // 선택된 정렬 옵션 가져오기
   const selectedSort = document.querySelector('input[name="mobile-sort"]:checked') as HTMLInputElement;
+  const mobilePrice0To50 = document.querySelector('input[id="mobile-price-0-50"]:checked') as HTMLInputElement;
+  const mobilePrice50To100 = document.querySelector('input[id="mobile-price-50-100"]:checked') as HTMLInputElement;
+  const mobilePrice100To150 = document.querySelector('input[id="mobile-price-100-150"]:checked') as HTMLInputElement;
+  const mobilePrice150To200 = document.querySelector('input[id="mobile-price-150-200"]:checked') as HTMLInputElement;
+  const mobilePrice200Plus = document.querySelector('input[id="mobile-price-200-plus"]:checked') as HTMLInputElement;
 
-  if (selectedSort) {
-    let sortUrl = '';
-    let sortLabel = '';
+  let sortUrl = '';
+  let sortLabel = '';
+  const queryArray = [];
 
+  if (mobilePrice0To50) {
+    queryArray.push({ price: { $gte: 0 } });
+    queryArray.push({ price: { $lte: 50000 } });
+    selectedPriceId = 'desktop-price-0-50';
+  }
+  if (mobilePrice50To100) {
+    queryArray.push({ price: { $gte: 50000 } });
+    queryArray.push({ price: { $lte: 100000 } });
+    selectedPriceId = 'desktop-price-50-100';
+  }
+  if (mobilePrice100To150) {
+    queryArray.push({ price: { $gte: 100000 } });
+    queryArray.push({ price: { $lte: 150000 } });
+    selectedPriceId = 'desktop-price-100-150';
+  }
+  if (mobilePrice150To200) {
+    queryArray.push({ price: { $gte: 150000 } });
+    queryArray.push({ price: { $lte: 200000 } });
+    selectedPriceId = 'desktop-price-150-200';
+  }
+  if (mobilePrice200Plus) {
+    queryArray.push({ price: { $gte: 200000 } });
+    selectedPriceId = 'desktop-price-200-plus';
+  }
+
+  {
+    if (secondItemQuery) {
+      queryArray.push({ 'extra.category.1': secondItemQuery });
+    }
+    if (thirdItemQuery) {
+      queryArray.push({ 'extra.category.2': thirdItemQuery });
+    }
+    // 만드는 JSON 구조 = {"$and":[ ... ]}
+    const customObj = { $and: queryArray };
+
+    // custom 파라미터 값만 인코딩
+    const encoded = encodeURIComponent(JSON.stringify(customObj));
+
+    sortUrl = `/products?custom=${encoded}`;
+  }
+
+  if (selectedSort && sortUrl) {
+    // 가격대별이랑 정렬 동시
+    const sortId = selectedSort.id;
+
+    if (sortId === 'mobile-recommend-sort') {
+      sortUrl += `&sort={"extra.isNew":-1,"extra.isBest":-1}`;
+      sortLabel = '추천순';
+    } else if (sortId === 'mobile-recent-sort') {
+      sortUrl += `&sort={"createdAt":-1}`;
+      sortLabel = '최신순';
+    } else if (sortId === 'mobile-price-high-sort') {
+      sortUrl += `&sort={"price":-1}`;
+      sortLabel = '높은 가격순';
+    } else if (sortId === 'mobile-price-low-sort') {
+      sortUrl += `&sort={"price":1}`;
+      sortLabel = '낮은 가격순';
+    }
+  } else if (!selectedSort && sortUrl) {
+    //가격대별만
+  } else {
+    // 정렬만
     const sortId = selectedSort.id;
 
     if (sortId === 'mobile-recommend-sort') {
@@ -441,13 +462,85 @@ mobileFilterApply?.addEventListener('click', function () {
       sortUrl = url + `&sort={"price":1}`;
       sortLabel = '낮은 가격순';
     }
+  }
+  console.log('sortUrl', sortUrl);
 
-    // 정렬 적용
-    if (sortUrl) {
-      handleSort(sortUrl, sortLabel);
-    }
+  // 정렬 적용
+  if (sortUrl) {
+    handleSort(sortUrl, sortLabel).then(() => {
+      // 렌더링 완료 후 데스크톱 라디오 버튼 체크
+      if (selectedPriceId) {
+        const desktopRadio = document.querySelector(`input[id="${selectedPriceId}"]`) as HTMLInputElement;
+        if (desktopRadio) {
+          desktopRadio.checked = true;
+        }
+      }
+    });
   }
 
   mobileFilterModal?.classList.toggle('hidden');
   document.body.style.overflow = ''; // 모달이 닫히면 body 스크롤 해제
+});
+
+const desktopPrice0To50 = document.querySelector('input[id="desktop-price-0-50"]') as HTMLInputElement;
+const desktopPrice50To100 = document.querySelector('input[id="desktop-price-50-100"]') as HTMLInputElement;
+const desktopPrice100To150 = document.querySelector('input[id="desktop-price-100-150"]') as HTMLInputElement;
+const desktopPrice150To200 = document.querySelector('input[id="desktop-price-150-200"]') as HTMLInputElement;
+const desktopPrice200Plus = document.querySelector('input[id="desktop-price-200-plus"]') as HTMLInputElement;
+// 공통 가격 필터 함수 생성
+function handleDesktopPriceFilter(minPrice: number, maxPrice: number | null, mobileId: string, clickedButton: HTMLInputElement) {
+  clickedButton.checked = true;
+
+  const queryArray = [];
+  let sortUrl = '';
+  const sortLabel = '';
+
+  queryArray.push({ price: { $gte: minPrice } });
+  if (maxPrice !== null) {
+    queryArray.push({ price: { $lte: maxPrice } });
+  }
+
+  selectedPriceId = mobileId;
+
+  if (secondItemQuery) {
+    queryArray.push({ 'extra.category.1': secondItemQuery });
+  }
+  if (thirdItemQuery) {
+    queryArray.push({ 'extra.category.2': thirdItemQuery });
+  }
+
+  const customObj = { $and: queryArray };
+  const encoded = encodeURIComponent(JSON.stringify(customObj));
+  sortUrl = `/products?custom=${encoded}`;
+
+  if (sortUrl) {
+    handleSort(sortUrl, sortLabel);
+
+    // 모바일 라디오 버튼 동기화
+    const mobileRadio = document.querySelector(`input[id="${selectedPriceId}"]`) as HTMLInputElement;
+    if (mobileRadio) {
+      mobileRadio.checked = true;
+    }
+  }
+}
+
+// 각 데스크톱 라디오 버튼에 이벤트 리스너 연결
+desktopPrice0To50?.addEventListener('click', function () {
+  handleDesktopPriceFilter(0, 50000, 'mobile-price-0-50', desktopPrice0To50);
+});
+
+desktopPrice50To100?.addEventListener('click', function () {
+  handleDesktopPriceFilter(50000, 100000, 'mobile-price-50-100', desktopPrice50To100);
+});
+
+desktopPrice100To150?.addEventListener('click', function () {
+  handleDesktopPriceFilter(100000, 150000, 'mobile-price-100-150', desktopPrice100To150);
+});
+
+desktopPrice150To200?.addEventListener('click', function () {
+  handleDesktopPriceFilter(150000, 200000, 'mobile-price-150-200', desktopPrice150To200);
+});
+
+desktopPrice200Plus?.addEventListener('click', function () {
+  handleDesktopPriceFilter(200000, null, 'mobile-price-200-plus', desktopPrice200Plus);
 });
