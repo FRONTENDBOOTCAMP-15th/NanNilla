@@ -284,7 +284,7 @@ addCartBtn?.addEventListener('click', async () => {
   const exist = cartitem.find((item) => item.id === product.id && item.size === product.size && item.category === product.category && item.gender === product.gender && item.styleNo === product.styleNo);
 
   if (exist) {
-    exist.quantity += 1;
+    exist.quantity = (exist.quantity || 0) + 1;
   } else {
     cartitem.push(product);
   }
