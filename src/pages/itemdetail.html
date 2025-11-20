@@ -10,9 +10,12 @@
   </head>
   <body>
     <nike-header></nike-header>
-    <div class="item-list-wrapper"></div>
-    <!-- 상품 이름 및 가격 -->
-    <!-- <main class="detail-main pt-20 flow-root">
+    <div class="mainContainer nikeDesktop:flex">
+      <div class="item-entire-wrapper flex-col"></div>
+      <div>
+        <div class="item-list-wrapper"></div>
+        <!-- 상품 이름 및 가격 -->
+        <!-- <main class="detail-main pt-20 flow-root">
       <h1 class="w-[6.4011rem] h-8.75 ml-6 font-medium text-xl font-Noto">테이텀 2 PF</h1>
       <p class="w-[2.7809rem] h-7 ml-6 font-medium font-Noto">농구화</p>
       <div class="detail-price-info pt-3 ml-6 flex">
@@ -21,8 +24,8 @@
         <span class="inline-block h-7 font-medium font-Noto text-nike-green">10% 할인</span>
       </div> -->
 
-    <!-- 제품 이미지 -->
-    <!-- <figure class="detail-item-image pt-6">
+        <!-- 제품 이미지 -->
+        <!-- <figure class="detail-item-image pt-6">
         <img class="w-full" src="/src/images/List.png" alt="테이텀 2PF 제품 아토믹 핑크 색상 이미지" />
       </figure>
 
@@ -32,14 +35,17 @@
         <img class="h-[125px]" src="/src/images/Link → JORDAN+TATUM+2+PF.png (5).png" alt="테이텀 2PF 아토믹 핑크 색상 이미지" />
       </div> -->
 
-    <!-- 제품 사이즈 선택 -->
-    <fieldset class="detail-size-select pt-[22px] w-full">
-      <div class="detail-size-select-guide pl-6 pr-6 pt-5 flex justify-between">
-        <legend class="font-Noto">사이즈 선택</legend>
-        <a class="w-[93.143px] h-7 text-nike-gray-dark font-Noto flex" href="" aria-label="사이즈 가이드, 클릭시 사이즈 가이드 링크로 이동">사이즈 가이드</a>
-      </div>
-      <div class="container pt-2 pl-6 pr-6 font-Noto flex flex-wrap gap-[7px]" role="group" aria-label="사이즈 옵션">
-        <!-- <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button ">250</button>
+        <div class="productInfo flex-col overflow-x-auto"></div>
+
+        <!-- 제품 사이즈 선택 -->
+        <div class="detail-wrapper">
+          <fieldset class="detail-size-select pt-[22px] w-full">
+            <div class="detail-size-select-guide pl-6 pr-6 pt-5 flex justify-between">
+              <legend class="font-Noto">사이즈 선택</legend>
+              <a class="w-[93.143px] h-7 text-nike-gray-dark font-Noto flex" href="" aria-label="사이즈 가이드, 클릭시 사이즈 가이드 링크로 이동">사이즈 가이드</a>
+            </div>
+            <div class="container pt-2 pl-6 pr-6 font-Noto flex flex-wrap gap-[7px]" role="group" aria-label="사이즈 옵션">
+              <!-- <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button ">250</button>
         <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">255</button>
         <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">260</button>
         <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">265</button>
@@ -52,164 +58,167 @@
         <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">300</button>
         <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">305</button>
         <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">310</button> -->
-      </div>
-    </fieldset>
+            </div>
+          </fieldset>
 
-    <!-- 장바구니 및 위시리스트 버튼 -->
-    <div class="detail-want-to-buy pt-8 pl-6 pr-6 font-Noto">
-      <button class="addCartBtn w-full px-4 py-2 border border-black rounded-4xl hover:bg-gray-300 font-Noto bg-black text-amber-50" type="button" aria-label="장바구니, 클릭 시 해당 상품을 장바구니에 담음">장바구니</button>
-      <div class="pt-3">
-        <button class="w-full px-4 py-2 border border-black rounded-4xl hover:bg-gray-300 font-Noto" type="button" aria-label="위시리스트, 클릭 시 해당 상품을 위시리스트에 담음">
-          위시리스트
-          <img class="inline-block" src="/src/images/wish.svg" alt="" />
-        </button>
-      </div>
-    </div>
-
-    <!-- 제품 설명 , 색상 및 번호 -->
-    <p class="pt-8 pl-6 pr-6 font-Noto leading-6">
-      경기 종료 휘슬이 울릴 때까지는 끝난 것이 아닙니다. 테이텀 2와 함께 여유로운 에너지로 경기를 즐겨보세요. 무거운 고무 소재의 사용을 제한하여 더욱 가벼운 착화감을 선사합니다. 전체적으로 적용된 나이키 에어 스트로벨 유닛은 빠르게 방향을 바꿀 수 있도록 도와주며, 견고한 프레임과 발에 밀착되는 지지력
-      있는 폼이 어우러져 고정력 좋은 착화감을 선사합니다.
-    </p>
-
-    <div class="detail-current-info pt-7 pl-6 pr-6 font-Noto flex flex-nowrap">
-      <p class="grow items-center justify-center">• 현재 컬러: 라이트 지트론/오로라 그린/ 아토믹 핑크/세일</p>
-    </div>
-    <div class="detail-style-number pl-6 font-Noto flex">
-      <p class="grow items-center justify-center">• 스타일 번호: FJ6458-700</p>
-    </div>
-    <!-- </main> -->
-
-    <!-- 상품 상세 정보 보기 -->
-
-    <div class="detail-info pt-[30px] pl-6 pr-6 font-Noto">
-      <h2 class="underline">상품 상세 정보 보기</h2>
-      <details class="">
-        <summary class="flex justify-between pt-[30px] pb-[30px] font-Noto list-none border-b-2 border-nike-gray-lighter" aria-label="무료 배송 및 반품, 클릭 시 배송 및 반품 정보에 대해 확인 가능">
-          <p>무료 배송 및 반품</p>
-          <img class="w-3 h-3" src="/src/images/reviewdown.svg" alt="" />
-        </summary>
-        <p class="font-Noto text-xs">
-          일반 배송 <br />
-          • 배송지역: 전국 (일부 지역 제외)<br />
-          • 배송비: 무료배송<br />
-          • 제품 수령일로부터 14일 이내 제품에 대해서만 무료 반품 서비스가 가능합니다. <br /><br />오늘도착 서비스<br />
-          • 이용시간: 오전 10시 30분까지 결제 시, 당일 도착 (일요일, 공휴일 제외)<br />
-          • 서비스지역: 서울∙과천∙의왕∙군포∙수원∙성남∙안양시 전체, 용인시 수지구∙기흥구, 부천시 중동∙상동∙심곡동 <br />• 서비스비용: 5,000원 <br /><br />A/S 안내 • 나이키 온라인에서 구매하신 제품에 대한 A/S 는 나이키코리아 고객센터(080-022-0182)에서 유선으로만 접수 가능합니다.
-        </p>
-      </details>
-
-      <details>
-        <summary class="pt-[30px] pb-[30px] font-Noto list-none border-b-2 border-nike-gray-lighter flex grow justify-between" aria-label="리뷰, 클릭 시 리뷰 조회 가능">
-          <p class="grow-2">리뷰(2)</p>
-          <div class="grow-8 flex justify-end gap-[15.5px]">
-            <img class="inline-block w-[85px] h-[12.334px]" src="/src/images/fivestars.svg" alt="평점 별 5개" />
-            <img class="w-3 h-3" src="/src/images/reviewdown.svg" alt="" />
+          <!-- 장바구니 및 위시리스트 버튼 -->
+          <div class="detail-want-to-buy pt-8 pl-6 pr-6 font-Noto">
+            <button class="addCartBtn w-full px-4 py-2 border border-black rounded-4xl hover:bg-gray-300 font-Noto bg-black text-amber-50" type="button" aria-label="장바구니, 클릭 시 해당 상품을 장바구니에 담음">장바구니</button>
+            <div class="pt-3">
+              <button class="w-full px-4 py-2 border border-black rounded-4xl hover:bg-gray-300 font-Noto" type="button" aria-label="위시리스트, 클릭 시 해당 상품을 위시리스트에 담음">
+                위시리스트
+                <img class="inline-block" src="/src/images/wish.svg" alt="" />
+              </button>
+            </div>
           </div>
-        </summary>
 
-        <div class="flex">
-          <img class="w-[85px] h-[12.334px]" src="/src/images/fivestars.svg" alt="평점 별 5개" />
+          <!-- 제품 설명 , 색상 및 번호 -->
+          <p class="pt-8 pl-6 pr-6 font-Noto leading-6">
+            경기 종료 휘슬이 울릴 때까지는 끝난 것이 아닙니다. 테이텀 2와 함께 여유로운 에너지로 경기를 즐겨보세요. 무거운 고무 소재의 사용을 제한하여 더욱 가벼운 착화감을 선사합니다. 전체적으로 적용된 나이키 에어 스트로벨 유닛은 빠르게 방향을 바꿀 수 있도록 도와주며, 견고한 프레임과 발에 밀착되는
+            지지력 있는 폼이 어우러져 고정력 좋은 착화감을 선사합니다.
+          </p>
 
-          <p class="text-xs">4.7점</p>
+          <div class="detail-current-info pt-7 pl-6 pr-6 font-Noto flex flex-nowrap">
+            <p class="grow items-center justify-center">• 현재 컬러: 라이트 지트론/오로라 그린/ 아토믹 핑크/세일</p>
+          </div>
+          <div class="detail-style-number pl-6 font-Noto flex">
+            <p class="grow items-center justify-center">• 스타일 번호: FJ6458-700</p>
+          </div>
+          <!-- </main> -->
+
+          <!-- 상품 상세 정보 보기 -->
+
+          <div class="detail-info pt-[30px] pl-6 pr-6 font-Noto">
+            <h2 class="underline">상품 상세 정보 보기</h2>
+            <details class="">
+              <summary class="flex justify-between pt-[30px] pb-[30px] font-Noto list-none border-b-2 border-nike-gray-lighter" aria-label="무료 배송 및 반품, 클릭 시 배송 및 반품 정보에 대해 확인 가능">
+                <p>무료 배송 및 반품</p>
+                <img class="w-3 h-3" src="/src/images/reviewdown.svg" alt="" />
+              </summary>
+              <p class="font-Noto text-xs">
+                일반 배송 <br />
+                • 배송지역: 전국 (일부 지역 제외)<br />
+                • 배송비: 무료배송<br />
+                • 제품 수령일로부터 14일 이내 제품에 대해서만 무료 반품 서비스가 가능합니다. <br /><br />오늘도착 서비스<br />
+                • 이용시간: 오전 10시 30분까지 결제 시, 당일 도착 (일요일, 공휴일 제외)<br />
+                • 서비스지역: 서울∙과천∙의왕∙군포∙수원∙성남∙안양시 전체, 용인시 수지구∙기흥구, 부천시 중동∙상동∙심곡동 <br />• 서비스비용: 5,000원 <br /><br />A/S 안내 • 나이키 온라인에서 구매하신 제품에 대한 A/S 는 나이키코리아 고객센터(080-022-0182)에서 유선으로만 접수 가능합니다.
+              </p>
+            </details>
+
+            <details>
+              <summary class="pt-[30px] pb-[30px] font-Noto list-none border-b-2 border-nike-gray-lighter flex grow justify-between" aria-label="리뷰, 클릭 시 리뷰 조회 가능">
+                <p class="grow-2">리뷰(2)</p>
+                <div class="grow-8 flex justify-end gap-[15.5px]">
+                  <img class="inline-block w-[85px] h-[12.334px]" src="/src/images/fivestars.svg" alt="평점 별 5개" />
+                  <img class="w-3 h-3" src="/src/images/reviewdown.svg" alt="" />
+                </div>
+              </summary>
+
+              <div class="flex">
+                <img class="w-[85px] h-[12.334px]" src="/src/images/fivestars.svg" alt="평점 별 5개" />
+
+                <p class="text-xs">4.7점</p>
+              </div>
+
+              <a class="inline-block pt-[19px] underline" href=""> 리뷰 작성하기</a>
+
+              <div class="pt-7 detail-first-review font-Noto">
+                <p>Nike Jam Shoe Revie</p>
+                <img class="pt-[8.83px]" src="/src/images/fivestars.svg" alt="평점 별 5개" />
+                <p class="pt-[8.83px] text-xs">The Nike Jam shoes are a dream to wear, with a snug yet comfortable fit that supports your feet during any activity. The sleek, modern design with bold color combinations makes a stylish statement, perfect for any outfit. The</p>
+              </div>
+
+              <div class="pt-5 detail-second-review font-Noto">
+                <p class="text-xs">스티커가 왜 쉽게 빠지는 걸까요?</p>
+                <img class="pt-[8.83px]" src="/src/images/fivestars.svg" alt="평점 별 5개" />
+                <p class="pt-[8.83px] text-xs">안에 이 스티커가 원래 이렇게 쉽게 빠지나요? 한번밖에 안신었는데 벌써 빠졌네요???</p>
+              </div>
+            </details>
+
+            <details>
+              <summary class="flex justify-between pt-[29.5px] pb-[30.5px] font-Noto list-none border-b-2 border-nike-gray-lighter" aria-label="추가 정보, 클릭 시 상품정보제공고시 열람 가능">
+                <p>추가 정보</p>
+                <img class="w-3 h-3" src="/src/images/reviewdown.svg" alt="" />
+              </summary>
+              <span>상품정보제공고시</span>
+              <p class="text-gray-900 font-Noto text-xs pt-[11.5px]">
+                • 제조연월: 수입제품으로 각 제품별 입고 시기에 따라 상이하여 정확한 제조연월 제공이 어렵습니다. 제조연월을 확인하시려면 고객센터에 문의하시기 바라며, 정확한 제조연월은 배송받으신 제품의 라벨을 참고하시기 바랍니다. <br /><br />• A/S 책임자와 전화번호: (유)나이키코리아 온라인 스토어
+                고객센터 / 080-022-0182 <br /><br />
+                • 세탁방법 및 취급시 주의사항: 자세한 내용은 '자세히 보기'를 클릭하여 확인 부탁드립니다. <br /><br />
+                • 미성년자 권리 보호 안내: 자세한 내용은 '자세히 보기' 를 클릭하여 확인 부탁드립니다.<br />
+                <br />• 품질보증기준: 품질보증기간-섬유 및 일반 소재(구입 후 6개월), 가죽소재(구입 후 1년). 유통 중 손상되었거나 품질에 이상이 있는 제품에 한하여 소비자 피해 보상 규정에 의거 보상하여 드립니다. 단, 제품에 부착되어 있는 사용방법 및 취급 시 주의사항에 따라 제품을 관리해 주시고, 소비자
+                부주의로 인한 품질 이상 및 변형에 대해서는 책임을 지지 않습니다. <br /><br />
+                • 제조자/수입품의 경우 수입자를 함께 표기: Nike. Inc / (유)나이키코리아
+              </p>
+            </details>
+          </div>
         </div>
+        <!-- 추천 제품 -->
+        <div class="prefer-wrapper flex">
+          <section class="pt-[38px] pl-6 pr-6 font-Noto hidden">
+            <h2 class="pl-6">추천 제품</h2>
 
-        <a class="inline-block pt-[19px] underline" href=""> 리뷰 작성하기</a>
+            <div class="flex justify-end gap-3 pr-6">
+              <button class="w-6 h-6 bg-nike-gray-lighter border border-nike-gray-lighter rounded-full text-sm hover:bg-gray-100" type="button" aria-label="버튼 클릭 시 이전 추천 제품 확인 가능">
+                <img src="/src/images/leftbutton.svg" alt="이전 항목 조회 버튼" />
+              </button>
 
-        <div class="pt-7 detail-first-review font-Noto">
-          <p>Nike Jam Shoe Revie</p>
-          <img class="pt-[8.83px]" src="/src/images/fivestars.svg" alt="평점 별 5개" />
-          <p class="pt-[8.83px] text-xs">The Nike Jam shoes are a dream to wear, with a snug yet comfortable fit that supports your feet during any activity. The sleek, modern design with bold color combinations makes a stylish statement, perfect for any outfit. The</p>
+              <button class="w-6 bg-nike-gray-lighter border border-nike-gray-lighter rounded-full text-sm hover:bg-gray-100" type="button" aria-label="버튼 클릭 시 다음 추천 제품 확인 가능">
+                <img src="/src/images/rigthbutton.svg" alt="다음 항목 조회 버튼" />
+              </button>
+            </div>
+
+            <div class="pl-6 overflow-x-auto flex gap-3">
+              <article class="min-w-[196px] min-h-[196px]">
+                <figure class="pt-3">
+                  <img src="/src/images/nike_1.png" alt="나이키 줌 보메로 5 상품 이미지" />
+                </figure>
+                <div class="pt-[11.75px] pb-[11.75px]">
+                  <h3 class="font-Noto text-sm font-medium">나이키 줌 보메로5</h3>
+                  <p class="font-Noto text-sm text-nike-gray-dark">남성 신발</p>
+                </div>
+                <p class="pb-[49px]">189,000원</p>
+              </article>
+              <article class="min-w-[196px] min-h-[196px]">
+                <figure class="pt-3">
+                  <img src="/src/images/img.png" alt="나이키 클럽 상품 이미지" />
+                </figure>
+                <div class="pt-[11.75px] pb-[11.75px]">
+                  <h3 class="font-Noto text-sm font-medium">나이키 클럽</h3>
+                  <p class="font-Noto text-sm text-nike-gray-dark">언스트럭처 데님 캡</p>
+                </div>
+                <p class="pb-[49px]">39,000원</p>
+              </article>
+              <article class="min-w-[196px] min-h-[196px]">
+                <figure class="pt-3">
+                  <img src="/src/images/img.png" alt="나이키 클럽 상품 이미지" />
+                </figure>
+                <div class="pt-[11.75px] pb-[11.75px]">
+                  <h3 class="font-Noto text-sm font-medium">나이키 클럽</h3>
+                  <p class="font-Noto text-sm text-nike-gray-dark">언스트럭처 데님 캡</p>
+                </div>
+                <p class="pb-[49px]">39,000원</p>
+              </article>
+              <article class="min-w-[196px] min-h-[196px]">
+                <figure class="pt-3">
+                  <img src="/src/images/img.png" alt="나이키 클럽 상품 이미지" />
+                </figure>
+                <div class="pt-[11.75px] pb-[11.75px]">
+                  <h3 class="font-Noto text-sm font-medium">나이키 클럽</h3>
+                  <p class="font-Noto text-sm text-nike-gray-dark">언스트럭처 데님 캡</p>
+                </div>
+                <p class="pb-[49px]">39,000원</p>
+              </article>
+            </div>
+          </section>
+
+          <!-- 장바구니 버튼 -->
+
+          <a class="w-full h-[67px] border border-black hover:bg-gray-800 font-Noto bg-black text-amber-50 flex items-center justify-center hidden" href="" aria-label="장바구니, 클릭 시 장바구니 페이지로 이동">
+            <p class="">장바구니</p>
+          </a>
         </div>
-
-        <div class="pt-5 detail-second-review font-Noto">
-          <p class="text-xs">스티커가 왜 쉽게 빠지는 걸까요?</p>
-          <img class="pt-[8.83px]" src="/src/images/fivestars.svg" alt="평점 별 5개" />
-          <p class="pt-[8.83px] text-xs">안에 이 스티커가 원래 이렇게 쉽게 빠지나요? 한번밖에 안신었는데 벌써 빠졌네요???</p>
-        </div>
-      </details>
-
-      <details>
-        <summary class="flex justify-between pt-[29.5px] pb-[30.5px] font-Noto list-none border-b-2 border-nike-gray-lighter" aria-label="추가 정보, 클릭 시 상품정보제공고시 열람 가능">
-          <p>추가 정보</p>
-          <img class="w-3 h-3" src="/src/images/reviewdown.svg" alt="" />
-        </summary>
-        <span>상품정보제공고시</span>
-        <p class="text-gray-900 font-Noto text-xs pt-[11.5px]">
-          • 제조연월: 수입제품으로 각 제품별 입고 시기에 따라 상이하여 정확한 제조연월 제공이 어렵습니다. 제조연월을 확인하시려면 고객센터에 문의하시기 바라며, 정확한 제조연월은 배송받으신 제품의 라벨을 참고하시기 바랍니다. <br /><br />• A/S 책임자와 전화번호: (유)나이키코리아 온라인 스토어 고객센터
-          / 080-022-0182 <br /><br />
-          • 세탁방법 및 취급시 주의사항: 자세한 내용은 '자세히 보기'를 클릭하여 확인 부탁드립니다. <br /><br />
-          • 미성년자 권리 보호 안내: 자세한 내용은 '자세히 보기' 를 클릭하여 확인 부탁드립니다.<br />
-          <br />• 품질보증기준: 품질보증기간-섬유 및 일반 소재(구입 후 6개월), 가죽소재(구입 후 1년). 유통 중 손상되었거나 품질에 이상이 있는 제품에 한하여 소비자 피해 보상 규정에 의거 보상하여 드립니다. 단, 제품에 부착되어 있는 사용방법 및 취급 시 주의사항에 따라 제품을 관리해 주시고, 소비자
-          부주의로 인한 품질 이상 및 변형에 대해서는 책임을 지지 않습니다. <br /><br />
-          • 제조자/수입품의 경우 수입자를 함께 표기: Nike. Inc / (유)나이키코리아
-        </p>
-      </details>
+      </div>
     </div>
-
-    <!-- 추천 제품 -->
-
-    <section class="pt-[38px] pl-6 pr-6 font-Noto">
-      <h2 class="pl-6">추천 제품</h2>
-
-      <div class="flex justify-end gap-3 pr-6">
-        <button class="w-6 h-6 bg-nike-gray-lighter border border-nike-gray-lighter rounded-full text-sm hover:bg-gray-100" type="button" aria-label="버튼 클릭 시 이전 추천 제품 확인 가능">
-          <img src="/src/images/leftbutton.svg" alt="이전 항목 조회 버튼" />
-        </button>
-
-        <button class="w-6 bg-nike-gray-lighter border border-nike-gray-lighter rounded-full text-sm hover:bg-gray-100" type="button" aria-label="버튼 클릭 시 다음 추천 제품 확인 가능">
-          <img src="/src/images/rigthbutton.svg" alt="다음 항목 조회 버튼" />
-        </button>
-      </div>
-
-      <div class="pl-6 overflow-x-auto flex gap-3">
-        <article class="min-w-[196px] min-h-[196px]">
-          <figure class="pt-3">
-            <img src="/src/images/nike_1.png" alt="나이키 줌 보메로 5 상품 이미지" />
-          </figure>
-          <div class="pt-[11.75px] pb-[11.75px]">
-            <h3 class="font-Noto text-sm font-medium">나이키 줌 보메로5</h3>
-            <p class="font-Noto text-sm text-nike-gray-dark">남성 신발</p>
-          </div>
-          <p class="pb-[49px]">189,000원</p>
-        </article>
-        <article class="min-w-[196px] min-h-[196px]">
-          <figure class="pt-3">
-            <img src="/src/images/img.png" alt="나이키 클럽 상품 이미지" />
-          </figure>
-          <div class="pt-[11.75px] pb-[11.75px]">
-            <h3 class="font-Noto text-sm font-medium">나이키 클럽</h3>
-            <p class="font-Noto text-sm text-nike-gray-dark">언스트럭처 데님 캡</p>
-          </div>
-          <p class="pb-[49px]">39,000원</p>
-        </article>
-        <article class="min-w-[196px] min-h-[196px]">
-          <figure class="pt-3">
-            <img src="/src/images/img.png" alt="나이키 클럽 상품 이미지" />
-          </figure>
-          <div class="pt-[11.75px] pb-[11.75px]">
-            <h3 class="font-Noto text-sm font-medium">나이키 클럽</h3>
-            <p class="font-Noto text-sm text-nike-gray-dark">언스트럭처 데님 캡</p>
-          </div>
-          <p class="pb-[49px]">39,000원</p>
-        </article>
-        <article class="min-w-[196px] min-h-[196px]">
-          <figure class="pt-3">
-            <img src="/src/images/img.png" alt="나이키 클럽 상품 이미지" />
-          </figure>
-          <div class="pt-[11.75px] pb-[11.75px]">
-            <h3 class="font-Noto text-sm font-medium">나이키 클럽</h3>
-            <p class="font-Noto text-sm text-nike-gray-dark">언스트럭처 데님 캡</p>
-          </div>
-          <p class="pb-[49px]">39,000원</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- 장바구니 버튼 -->
-
-    <a class="w-full h-[67px] border border-black hover:bg-gray-800 font-Noto bg-black text-amber-50 flex items-center justify-center" href="" aria-label="장바구니, 클릭 시 장바구니 페이지로 이동">
-      <p class="">장바구니</p>
-    </a>
   </body>
 </html>

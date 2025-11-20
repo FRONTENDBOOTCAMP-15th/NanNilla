@@ -23,8 +23,36 @@ async function getData() {
   }
 }
 
+const itemWrapper = document.querySelector('.item-entire-wrapper');
 const itemList = document.querySelector('.item-list-wrapper');
+const productInfo = document.querySelector('.productInfo');
+const figureTag = document.createElement('figure');
+
 let selectedProduct = {};
+
+const productName = document.createElement('div');
+productName.classList.add('productname');
+
+const mainTag = document.createElement('main');
+const h1Tag = document.createElement('h1');
+const pTag = document.createElement('p');
+const div1Tag = document.createElement('div');
+
+productName?.appendChild(mainTag);
+productName?.appendChild(h1Tag);
+productName?.appendChild(pTag);
+productName?.appendChild(div1Tag);
+
+if (window.innerWidth <= 960) {
+  itemWrapper?.appendChild(productName);
+} else {
+  productInfo?.appendChild(productName);
+}
+
+if (window.innerWidth >= 960) {
+  itemWrapper?.appendChild(figureTag);
+}
+itemWrapper?.appendChild(itemList);
 
 // 상품 이름, 가격, 이미지 출력
 function render(prds: Products[]) {
@@ -32,7 +60,6 @@ function render(prds: Products[]) {
   div2Tag.classList.add('detail-item-color', 'pt-0.75', 'flex', 'gap-2.5', 'overflow-x-auto');
   console.log(prds);
   prds?.map((prd) => {
-    const figureTag = document.createElement('figure');
     figureTag.classList.add('min-w-[360px]', 'detail-item-image', 'overflow-x-auto', 'pt-6', 'justify-center', 'items-center');
 
     const imgTag = document.createElement('img');
@@ -41,6 +68,9 @@ function render(prds: Products[]) {
     }
     imgTag.alt = prd.name + '이미지';
     figureTag.appendChild(imgTag);
+
+    const colorList = document.createElement('div');
+    colorList.classList.add('min-h-[150px]', 'flex', 'overflow-x-auto');
 
     // 색상 버튼 생성 루프
     prd.mainImages.map((image, index) => {
@@ -96,50 +126,46 @@ function render(prds: Products[]) {
       });
 
       itemColorButton.appendChild(itemImage);
-      div2Tag.appendChild(itemColorButton);
+      colorList?.appendChild(itemColorButton);
     });
+    productInfo?.appendChild(colorList);
 
-    const mainTag = document.createElement('main');
     mainTag.classList.add('detail-main', 'pt-20', 'flow-root');
 
-    const h1Tag = document.createElement('h1');
     h1Tag.classList.add('h-8.75', 'ml-6', 'font-medium', 'text-xl', 'font-Noto');
     h1Tag.textContent = prd.name;
 
-    const pTag = document.createElement('p');
     pTag.classList.add('h-7', 'ml-6', 'font-medium', 'font-Noto');
-    if (prd.extra.gender === 'men') {
+    if (prds[0].extra.gender === 'men') {
       pTag.textContent = '남성 신발';
     } else if (prd.extra.gender === 'women') {
       pTag.textContent = '여성 신발';
     } else if (prd.extra.gender === 'kids') {
       pTag.textContent = '키즈 신발';
     }
+    pTag.textContent = prd.extra.gender;
 
-    const div1Tag = document.createElement('div');
     div1Tag.classList.add('detail-price-info', 'pt-3', 'ml-6', 'flex');
 
     const span1Tag = document.createElement('span');
     span1Tag.classList.add('inline-block', 'h-7', 'mr-2', 'font-medium', 'font-Noto');
-    span1Tag.textContent = `${prd.price.toLocaleString()}원`;
+    span1Tag.textContent = String(prd.price.toLocaleString());
 
     const sTag = document.createElement('s');
     sTag.classList.add('inline-block', 'h-7', 'mr-2', 'font-medium', 'font-Noto', 'text-nike-gray-medium');
-    sTag.textContent = `${prd.price.toLocaleString()}원`;
+    sTag.textContent = String(prd.price.toLocaleString());
 
     const span2Tag = document.createElement('span');
     span2Tag.classList.add('inline-block', 'h-7', 'font-medium', 'font-Noto', 'text-nike-green');
-    span2Tag.textContent = `${prd.price.toLocaleString()}원`;
+    span2Tag.textContent = String(prd.price.toLocaleString());
 
     div1Tag.appendChild(span1Tag);
     div1Tag.appendChild(sTag);
     div1Tag.appendChild(span2Tag);
 
-    itemList?.appendChild(mainTag);
-    itemList?.appendChild(h1Tag);
-    itemList?.appendChild(pTag);
-    itemList?.appendChild(div1Tag);
-    itemList?.appendChild(figureTag); // 위에서 미리 만든 figureTag 추가
+    if (window.innerWidth <= 960) {
+      itemList?.appendChild(figureTag); // 위에서 미리 만든 figureTag 추가
+    }
 
     itemList?.appendChild(div2Tag);
   });
@@ -290,7 +316,7 @@ addCartBtn?.addEventListener('click', async () => {
   const exist = cartitem.find((item) => item.id === product.id && item.size === product.size && item.category === product.category && item.gender === product.gender && item.styleNo === product.styleNo);
 
   if (exist) {
-    exist.quantity += 1;
+    exist.quantity = (exist.quantity || 0) + 1;
   } else {
     cartitem.push(product);
   }
