@@ -35,7 +35,7 @@ async function getData() {
 
 const itemWrapper = document.querySelector('.item-entire-wrapper'); // item-entire-wrapper 찾기
 const itemList = document.querySelector('.item-list-wrapper') as HTMLElement; // item-list-wrapper 찾기
-const productInfo = document.querySelector('.productInfo') as HTMLElement; // productInfo  찾기
+const productInfo = document.querySelector('.product-info') as HTMLElement; // productInfo  찾기
 const figureTag = document.createElement('figure'); // figure 태그 생성
 
 let selectedProduct = {}; // selectedProduct를 빈 객체로 선언
