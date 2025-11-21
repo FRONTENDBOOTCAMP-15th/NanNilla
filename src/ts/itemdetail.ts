@@ -6,7 +6,7 @@ import type { CartItem } from './cart';
 const params = new URLSearchParams(window.location.search);
 // 현재 웹 페이지 URL에서 쿼리문자열을 가져와 params에 저장
 const newQuery = params.get('extra.isNew');
-// params 객체에서 extra.isNew 키에 해당하는 값을 가져와 newQuery에 저장
+
 const IdQuery: string | null = params.get('_id');
 // params 객체에서 id라는 키에 해당하는 값을 가져와서 IDQuery에 저장
 
@@ -221,9 +221,11 @@ function render(prds: Products[]) {
 }
 
 const data = await getData();
+
 // getData를 호출하고 응답이 올 때까지 기다린다
 let filteredData: Products[] = [];
 // filteredData를 선언하고 빈 배열로 초기화한다
+
 if (data?.ok) {
   // 유효성 검사 : 응답 객체 data가 존재하고 데이터가 성공적으로 로드 될 경우 내부 로직 실행
   filteredData = data?.item; // data.item을 filteredData에 할당, IDQuery 가 없다면 data.item 전체가 화면에 렌더링될 데이터
