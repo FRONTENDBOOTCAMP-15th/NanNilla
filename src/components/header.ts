@@ -51,7 +51,7 @@ class HeaderComponent extends HTMLElement {
 
       <!-- 서브 메뉴 (Men) -->
       <div id="sub-menu-men" class="fixed left-0 top-25 w-screen h-[450px] bg-white shadow-lg border-t border-gray-300 opacity-0 invisible translate-y-2 transition-all duration-300 z-30">
-        <div class="flex p-12 gap-65">
+        <div class="flex p-12 gap-65 justify-center">
           <!-- 신발 -->
           <div class="flex flex-col gap-3">
             <a href="/src/pages/itemlist?extra.category.1=PC0102" class="font-medium text-sm mb-2">신발</a>
@@ -96,7 +96,7 @@ class HeaderComponent extends HTMLElement {
       </div>
       <!-- 서브 메뉴 (Women) -->
       <div id="sub-menu-women" class="fixed left-0 top-25 w-screen h-[450px] bg-white shadow-lg border-t border-gray-300 opacity-0 invisible translate-y-2 transition-all duration-300 z-30">
-        <div class="flex p-12 gap-65">
+        <div class="flex p-12 gap-65 justify-center">
           <!-- 신발 -->
           <div class="flex flex-col gap-3">
             <a href="/src/pages/itemlist?extra.category.1=PC0201" class="font-medium text-sm mb-2">신발</a>
@@ -142,7 +142,7 @@ class HeaderComponent extends HTMLElement {
       </div>
       <!-- 서브 메뉴 (Kids) -->
       <div id="sub-menu-kids" class="fixed left-0 top-25 w-screen h-[450px] bg-white shadow-lg border-t border-gray-300 opacity-0 invisible translate-y-2 transition-all duration-300 z-30">
-        <div class="flex p-12 gap-65">
+        <div class="flex p-12 gap-65 justify-center">
           <!-- 신발 -->
           <div class="flex flex-col gap-3">
             <a href="/src/pages/itemlist?extra.category.1=PC0301" class="font-medium text-sm mb-2">신발</a>
