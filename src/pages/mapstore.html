@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>매장 찾기</title>
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4acd22929119c6a0ce382ad711087dd4"></script>
+    <script defer src="../ts/mapstore.ts"></script>
+    <script type="module" src="../components/header.ts"></script>
+    <script type="module" src="../components/footer.ts"></script>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body class="min-w-[360px]">
+    <nike-header></nike-header>
+    <h1 class="map-title text-2xl ml-8 mt-6">나이키 매장 찾기</h1>
+    <div class="w-full mt-11">
+      <div class="search-wrapper w-full flex justify-center px-8 mb-8">
+        <input type="search" placeholder="위치 검색" id="search-bar" class="search-input pl-12 h-14 w-full border rounded-lg" />
+        <img class="absolute left-10 top-42 nikeDesktop:top-52" src="/assets/icon36px/icon-search.svg" alt="검색아이콘" />
+      </div>
+
+      <!-- 매장 개수 -->
+      <p class="total-store mx-8 mb-4 text-[14px] text-nike-gray-dark"></p>
+
+      <div class="btn-category text-[16px] flex flex-row flex-nowrap mx-8 mb-4 gap-x-4">
+        <!-- 지도 버튼 누르면 지도나옴 -->
+        <button class="map-btn cursor-pointer">Map</button>
+        <!-- 리스트 버튼 누르면 리스트 나옴 -->
+        <button class="list-btn border-b-2 border-nike-black cursor-pointer">List</button>
+      </div>
+
+      <div class="map-list-wrapper">
+        <!-- 지도 들어가는 곳 -->
+        <div id="map" class="map w-full h-[360px] hidden"></div>
+        <!-- 매장 리스트 들어가는 곳 -->
+        <div class="store-list block"></div>
+      </div>
+    </div>
+    <nike-footer></nike-footer>
+  </body>
+</html>

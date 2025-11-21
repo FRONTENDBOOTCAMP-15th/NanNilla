@@ -14,7 +14,7 @@ class HeaderComponent extends HTMLElement {
       <!-- 헤더 -->
       <header class="hidden nikeDesktop:flex w-full h-10 px-6 justify-end items-center bg-nike-gray-lightest">
         <div class="flex gap-3">
-        <button class="text-xs font-medium">매장찾기</button>
+        <button class="text-xs font-medium"><a href="/src/pages/mapstore">매장 찾기</a></button>
         <p class="text-xs font-medium">|</p>
         <button class="text-xs font-medium">고객센터</button>
         <p class="text-xs font-medium">|</p>
@@ -203,7 +203,7 @@ class HeaderComponent extends HTMLElement {
             <button class="flex items-center gap-3 text-base font-medium py-2"><img src="/assets/icon24px/icon-cs.svg" alt=""><span>고객센터</span></button>
             <button class="flex items-center gap-3 text-base font-medium py-2"><img src="/assets/icon24px/icon-cart.svg" alt=""><a href="/src/pages/cart">장바구니</a></button>
             <button class="flex items-center gap-3 text-base font-medium py-2"><img src="/assets/icon24px/icon-order.svg" alt=""><span>주문</span></button>
-            <button class="flex items-center gap-3 text-base font-medium py-2"><img src="/assets/icon24px/icon-store.svg" alt=""><span>매장 찾기</span></button>
+            <button class="flex items-center gap-3 text-base font-medium py-2"><img src="/assets/icon24px/icon-store.svg" alt=""><a href="/src/pages/mapstore">매장 찾기</a></button>
           </div>
         </div>
       </section>
@@ -259,7 +259,7 @@ class HeaderComponent extends HTMLElement {
     const kidsBtn = this.querySelector('#menu-kids') as HTMLElement;
     const subMenuKids = this.querySelector('#sub-menu-kids') as HTMLElement;
     // --------------------------
-    // Men                      
+    // Men
     // --------------------------
     if (!menBtn || !subMenuMen) return;
     // 버튼 hover → 메뉴 열기
@@ -280,7 +280,7 @@ class HeaderComponent extends HTMLElement {
     });
 
     // --------------------------
-    // Women                      
+    // Women
     // --------------------------
     if (!womenBtn || !subMenuWomen) return;
     // 버튼 hover → 메뉴 열기
@@ -301,7 +301,7 @@ class HeaderComponent extends HTMLElement {
     });
 
     // --------------------------
-    // Kids                      
+    // Kids
     // --------------------------
     if (!kidsBtn || !subMenuKids) return;
     // 버튼 hover → 메뉴 열기
