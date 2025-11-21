@@ -3,31 +3,32 @@ class FooterComponent extends HTMLElement {
   // 컴포넌트 렌더링과 이벤트 초기화 수행
   connectedCallback(){
     this.render();
+    this.initFooterMenu();
   }
   // UI 렌더링
   render() {
     this.innerHTML =`
-    <footer class="main-footer text-sm">
-          <div class="footer-content flex flex-col">
-            <div class="footer-links pb-3">
-              <div class="footer-col font-medium">
+    <footer class="p-6 main-footer text-sm">
+          <div class="footer-content flex flex-col w-full">
+            <div class="footer-links pb-3 flex flex-col w-full nikeDesktop:flex-row">
+              <div class="footer-col font-medium w-full">
                 <hr class="border border-nike-gray-lightest">
-                <div class="flex justify-between align-top items-center">
+                <button class="footer-toggle flex justify-between items-center w-full cursor-pointer">
                   <h4 class="footer-title text-nike-black h-16 py-5">안내</h4>
-                  <img src="../../assets/icon24px/icon-up.svg" class="pb-1"/>
-                </div>
+                  <img src="../../assets/icon24px/icon-up.svg" class="pb-1 toggle-icon nikeDesktop:hidden"/>
+                </button>
                 <ul class="text-nike-gray-dark pb-3">
                   <li class="py-2"><a href="#">멤버가입</a></li>
                   <li class="py-2"><a href="#">매장찾기</a></li>
                   <li class="py-2"><a href="#">나이키 저널</a></li>
                 </ul>
               </div>
-              <div class="footer-col font-medium">
+              <div class="footer-col font-medium w-full">
                 <hr class="border border-nike-gray-lightest">
-                <div class="flex justify-between align-top items-center">
+                <button class="footer-toggle flex justify-between items-center w-full cursor-pointer">
                   <h4 class="footer-title text-nike-black h-16 py-5">고객센터</h4>
-                  <img src="../../assets/icon24px/icon-up.svg" class="pb-1"/>
-                </div>
+                  <img src="../../assets/icon24px/icon-up.svg" class="pb-1 toggle-icon nikeDesktop:hidden"/>
+                </button>
                 <ul class="text-nike-gray-dark pb-3">
                   <li class="py-2"><a href="#">주문배송조회</a></li>
                   <li class="py-2"><a href="#">반품 정책</a></li>
@@ -36,12 +37,12 @@ class FooterComponent extends HTMLElement {
                   <li class="py-2"><a href="#">문의하기</a></li>
                 </ul>
               </div>
-              <div class="footer-col font-medium">
+              <div class="footer-col font-medium w-full">
                 <hr class="border border-nike-gray-lightest">
-                <div class="flex justify-between align-top items-center">
+                <button class="footer-toggle flex justify-between items-center w-full cursor-pointer">
                   <h4 class="footer-title text-nike-black h-16 py-5">회사소개</h4>
-                  <img src="../../assets/icon24px/icon-up.svg" class="pb-1"/>
-                </div>
+                  <img src="../../assets/icon24px/icon-up.svg" class="pb-1 toggle-icon nikeDesktop:hidden"/>
+                </button>
                 <ul class="text-nike-gray-dark">
                   <li class="py-2"><a href="#">About Nike</a></li>
                   <li class="py-2"><a href="#">소식</a></li>
@@ -53,7 +54,7 @@ class FooterComponent extends HTMLElement {
             </div>
             <div class="policies font-medium">
               <hr class="border border-nike-gray-lightest">
-              <ul class="text-nike-gray-dark py-14">
+              <ul class="text-nike-gray-dark py-14 flex flex-col nikeDesktop:flex-row nikeDesktop:gap-5">
                 <li class="py-2">&copy; 2025 Nike, Inc. All Rights Reserved</li>
                 <li class="py-2"><a href="#">이용약관 </a></li>
                 <li class="py-2"><a href="#">개인정보처리방침 </a></li>
@@ -75,6 +76,35 @@ class FooterComponent extends HTMLElement {
           </div>
     </footer>
     `;
+  }
+
+  // 푸터 메뉴 열고 닫기
+  initFooterMenu() {
+    const toggles = this.querySelectorAll(".footer-toggle");
+
+    toggles.forEach(toggle => {
+      const menu = toggle.nextElementSibling as HTMLElement;
+      const icon = toggle.querySelector(".toggle-icon") as HTMLImageElement;
+
+      // 처음에는 모바일에서 접힌 상태로 설정
+      menu.style.maxHeight = "0";
+      menu.style.overflow = "hidden";
+      menu.style.transition = "max-height 0.3s ease";
+
+      toggle.addEventListener("click", () => {
+        const isOpen = menu.style.maxHeight && menu.style.maxHeight !== "0px";
+
+        if (isOpen) {
+          // 닫기
+          menu.style.maxHeight = "0";
+          icon.src = "../../assets/icon24px/icon-down.svg";
+        } else {
+          // 열기
+          menu.style.maxHeight = menu.scrollHeight + "px";
+          icon.src = "../../assets/icon24px/icon-up.svg";
+        }
+      });
+    });
   }
 }
 
