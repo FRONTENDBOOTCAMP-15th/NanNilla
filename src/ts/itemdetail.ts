@@ -407,3 +407,57 @@ addCartBtn?.addEventListener('click', async () => {
 
 getData();
 ///-------------------------제품 사이즈 선택 - 장바구니 연동 ----------------------------/////
+
+///-------------------------추천 제품 기능 구현----------------------------------------////
+
+// 랜더 함수
+
+function renderPreference(prds) {
+  let result = prds;
+  console.log(result);
+
+  const newConst = [...result.item].sort(() => 0.5 - Math.random()).slice(0, 8);
+  console.log(newConst);
+  result = newConst
+    .map((prd: Products) => {
+      try {
+        if (prd.extra.gender === 'men') {
+          prd.extra.gender = '남성 신발';
+        } else if (prds.extra.gender === 'women') {
+          prd.extra.gender = '여성 신발';
+        } else if (prds.extra.gender === 'kids') {
+          prd.extra.gender = '키즈 신발';
+        }
+      } catch (err) {
+        prd.extra.gender = '　';
+        console.log(err);
+      }
+      const priceText = `${prd.price.toLocaleString()}원`;
+
+      return `
+
+        <div class="prefer-items pl-6  flex gap-3  nikeDesktop:flex nikeDesktop:gap-3 nikeDesktop:min-w-[566.94px]">
+          <article class="min-w-[196px] min-h-[196px] nikeDesktop:min-w-[566.94px]">
+            <figure class="pt-3 nikeDesktop:min-w-[566.94px]">
+              <img class="nikeDesktop:min-w-[566.94px] nikeDesktop:h-[566.94px] w-[196px] h-[196px]" src="${prd.mainImages[0].path}" alt="${prd.name} 이미지" />
+            </figure>
+            <div class="pt-[11.75px] pb-[11.75px]">
+              <h3 class="font-Noto text-sm font-medium">${prd.name}</h3>
+              <p class="font-Noto text-sm text-nike-gray-dark">${prd?.extra.gender || '　'}</p>
+            </div>
+            <p class="pb-[49px]">${priceText}
+          </article>
+        </div>
+
+  `;
+    })
+    .join('');
+
+  const preferList = document.querySelector('.preference-wrapper');
+  if (preferList) {
+    preferList.innerHTML = result;
+  }
+}
+renderPreference(data);
+
+///-------------------------추천 제품 기능 구현----------------------------------------////
