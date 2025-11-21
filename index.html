@@ -10,246 +10,241 @@
     <script type="module" src="./src/components/footer.ts"></script>
     <title>나이키코리아</title>
   </head>
-  <body>
+  <body class="min-w-[360px]">
     <nike-header></nike-header>
     <div class="flex flex-col items-start p-6 gap-6 overflow-x-hidden">
       <!-- 메인 카드 -->
-      <div class="flex flex-col w-full items-start gap-6">
-        <div class="w-full h-[426px] nikeDesktop:h-[950px] overflow-hidden">
-          <img class="w-full h-full object-cover object-[40%_center] 
-           nikeDesktop:object-center" src="src/images/Background.png" />
-
+      <div class="flex flex-col w-full items-start nikeDesktop:items-center gap-6 py-8">
+        <div class="w-full h-[426px] nikeDesktop:h-[50%] overflow-hidden">
+          <img src="src/images/Background.png" class="w-full h-full object-cover object-[40%_center] nikeDesktop:object-center" />
         </div>
-        <div class="text-4xl font-medium">아무나 오를 수<br/>없는 승자의 자리.</div>
+        <div class="text-4xl font-medium nikeDesktop:font-black nikeDesktop:justify-center">아무나 오를 수 <br class="nikeDesktop:hidden" />없는 승자의 자리.</div>
         <span>전부를 내건 이들만이 차지하는 것.</span>
         <button class="w-28 h-10 rounded-full bg-nike-black text-nike-white">자세히 보기</button>
       </div>
       <!-- 가로 스크롤 카드 메뉴 -->
-      <div class="flex flex-col gap-6">
+      <div class="flex flex-col w-full gap-6 py-8">
         <span class="text-2xl font-medium">Win On Air</span>
-        <div class="w-84  overflow-x-auto [&::-webkit-scrollbar]:hidden">
-          <div class="flex flex-row h-[426px] gap-3">
-            <div class="flex flex-col gap-4 shrink-0 w-[300px] max-w-[300px]">
-              <div class="w-full h-full max-w-[300px] max-h-[375px]">
-                <img src="src/images/main-card1.png" />
+        <div class="w-[calc(100vw-24px)] overflow-x-auto [&::-webkit-scrollbar]:hidden nikeDesktop:w-full">
+          <div class="flex flex-row gap-3 nikeDesktop:w-full">
+            <div class="flex flex-col gap-4 shrink-0 nikeDesktop:flex-1">
+              <div class="w-full h-full relative flex flex-col gap-4">
+                <img src="src/images/main-card1.png" class="nikeDesktop:hidden"/>
+                <img src="src/images/main-card1d.png" class="hidden nikeDesktop:block aspect-10/9"/>
+                <span class="text-xl font-medium pb-3 nikeDesktop:text-2xl nikeDesktop:text-nike-white nikeDesktop:absolute nikeDesktop:bottom-[20%] nikeDesktop:left-[8%]">의류</span>
+                <button class="hidden nikeDesktop:block nikeDesktop:w-22.5 nikeDesktop:p-2 nikeDesktop:rounded-full nikeDesktop:font-medium nikeDesktop:bg-nike-white nikeDesktop:text-nike-black nikeDesktop:absolute nikeDesktop:bottom-[9%] nikeDesktop:left-[8%]">구매하기</button>
               </div>
-              <span class="text-xl font-medium">의류</span>
             </div>
-            <div class="flex flex-col gap-4 shrink-0 w-[300px] max-w-[300px]">
-              <div class="w-full h-full max-w-[300px] max-h-[375px]">
-                <img src="src/images/main-card2.png" />
+            <div class="flex flex-col gap-4 shrink-0 nikeDesktop:flex-1">
+              <div class="w-full h-full relative flex flex-col gap-4">
+                <img src="src/images/main-card2.png" class="nikeDesktop:hidden"/>
+                <img src="src/images/main-card2d.png" class="hidden nikeDesktop:block aspect-10/9"/>
+                <span class="text-xl font-medium pb-3 nikeDesktop:text-2xl nikeDesktop:text-nike-white nikeDesktop:absolute nikeDesktop:bottom-[20%] nikeDesktop:left-[8%]">신발</span>
+                <button class="hidden nikeDesktop:block nikeDesktop:w-22.5 nikeDesktop:p-2 nikeDesktop:rounded-full nikeDesktop:font-medium nikeDesktop:bg-nike-white nikeDesktop:text-nike-black nikeDesktop:absolute nikeDesktop:bottom-[9%] nikeDesktop:left-[8%]">구매하기</button>
               </div>
-              <span class="text-xl font-medium">신발</span>
             </div>
-            <div class="flex flex-col gap-4 shrink-0 w-[300px] max-w-[300px]">
-              <div class="w-full h-full max-w-[300px] max-h-[375px]">
-                <img src="src/images/main-card3.png" />
+            <div class="flex flex-col gap-4 shrink-0 nikeDesktop:flex-1">
+              <div class="w-full h-full relative flex flex-col gap-4">
+                <img src="src/images/main-card3.png" class="nikeDesktop:hidden"/>
+                <img src="src/images/main-card3d.png" class="hidden nikeDesktop:block aspect-10/9"/>
+                <span class="text-xl font-medium pb-3 nikeDesktop:text-2xl nikeDesktop:text-nike-white nikeDesktop:absolute nikeDesktop:bottom-[20%] nikeDesktop:left-[8%]">악세사리 & 용품</span>
+                <button class="hidden nikeDesktop:block nikeDesktop:w-22.5 nikeDesktop:p-2 nikeDesktop:rounded-full nikeDesktop:font-medium nikeDesktop:bg-nike-white nikeDesktop:text-nike-black nikeDesktop:absolute nikeDesktop:bottom-[9%] nikeDesktop:left-[8%]">구매하기</button>
               </div>
-              <span class="text-xl font-medium">악세사리 & 용품</span>
             </div>
           </div>
         </div>
       </div>
       <!-- 카드 -->
-      <div class="flex flex-col w-full items-start gap-6">
-        <img>
-        <div class="w-full h-[375px]">
+      <div class="flex flex-col w-full items-start nikeDesktop:items-center gap-6 pt-8">
+        <div class="w-full h-[375px] nikeDesktop:h-[50%] overflow-hidden">
           <img src="src/images/nike-just-do-it1.png" class="w-full h-full object-cover object-left nikeDesktop:object-center"/>
         </div>
         <span class="font-medium">신제품</span>
-        <div class="text-4xl font-medium">나이키 잼</div>
-        <span>브레이킹을 위해 탄생한<br/>나이키 잼 컬렉션을 만나 보세요.</span>
+        <div class="text-4xl font-medium nikeDesktop:font-black nikeDesktop:justify-center">나이키 잼</div>
+        <span>브레이킹을 위해 탄생한 <br class="nikeDesktop:hidden" />나이키 잼 컬렉션을 만나 보세요.</span>
         <button class="w-22.5 h-10 rounded-full bg-nike-black text-nike-white"><a href="src/pages/itemlist.html">구매하기</a></button>
       </div>
       <!-- 카드 -->
-      <div class="flex flex-col w-full items-start gap-6">
-        <img>
-        <div class="w-full h-[375px]">
-          <img src="src/images/nike-just-do-it2m.png" class="w-full h-full object-cover"/>
+      <div class="flex flex-col w-full items-start nikeDesktop:items-center gap-6 py-8">
+        <div class="w-full h-[375px] nikeDesktop:h-[50%] overflow-hidden">
+          <img src="src/images/nike-just-do-it2m.png" class="w-full h-full object-cover object-left nikeDesktop:hidden"/>
+          <img src="src/images/nike-just-do-it2.png" class="nikeDesktop:w-full nikeDesktop:h-full nikeDesktop:object-cover nikeDesktop:object-center"/>
         </div>
         <span class="font-medium">새로운 컬렉션</span>
-        <div class="text-4xl font-medium">나이키 X 자크뮈스</div>
-        <span>세련된 실루엣과 감각적인 컬러가<br/>조화를 이루는 나이키 X 자크뮈스 컬렉션은<br/>스포츠웨어에 새로운 변화를 불러일으킵니다.</span>
+        <div class="text-4xl font-medium nikeDesktop:font-black nikeDesktop:justify-center">나이키 X 자크뮈스</div>
+        <span>세련된 실루엣과 감각적인 컬러가 <br class="nikeDesktop:hidden" />조화를 이루는 나이키 X 자크뮈스 컬렉션은 <br class="nikeDesktop:hidden" />스포츠웨어에 새로운 변화를 불러일으킵니다.</span>
         <button class="w-35 h-10 rounded-full bg-nike-black text-nike-white"><a href="src/pages/itemlist.html">컬렉션 구매하기</a></button>
       </div>
       <!-- 가로 스크롤 카드 메뉴 -->
-      <div class="flex flex-col gap-6">
+      <div class="flex flex-col gap-6 py-8">
         <span class="text-2xl font-medium">Trending Now</span>
-        <div class="w-84 overflow-x-auto [&::-webkit-scrollbar]:hidden">
-          <div class="flex flex-row h-[415px] gap-3">
-            <div class="flex flex-col gap-4 shrink-0 w-[300px] max-w-[300px]">
-              <div class="w-full h-full max-w-[300px] max-h-[300px]">
-                <img src="src/images/trending-now-card1.png" />
+        <div class="w-[calc(100vw-24px)] overflow-x-auto [&::-webkit-scrollbar]:hidden nikeDesktop:pr-6">
+          <div class="flex flex-row gap-3 nikeDesktop:w-full">
+            <div class="flex flex-col gap-4 shrink-0 nikeDesktop:flex-1">
+              <div class="w-full h-full relative flex flex-col gap-4">
+                <img src="src/images/trending-now-card1.png" class="nikeDesktop:hidden" />
+                <img src="src/images/trending-now-card1d.png" class="hidden nikeDesktop:block aspect-0.8" />
+                <span class="text-xl font-medium pb-3 nikeDesktop:text-2xl nikeDesktop:text-nike-white nikeDesktop:absolute nikeDesktop:bottom-[20%] nikeDesktop:left-[8%]">매드 앰비션 팩</span>
+                <button class="w-22.5 h-10 rounded-full bg-nike-black text-nike-white nikeDesktop:block nikeDesktop:w-22.5 nikeDesktop:p-2 nikeDesktop:rounded-full nikeDesktop:font-medium nikeDesktop:bg-nike-white nikeDesktop:text-nike-black nikeDesktop:absolute nikeDesktop:bottom-[9%] nikeDesktop:left-[8%]"><a href="src/pages/itemlist.html">구매하기</a></button>
               </div>
-              <span class="text-xl font-medium">매드 앰비션 팩</span>
-              <button class="w-22.5 h-10 rounded-full bg-nike-black text-nike-white"><a href="src/pages/itemlist.html">구매하기</a></button>
             </div>
-            <div class="flex flex-col gap-4 shrink-0 w-[300px] max-w-[300px]">
-              <div class="w-full h-full max-w-[300px] max-h-[300px]">
-                <img src="src/images/trending-now-card2.png" />
+            <div class="flex flex-col gap-4 shrink-0 nikeDesktop:flex-1">
+              <div class="w-full h-full relative flex flex-col gap-4">
+                <img src="src/images/trending-now-card2.png" class="nikeDesktop:hidden" />
+                <img src="src/images/trending-now-card2d.png" class="hidden nikeDesktop:block aspect-0.8" />
+                <span class="text-xl font-medium pb-3 nikeDesktop:text-2xl nikeDesktop:text-nike-white nikeDesktop:absolute nikeDesktop:bottom-[20%] nikeDesktop:left-[8%]">가장 나다움을 담은 수트</span>
+                <button class="w-22.5 h-10 rounded-full bg-nike-black text-nike-white nikeDesktop:block nikeDesktop:w-22.5 nikeDesktop:p-2 nikeDesktop:rounded-full nikeDesktop:font-medium nikeDesktop:bg-nike-white nikeDesktop:text-nike-black nikeDesktop:absolute nikeDesktop:bottom-[9%] nikeDesktop:left-[8%]"><a href="src/pages/itemlist.html">구매하기</a></button>
               </div>
-              <span class="text-xl font-medium">가장 나다움을 담은 수트</span>
-              <button class="w-22.5 h-10 rounded-full bg-nike-black text-nike-white"><a href="src/pages/itemlist.html">구매하기</a></button>
             </div>
-            <div class="flex flex-col gap-4 shrink-0 w-[300px] max-w-[300px]">
-              <div class="w-full h-full max-w-[300px] max-h-[300px]">
-                <img src="src/images/trending-now-card3.png" />
+            <div class="flex flex-col gap-4 shrink-0 nikeDesktop:flex-1">
+              <div class="w-full h-full relative flex flex-col gap-4">
+                <img src="src/images/trending-now-card3.png" class="nikeDesktop:hidden" />
+                <img src="src/images/trending-now-card3d.png" class="hidden nikeDesktop:block aspect-0.8" />
+                <span class="text-xl font-medium pb-3 nikeDesktop:text-2xl nikeDesktop:text-nike-white nikeDesktop:absolute nikeDesktop:bottom-[20%] nikeDesktop:left-[8%]">샌들 & 슬라이드</span>
+                <button class="w-22.5 h-10 rounded-full bg-nike-black text-nike-white nikeDesktop:block nikeDesktop:w-22.5 nikeDesktop:p-2 nikeDesktop:rounded-full nikeDesktop:font-medium nikeDesktop:bg-nike-white nikeDesktop:text-nike-black nikeDesktop:absolute nikeDesktop:bottom-[9%] nikeDesktop:left-[8%]"><a href="src/pages/itemlist.html">구매하기</a></button>
               </div>
-              <span class="text-xl font-medium">샌들 & 슬라이드</span>
-              <button class="w-22.5 h-10 rounded-full bg-nike-black text-nike-white"><a href="src/pages/itemlist.html">구매하기</a></button>
             </div>
           </div>
         </div>
       </div>
-      <div class="flex flex-col w-full gap-12">
+      <!-- 세로 -> 가로 카드 메뉴 -->
+      <div class="flex flex-col w-full gap-12 py-8">
         <span class="text-2xl font-medium">Featured</span>
-        <!-- 카드 -->
-        <div class="flex flex-col w-full items-start gap-8">
-          <img>
-          <div class="w-full h-[312px]">
-            <img src="src/images/featured1.png" />
+        <div class="flex flex-col nikeDesktop:flex-row gap-3">
+          <!-- 카드 -->
+          <div class="flex flex-col w-full items-start">
+            <div class="w-full overflow-hidden nikeDesktop:relative">
+              <img src="src/images/featured1m.png" class="w-full nikeDesktop:hidden"/>
+              <img src="src/images/featured1d.png" class="hidden w-full aspect-video h-auto nikeDesktop:block" />
+              <button class="text-2xl font-medium py-8 nikeDesktop:py-0 nikeDesktop:text-base nikeDesktop:w-35 nikeDesktop:h-10 nikeDesktop:rounded-full nikeDesktop:absolute nikeDesktop:bottom-[10%] nikeDesktop:left-[2%] nikeDesktop:bg-nike-white"><a href="src/pages/itemlist.html">워크아웃 에센셜</a></button>
+            </div>
+            <button class="w-22.5 h-10 mb-5 rounded-full bg-nike-black text-nike-white nikeDesktop:hidden"><a href="src/pages/itemlist.html">구매하기</a></button>
           </div>
-          <div class="text-2xl font-medium">워크아웃 에센셜</div>
-          <button class="w-22.5 h-10 rounded-full bg-nike-black text-nike-white"><a href="src/pages/itemlist.html">구매하기</a></button>
-        </div>
-        <!-- 카드 -->
-        <div class="flex flex-col w-full items-start gap-6">
-          <img>
-          <div class="w-full h-[312px]">
-            <img src="src/images/featured2.png" />
+          <!-- 카드 -->
+          <div class="flex flex-col w-full items-start">
+            <div class="w-full overflow-hidden nikeDesktop:relative">
+              <img src="src/images/featured2.png" class="w-full nikeDesktop:hidden"/>
+              <img src="src/images/featured2d.png" class="hidden w-full aspect-video h-auto nikeDesktop:block"/>
+              <button class="text-2xl font-medium py-8 nikeDesktop:py-0 nikeDesktop:text-base nikeDesktop:w-35 nikeDesktop:h-10 nikeDesktop:rounded-full nikeDesktop:absolute nikeDesktop:bottom-[10%] nikeDesktop:left-[2%] nikeDesktop:bg-nike-white"><a href="src/pages/itemlist.html">나이키 메트콘 9</a></button>
+            </div>
+            <button class="w-22.5 h-10 mb-5 rounded-full bg-nike-black text-nike-white nikeDesktop:hidden"><a href="src/pages/itemlist.html">구매하기</a></button>
           </div>
-          <div class="text-2xl font-medium">나이키 메트콘 9</div>
-          <button class="w-22.5 h-10 rounded-full bg-nike-black text-nike-white"><a href="src/pages/itemlist.html">구매하기</a></button>
         </div>
       </div>
       <!-- 가로 스크롤 카드 메뉴 -->
-      <div class="flex flex-col gap-6">
+      <div class="flex flex-col gap-6 py-8 w-full">
         <span class="text-2xl font-medium">Always Iconic</span>
-        <div class="w-84 overflow-x-auto [&::-webkit-scrollbar]:hidden">
-          <div class="flex flex-row h-[364px] gap-3">
-            <div class="flex flex-col gap-4 shrink-0 w-[300px] max-w-[300px]">
-              <div class="w-full h-full max-w-[300px] max-h-[300px]">
-                <img src="src/images/always-iconic-card1.png" />
-              </div>
+        <div class="relative w-[calc(100vw-24px)] overflow-x-auto [&::-webkit-scrollbar]:hidden nikeDesktop:w-screen nikeDesktop:overflow-hidden nikeDesktop:-ml-6">
+          <div class="flex gap-3 w-max nikeDesktop:w-screen nikeDesktop:grid nikeDesktop:grid-cols-5 nikeDesktop:gap-1">
+            <div>
+              <img src="src/images/always-iconic-card1.png" class="w-[300px] h-[300px] shrink-0 nikeDesktop:w-full nikeDesktop:h-full object-cover" />
             </div>
-            <div class="flex flex-col gap-4 shrink-0 w-[300px] max-w-[300px]">
-              <div class="w-full h-full max-w-[300px] max-h-[300px]">
-                <img src="src/images/always-iconic-card2.png" />
-              </div>
+            <div>
+              <img src="src/images/always-iconic-card2.png" class="w-[300px] h-[300px] shrink-0 nikeDesktop:w-full nikeDesktop:h-full object-cover" />
             </div>
-            <div class="flex flex-col gap-4 shrink-0 w-[300px] max-w-[300px]">
-              <div class="w-full h-full max-w-[300px] max-h-[300px]">
-                <img src="src/images/always-iconic-card3.png" />
-              </div>
+            <div>
+              <img src="src/images/always-iconic-card3.png" class="w-[300px] h-[300px] shrink-0 nikeDesktop:w-full nikeDesktop:h-full object-cover" />
             </div>
-            <div class="flex flex-col gap-4 shrink-0 w-[300px] max-w-[300px]">
-              <div class="w-full h-full max-w-[300px] max-h-[300px]">
-                <img src="src/images/always-iconic-card4.png" />
-              </div>
+            <div>
+              <img src="src/images/always-iconic-card4.png" class="w-[300px] h-[300px] shrink-0 nikeDesktop:w-full nikeDesktop:h-full object-cover" />
             </div>
-            <div class="flex flex-col gap-4 shrink-0 w-[300px] max-w-[300px]">
-              <div class="w-full h-full max-w-[300px] max-h-[300px]">
-                <img src="src/images/always-iconic-card5.png" />
-              </div>
+            <div>
+              <img src="src/images/always-iconic-card5.png" class="w-[300px] h-[300px] shrink-0 nikeDesktop:w-full nikeDesktop:h-full object-cover" />
             </div>
           </div>
         </div>
       </div>
-    <!-- 세로 카드 메뉴-->
-    <div class="flex flex-col w-full gap-6">
-       <span class="text-2xl font-medium">Shop by Sport</span>
-       <div class="flex flex-row w-full justify-between items-center">
-        <div class="flex flex-col gap-2">
-          <p class="text-nike-gray-dark">나이키 트레이닝</p>
-          <span class="text-xl font-medium leading-9">한계에 도전하는<br/>여정과 함께할 아이템</span>
-        </div>
-        <div>
-          <img>
-          <div class="w-[110px] h-[110px]">
-            <img src="src/images/shop-by-sport1.png" class="rounded-md"/>
+      <!-- 세로 카드 메뉴-->
+      <div class="flex flex-col w-full gap-6 py-8">
+        <span class="text-2xl font-medium">Shop by Sport</span>
+        <div class="flex flex-row w-full justify-between items-center">
+          <div class="flex flex-col gap-2">
+            <p class="text-nike-gray-dark">나이키 트레이닝</p>
+            <span class="text-xl font-medium leading-9">한계에 도전하는 <br class="nikeDesktop:hidden"/>여정과 함께할 아이템</span>
+          </div>
+          <div>
+            <div class="w-[110px] h-[110px]">
+              <img src="src/images/shop-by-sport1.png" class="rounded-md"/>
+            </div>
           </div>
         </div>
-       </div>
-       <div class="flex flex-row w-full justify-between items-center">
-        <div class="flex flex-col gap-2">
-          <p class="text-nike-gray-dark">나이키 축구</p>
-          <span class="text-xl font-medium leading-9">경기 중 독보적인<br/>존재감을 드러낼<br/>아이템</span>
-        </div>
-        <div>
-          <img>
-          <div class="w-[110px] h-[110px]">
-            <img src="src/images/shop-by-sport2.png" class="rounded-md"/>
+        <div class="flex flex-row w-full justify-between items-center">
+          <div class="flex flex-col gap-2">
+            <p class="text-nike-gray-dark">나이키 축구</p>
+            <span class="text-xl font-medium leading-9">경기 중 독보적인 <br class="nikeDesktop:hidden"/>존재감을 드러낼 <br class="nikeDesktop:hidden"/>아이템</span>
+          </div>
+          <div>
+            <div class="w-[110px] h-[110px]">
+              <img src="src/images/shop-by-sport2.png" class="rounded-md"/>
+            </div>
           </div>
         </div>
-       </div>
-       <div class="flex flex-row w-full justify-between items-center">
-        <div class="flex flex-col gap-2">
-          <p class="text-nike-gray-dark">나이키 농구</p>
-          <span class="text-xl font-medium leading-9">경기를 빛내줄 스타일</span>
-        </div>
-        <div>
-          <img>
-          <div class="w-[110px] h-[110px]">
-            <img src="src/images/shop-by-sport3.png" class="rounded-md"/>
+        <div class="flex flex-row w-full justify-between items-center">
+          <div class="flex flex-col gap-2">
+            <p class="text-nike-gray-dark">나이키 농구</p>
+            <span class="text-xl font-medium leading-9">경기를 빛내줄 스타일</span>
+          </div>
+          <div>
+            <div class="w-[110px] h-[110px]">
+              <img src="src/images/shop-by-sport3.png" class="rounded-md"/>
+            </div>
           </div>
         </div>
-       </div>
-       <div class="flex flex-row w-full justify-between items-center">
-        <div class="flex flex-col gap-2">
-          <p class="text-nike-gray-dark">나이키 골프</p>
-          <span class="text-xl font-medium leading-9">골프 필드 위 자신감을<br/>더해주는 스타일</span>
-        </div>
-        <div>
-          <img>
-          <div class="w-[110px] h-[110px]">
-            <img src="src/images/shop-by-sport4.png" class="rounded-md"/>
+        <div class="flex flex-row w-full justify-between items-center">
+          <div class="flex flex-col gap-2">
+            <p class="text-nike-gray-dark">나이키 골프</p>
+            <span class="text-xl font-medium leading-9">골프 필드 위 자신감을 <br class="nikeDesktop:hidden"/>더해주는 스타일</span>
+          </div>
+          <div>
+            <div class="w-[110px] h-[110px]">
+              <img src="src/images/shop-by-sport4.png" class="rounded-md"/>
+            </div>
           </div>
         </div>
-       </div>
-       <div class="flex flex-row w-full justify-between items-center">
-        <div class="flex flex-col gap-2">
-          <p class="text-nike-gray-dark">나이키 테니스</p>
-          <span class="text-xl font-medium leading-9">강력한 서브를<br/>돋보이게 하는 스타일</span>
-        </div>
-        <div>
-          <img>
-          <div class="w-[110px] h-[110px]">
-            <img src="src/images/shop-by-sport5.png" class="rounded-md"/>
+        <div class="flex flex-row w-full justify-between items-center">
+          <div class="flex flex-col gap-2">
+            <p class="text-nike-gray-dark">나이키 테니스</p>
+            <span class="text-xl font-medium leading-9">강력한 서브를 <br class="nikeDesktop:hidden"/>돋보이게 하는 스타일</span>
+          </div>
+          <div>
+            <div class="w-[110px] h-[110px]">
+              <img src="src/images/shop-by-sport5.png" class="rounded-md"/>
+            </div>
           </div>
         </div>
-       </div>
-    </div>
-    <!-- 가로 스크롤 카드 메뉴 -->
-    <div class="flex flex-col gap-6">
-      <div class="flex w-[312px] justify-between">
-        <span class="text-2xl font-medium">나이키 멤버십</span>
-        <button class="font-medium">멤버 가입하기</button>
       </div>
-      <div class="w-84 overflow-x-auto [&::-webkit-scrollbar]:hidden">
-        <div class="flex flex-row h-[547px] gap-3">
-          <div class="flex flex-col gap-4 shrink-0 w-[300px] max-w-[300px]">
-            <div class="w-full h-full max-w-[300px] max-h-[375px]">
-              <img src="src/images/membership-card1.png"/>
+      <!-- 가로 스크롤 카드 메뉴 -->
+      <div class="flex flex-col gap-6 w-full py-8">
+        <div class="flex w-full justify-between">
+          <span class="text-2xl font-medium">나이키 멤버십</span>
+          <button class="font-medium">멤버 가입하기</button>
+        </div>
+        <div class="w-[calc(100vw-24px)] overflow-x-auto [&::-webkit-scrollbar]:hidden nikeDesktop:pr-6">
+          <div class="flex flex-row gap-3 nikeDesktop:w-full">
+            <div class="flex flex-col gap-4 shrink-0 nikeDesktop:flex-1 w-[300px] nikeDesktop:w-auto">
+              <div class="w-full h-full relative flex flex-col gap-4">
+                <img src="src/images/membership-card1.png" class="nikeDesktop:aspect-3/2 nikeDesktop:object-cover"/>
+              </div>
+              <span class="font-medium">스포츠 & 웰니스 앱</span>
+              <span class="text-xl font-medium">언제 어디서든 운동하기</span>
+              <button class="w-31 h-12 rounded-full bg-nike-black text-nike-white">함께 운동하기</button>
             </div>
-            <span class="font-medium">스포츠 & 웰니스 앱</span>
-            <span class="text-xl font-medium">언제 어디서든 운동하기</span>
-            <button class="w-31 h-12 rounded-full bg-nike-black text-nike-white">함께 운동하기</button>
-          </div>
-          <div class="flex flex-col gap-4 shrink-0 w-[300px] max-w-[300px]">
-            <div class="w-full h-full max-w-[300px] max-h-[375px]">
-              <img src="src/images/membership-card2.png"/>
+            <div class="flex flex-col gap-4 shrink-0 nikeDesktop:flex-1 w-[300px] nikeDesktop:w-auto">
+              <div class="w-full h-full relative flex flex-col gap-4">
+                <img src="src/images/membership-card2.png" class="nikeDesktop:aspect-3/2 nikeDesktop:object-cover nikeDesktop:object-top"/>
+              </div>
+              <span class="font-medium">나이키 트레일 러닝</span>
+              <span class="text-xl font-medium">새로운 모험으로 이끌어주는 아이템</span>
+              <button class="w-31 h-12 rounded-full bg-nike-black text-nike-white">함께 운동하기</button>
             </div>
-            <span class="font-medium">나이키 트레일 러닝</span>
-            <span class="text-xl font-medium">새로운 모험으로 이끌어주는 아이템</span>
-            <button class="w-31 h-12 rounded-full bg-nike-black text-nike-white">함께 운동하기</button>
-          </div>
-          <div class="flex flex-col gap-4 shrink-0 w-[300px] max-w-[300px]">
-            <div class="w-full h-full max-w-[300px] max-h-[375px]">
-              <img src="src/images/membership-card3.png"/>
+            <div class="flex flex-col gap-4 shrink-0 nikeDesktop:flex-1 w-[300px] nikeDesktop:w-auto">
+              <div class="w-full h-full relative flex flex-col gap-4">
+                <img src="src/images/membership-card3.png" class="nikeDesktop:aspect-3/2 nikeDesktop:object-cover"/>
+              </div>
+              <span class="font-medium">나이키 축구</span>
+              <span class="text-xl font-medium break-normal">경기 중 독보적인 존재감을 드러낼 아이템</span>
+              <button class="w-31 h-12 rounded-full bg-nike-black text-nike-white">함께 운동하기</button>
             </div>
-            <span class="font-medium">나이키 축구</span>
-            <span class="text-xl font-medium">경기 중 독보적인 존재감을 드러낼 아이템</span>
-            <button class="w-31 h-12 rounded-full bg-nike-black text-nike-white">함께 운동하기</button>
           </div>
         </div>
       </div>

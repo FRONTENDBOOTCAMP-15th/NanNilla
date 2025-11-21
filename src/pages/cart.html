@@ -13,18 +13,18 @@
     <nike-header></nike-header>
 
     <main class="max-w-[1100px] mx-auto p-[40px_16px]">
-      <div class="grid grid-cols-1 gap-8 mb-10 md:flex md:justify-between">
+      <div class="grid grid-cols-1 gap-8 mb-10 nikeDesktop:flex nikeDesktop:justify-between">
         <!-- 장바구니 -->
-        <section class="pb-4-b-2 md:flex-2">
+        <section class="pb-4-b-2 nikeDesktop:flex-2">
           <h2 class="text-2xl font-medium py-4">장바구니</h2>
           <!-- 장바구니 목록 -->
           <div id="cart-items" class="flex flex-col gap-3"></div>
         </section>
 
         <!-- 주문 요약 -->
-        <section class="md:flex-1">
+        <section class="nikeDesktop:flex-1">
           <h2 class="text-2xl font-medium py-4">주문 내역</h2>
-          <div class="cart-cost mb-2 flex flex-col gap-3 text-base"></div>
+          <div class="cart-cost mb-2 flex flex-col gap-3"></div>
         </section>
       </div>
 
@@ -33,17 +33,19 @@
       <!-- 위시리스트 -->
       <section class="overflow-hidden">
         <h2 class="text-2xl font-medium py-4">위시리스트</h2>
-        <div class="md:flex md:flex-row mb-10">
-          <div class="md:flex-[0_0_calc((100%-16px)/2)] flex flex-col pb-4">
+
+        <div class="nikeDesktop:flex nikeDesktop:flex-row mb-10">
+          <div class="wish-list"></div>
+          <div class="nikeDesktop:flex-[0_0_calc((100%-16px)/2)] flex flex-col pb-4">
             <div class="flex flex-1 gap-2">
               <img src="../../api/dbinit/team-nike/uploadFiles/AIR_JORDAN_4RM_A_01.png" alt="AIR_JORDAN_4RM_A" class="aspect-square w-[154px] h-[154px] rounded" />
               <div class="grow min-w-0">
                 <p class="font-medium break-all whitespace-normal">AIR_JORDAN_4RM_A</p>
-                <p class="font-medium text-nike-gray-dark">남성 신발</p>
-                <p class="font-medium text-nike-gray-dark">사이즈: 270</p>
-                <button type="button" class="mt-1 bg-transparent text-base text-nike-black py-[7px] px-3 rounded-full border border-nike-gray-lighter hover:bg-nike-gray-lighter whitespace-nowrap">장바구니에 추가</button>
+                <p class="text-nike-gray-dark">남성 신발</p>
+                <p class="text-nike-gray-dark">사이즈: 270</p>
+                <button type="button" class="mt-1 bg-transparent text-nike-black py-[7px] px-3 rounded-full border border-nike-gray-lighter hover:bg-nike-gray-lighter whitespace-nowrap">장바구니에 추가</button>
               </div>
-              <div class="pr-4 font-medium text-base whitespace-nowrap"><p>10,000원</p></div>
+              <div class="pr-4 font-medium whitespace-nowrap"><p>10,000원</p></div>
             </div>
           </div>
         </div>
@@ -64,6 +66,7 @@
       <!-- 추천 제품 목록 -->
       <div class="best-item flex flex-row overflow-x-hidden gap-6 whitespace-nowrap pb-2.5"></div>
     </section>
+
     <nike-footer></nike-footer>
   </body>
 </html>

@@ -12,29 +12,46 @@ class HeaderComponent extends HTMLElement {
     <div class="relative">
       <input type="checkbox" id="menu-toggle" class="peer hidden">
       <!-- 헤더 -->
+      <header class="hidden nikeDesktop:flex w-full h-10 px-6 justify-end items-center bg-nike-gray-lightest">
+        <div class="flex gap-3">
+        <button class="text-xs font-medium">매장찾기</button>
+        <p class="text-xs font-medium">|</p>
+        <button class="text-xs font-medium">고객센터</button>
+        <p class="text-xs font-medium">|</p>
+        <button id="signup-btn" class="text-xs font-medium cursor-pointer">가입하기</button>
+        <p id="divide" class="text-xs font-medium">|</p>
+        <button id="login-btn" class="text-xs font-medium cursor-pointer">로그인</button>
+        <button id="logout-btn" class="text-xs font-medium cursor-pointer">로그아웃</button>
+        </div>
+      </header>
       <header class="flex w-full h-15 px-6 justify-between items-center bg-nike-white">
         <!-- 나이키 홈 -->
         <button><a href="/index.html"><img src="/assets/logo.svg"></a></button>
         <!-- 카테고리 (데스크탑) -->
         <div class="flex flex-row">
           <button class="px-3 hidden nikeDesktop:block"><a href="/src/pages/itemlist?extra.isNew=true">New & Featured</a></button>
-          <button id="menu-men"class="px-3 hidden nikeDesktop:block"><span>Men</span></button>
-          <button id="menu-women" class="px-3 hidden nikeDesktop:block"><span>Women</span></button>
-          <button id="menu-kids" class="px-3 hidden nikeDesktop:block"><span>Kids</span></button>
-          <button class="px-3 hidden nikeDesktop:block"><a href="/src/pages/itemlist?extra.isNew=true">Sale</a></button>
+          <button id="menu-men"class="px-3 hidden nikeDesktop:block"><a href="/src/pages/itemlist?extra.category.1=PC0102">Men</a></button>
+          <button id="menu-women" class="px-3 hidden nikeDesktop:block"><a href="/src/pages/itemlist?extra.category.1=PC0201">Women</a></button>
+          <button id="menu-kids" class="px-3 hidden nikeDesktop:block"><a href="/src/pages/itemlist?extra.category.1=PC0301">Kids</a></button>
+          <button class="px-3 hidden nikeDesktop:block"><a href="/src/pages/itemlist?extra.sale=true">Sale</a></button>
         </div>
         <!-- 메뉴 -->
-        <div class="flex">
-          <button><img src="/assets/icon36px/icon-search.svg"></button>
-          <button><img src="/assets/icon36px/icon-profile.svg"></button>
-          <button><a href="/src/pages/cart"><img src="/assets/icon36px/icon-cart-in.svg"></a></button>
-          <label for="menu-toggle" class="w-9 h-9 bg-[url(/assets/icon36px/icon-menu.svg)] cursor-pointer"></label>
+        <div class="flex nikeDesktop:gap-2">
+          <button class="nikeDesktop:hidden"><img src="/assets/icon36px/icon-search.svg"></button>
+          <div class="hidden nikeDesktop:flex w-42 h-9 items-center gap-2 bg-nike-gray-lightest rounded-full px-3">
+            <img src="/assets/icon36px/icon-search.svg" alt="검색" class="w-8 h-8" />
+            <input type="text" placeholder="검색" class="bg-transparent outline-none text-sm w-full" />
+          </div>
+          <button class="nikeDesktop:hidden"><img src="/assets/icon36px/icon-profile.svg"></button>
+          <button class="hidden nikeDesktop:block"><img src="/assets/icon36px/icon-favorite.svg"></button>
+          <button><a href="/src/pages/cart"><img src="/assets/icon36px/icon-cart.svg"></a></button>
+          <label for="menu-toggle" class="w-9 h-9 bg-[url(/assets/icon36px/icon-menu.svg)] cursor-pointer nikeDesktop:hidden"></label>
         </div>
       </header>
 
       <!-- 서브 메뉴 (Men) -->
-      <div id="sub-menu-men" class="fixed left-0 top-15 w-screen h-[500px] bg-white shadow-lg border-t border-gray-300 opacity-0 invisible translate-y-2 transition-all duration-300 z-30">
-        <div class="flex p-12 gap-65">
+      <div id="sub-menu-men" class="fixed left-0 top-25 w-screen h-[450px] bg-white shadow-lg border-t border-gray-300 opacity-0 invisible translate-y-2 transition-all duration-300 z-30">
+        <div class="flex p-12 gap-65 justify-center">
           <!-- 신발 -->
           <div class="flex flex-col gap-3">
             <a href="/src/pages/itemlist?extra.category.1=PC0102" class="font-medium text-sm mb-2">신발</a>
@@ -78,8 +95,8 @@ class HeaderComponent extends HTMLElement {
         </div>
       </div>
       <!-- 서브 메뉴 (Women) -->
-      <div id="sub-menu-women" class="fixed left-0 top-15 w-screen h-[500px] bg-white shadow-lg border-t border-gray-300 opacity-0 invisible translate-y-2 transition-all duration-300 z-30">
-        <div class="flex p-12 gap-65">
+      <div id="sub-menu-women" class="fixed left-0 top-25 w-screen h-[450px] bg-white shadow-lg border-t border-gray-300 opacity-0 invisible translate-y-2 transition-all duration-300 z-30">
+        <div class="flex p-12 gap-65 justify-center">
           <!-- 신발 -->
           <div class="flex flex-col gap-3">
             <a href="/src/pages/itemlist?extra.category.1=PC0201" class="font-medium text-sm mb-2">신발</a>
@@ -124,8 +141,8 @@ class HeaderComponent extends HTMLElement {
         </div>
       </div>
       <!-- 서브 메뉴 (Kids) -->
-      <div id="sub-menu-kids" class="fixed left-0 top-15 w-screen h-[500px] bg-white shadow-lg border-t border-gray-300 opacity-0 invisible translate-y-2 transition-all duration-300 z-30">
-        <div class="flex p-12 gap-65">
+      <div id="sub-menu-kids" class="fixed left-0 top-25 w-screen h-[450px] bg-white shadow-lg border-t border-gray-300 opacity-0 invisible translate-y-2 transition-all duration-300 z-30">
+        <div class="flex p-12 gap-65 justify-center">
           <!-- 신발 -->
           <div class="flex flex-col gap-3">
             <a href="/src/pages/itemlist?extra.category.1=PC0301" class="font-medium text-sm mb-2">신발</a>
@@ -208,6 +225,7 @@ class HeaderComponent extends HTMLElement {
     const signupBtn = this.querySelector('#signup-btn') as HTMLButtonElement;
     const loginBtn = this.querySelector('#login-btn') as HTMLButtonElement;
     const logoutBtn = this.querySelector('#logout-btn') as HTMLButtonElement;
+    const divideLine = this.querySelector('#divide') as HTMLElement;
 
     if (!signupBtn || !loginBtn || !logoutBtn) return;
 
@@ -216,11 +234,13 @@ class HeaderComponent extends HTMLElement {
       signupBtn.classList.add('hidden');
       loginBtn.classList.add('hidden');
       logoutBtn.classList.remove('hidden');
+      divideLine.classList.add('hidden');
     } else {
       // 비로그인 상태: 가입/로그인 버튼만 보임
       signupBtn.classList.remove('hidden');
       loginBtn.classList.remove('hidden');
       logoutBtn.classList.add('hidden');
+      divideLine.classList.remove('hidden');
     }
 
     // 로그아웃 클릭 시

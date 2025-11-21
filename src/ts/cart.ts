@@ -3,7 +3,6 @@ import { getAxios } from '../utils/axios';
 // 로그인 상태 false true 확인
 const isLoggedIn = !!localStorage.getItem('accessToken');
 console.log('로그인 상태:', isLoggedIn);
-/*---------------------- 장바구니 목록 ----------------------*/
 /*----------------- 타입 ------------------*/
 // 랜더링 시 저장되는 타입
 export interface CartItem {
@@ -11,9 +10,9 @@ export interface CartItem {
   serverId?: number;
   name: string;
   price: number;
-  size: string;
+  size?: string;
   image: string;
-  quantity: number;
+  quantity?: number;
   category?: string;
   gender?: string;
   styleNo?: string;
@@ -52,6 +51,8 @@ interface BestItem {
 }
 
 const axiosInstance = getAxios();
+/*---------------------- 장바구니 목록 ----------------------*/
+
 /*----------------- 로컬 장바구니 불러오기 ------------------*/
 
 function loadLocalCart(): CartItem[] {
@@ -83,7 +84,7 @@ async function loadServerCart(): Promise<CartItem[]> {
       id: item.product._id,
       serverId: item._id,
       name: item.product.name,
-      price: Number(item.product.price) || 0,
+      price: item.product.price || 0,
       size: item.size,
       quantity: Number(item.quantity) || 1,
       image: item.product.image.path || '',
@@ -110,8 +111,6 @@ function renderCart(cartItems: CartItem[]) {
 
   if (cartItems.length === 0) {
     container.innerHTML = `<p class="text-center text-nike-gray-dark">장바구니가 비어있습니다.</p>`;
-    updateTotalPrice(0);
-    renderCartCost(0);
     return;
   }
 
@@ -163,7 +162,7 @@ function renderCart(cartItems: CartItem[]) {
         </div>
 
         <div class="flex flex-col mt-2">
-          <p class="pb-2">무료 배송</p>
+          <p class="pb-2 font-semibold">무료 배송</p>
           <span>
             도착 예정일: 7월 27일 (토) 
             배송 지역: 
@@ -216,8 +215,6 @@ function renderCart(cartItems: CartItem[]) {
 
     container.appendChild(card);
   });
-
-  updateTotalPrice(totalPrice);
 }
 
 /*----------------- 계산 함수 따로 뺌 ------------------*/
@@ -279,13 +276,53 @@ function renderCartCost(totalPrice: number) {
       <span class="font-semibold">총 결제 금액</span>
       <span class="font-semibold">${totalPrice.toLocaleString()} 원</span>
     </div>
-    <button class="md:py-4 rounded-4xl bg-nike-black text-nike-white py-2 font-bold mt-4 hover:bg-nike-gray-dark">
+    <button class="order-page nikeDesktop:py-4 cursor-pointer rounded-4xl bg-nike-black text-nike-white py-2 font-bold mt-4 hover:bg-nike-gray-dark">
       주문결제
     </button>
   `;
 
   container.appendChild(card);
+
+  // 주문 결제 버튼 클릭시
+  const order = document.querySelector('.order-page');
+  order?.addEventListener('click', async () => {
+    const token = localStorage.getItem('accessToken');
+    if (!token) {
+      alert('로그인이 필요합니다.');
+      window.location.href = '/src/pages/signin.html';
+      return;
+    }
+
+    const cartItems = await loadServerCart();
+    await clearServerCart(cartItems);
+
+    window.location.reload();
+  });
 }
+/*----------------- 서버 장바구니 목록 전체 삭제 ------------------*/
+async function clearServerCart(cartItems: CartItem[]) {
+  const token = localStorage.getItem('accessToken');
+  if (!token) return;
+  if (!cartItems || cartItems.length === 0) {
+    alert('장바구니가 비어있습니다.');
+    return;
+  }
+  await Promise.all(
+    cartItems.map(async (item) => {
+      if (!item.serverId) return;
+      try {
+        await axiosInstance.delete(`/carts/${item.serverId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        console.log(`삭제됨: ${item.name}`);
+      } catch (error) {
+        console.error(`${item.name} 삭제 실패:`, error);
+      }
+    })
+  );
+  alert('주문이 완료되었습니다.');
+}
+
 /*----------------- 서버 수량 업데이트 ------------------*/
 
 async function updateServerCartItem(serverId: number, quantity: number) {
@@ -311,10 +348,10 @@ async function deleteServerCartItem(serverId: number) {
     console.error('서버 장바구니 삭제 실패:', error);
   }
 }
+
 /*----------------- 초기 실행 ------------------*/
 
 loadCart();
-/*------------------------------------------------------*/
 
 /*---------------------- 추천 상품 ----------------------*/
 
@@ -329,9 +366,7 @@ async function bestItem(): Promise<CartItem[]> {
       serverId: item._id,
       name: item.name,
       price: Number(item.price) || 0,
-      size: '',
       image: item.mainImages?.[0]?.path || '',
-      quantity: 1,
       category: item.extra?.category?.[0] || '',
       gender: item.extra?.gender || '',
       styleNo: item.extra?.styleNo || '',
@@ -341,52 +376,51 @@ async function bestItem(): Promise<CartItem[]> {
     return [];
   }
 }
-bestItem();
 
 /*----------------- 추천상품 랜더링 ------------------*/
 async function renderBestItems() {
-  const container = document.querySelector('.best-item') as HTMLElement;
-  if (!container) return;
+  if (!bestItemContainer) return;
 
   // 추천상품 불러오기
   const bestItems = await bestItem();
 
   // 기존 내용 초기화
-  container.innerHTML = '';
+  bestItemContainer.innerHTML = '';
 
   bestItems.forEach((item) => {
-    const card = document.createElement('div');
-    card.className = 'flex-[0_0_calc((100%-16px)/2)] md:flex-[0_0_calc((100%-16px)/3)]';
+    const card = document.createElement('a');
+    card.href = `/src/pages/itemdetail?_id=${item.id}`;
+    card.className = 'flex-[0_0_calc((100%-48px)/2)] nikeDesktop:flex-[0_0_calc((100%-48px)/3)]';
 
     card.innerHTML = `
-      <div class="aspect-square bg-nike-gray-lightest overflow-hidden">
+      <div class="aspect-square">
         <img src="${item.image}" alt="${item.name}" class="w-full h-full rounded object-cover transition-transform duration-300" />
       </div>
       <div class="mt-2">
-        <p class="font-medium">${item.name}</p>
-        <p class="text-xs font-extralight text-nike-gray-dark">${item.name}</p>
-        <p class="font-bold text-base mt-1">${item.price.toLocaleString()} 원</p>
+        <p class="font-medium whitespace-normal">${item.name}</p>
+        <p class="text-sm whitespace-normal text-nike-gray-dark">${item.gender}</p>
+        <p class="font-bold text-base ">${item.price.toLocaleString()} 원</p>
       </div>
     `;
 
-    container.appendChild(card);
+    bestItemContainer.appendChild(card);
   });
 }
 
-/*----------------- 좌 우 버튼 ------------------*/
+/*----------------- 좌우 버튼 ------------------*/
 
-const container = document.querySelector('.best-item') as HTMLElement;
+const bestItemContainer = document.querySelector('.best-item') as HTMLElement;
 
 const prevBtn = document.querySelector('.prev') as HTMLElement;
 const nextBtn = document.querySelector('.next') as HTMLElement;
 
 // 왼쪽으로 이동
 prevBtn.addEventListener('click', () => {
-  container.scrollBy({ left: -700, behavior: 'smooth' });
+  bestItemContainer.scrollBy({ left: -500, behavior: 'smooth' });
 });
 // 오른쪽으로 이동
 nextBtn.addEventListener('click', () => {
-  container.scrollBy({ left: 700, behavior: 'smooth' });
+  bestItemContainer.scrollBy({ left: 500, behavior: 'smooth' });
 });
 
 // 실행
