@@ -439,8 +439,9 @@ function renderPreference(prds: Products[]) {
       return `
 
         <div class="prefer-items pl-6  flex gap-3  nikeDesktop:flex nikeDesktop:gap-3 nikeDesktop:min-w-[566.94px]">
-          <article class="min-w-[196px] min-h-[196px] nikeDesktop:min-w-[566.94px]">
+        <article class="min-w-[196px] min-h-[196px] nikeDesktop:min-w-[566.94px]">
             <figure class="pt-3 nikeDesktop:min-w-[566.94px]">
+            <a href="/src/pages/itemdetail?_id=${prd._id}">
               <img class="nikeDesktop:min-w-[566.94px] nikeDesktop:h-[566.94px] w-[196px] h-[196px] nikeDesktop:object-cover" src="${prd.mainImages[0].path}" alt="${prd.name} 이미지" />
             </figure>
             <div class="pt-[11.75px] pb-[11.75px]">
