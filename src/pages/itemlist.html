@@ -78,13 +78,32 @@
         <button class="mobile-filter-apply bg-nike-black text-nike-white border rounded-4xl px-[47.75px] py-[9px] ml-1">적용</button>
       </div>
     </div>
-    <nike-header></nike-header>
-    <main class="flex flex-col min-w-[360px] nikeDesktop:flex-col nikeDesktop:h-screen">
-      <div class="nikeDesktop:flex nikeDesktop:felx-row nikeDesktop:flex-nowrap">
-        <section>
-          <!-- 대 제목 -->
-          <div class="nike-title"></div>
 
+    <nike-header></nike-header>
+
+    <main class="flex flex-col min-w-[360px] nikeDesktop:flex-col nikeDesktop:h-screen">
+      <!-- 대 제목 -->
+      <div class="nike-title flex">
+        <div class="filter-bar pt-[16.5px] pb-[15px] mb-[15px] content-center inline-flex w-full h-[60px]">
+          <!-- 모바일일때 상품 총 개수 나타낼 p태그 -->
+          <p class="total-item ml-5 inline-flex text-nike-gray-dark nikeDesktop:hidden"></p>
+          <div class="desktop-button hidden nikeDesktop:block nikeDesktop:ml-auto">
+            <button class="item-filter-hidden open pl-5 py-[3px] inline-flex items-center ml-auto">필터 숨기기<img src="/assets/icon24px/icon-filter.svg" alt="필터이미지" /></button>
+            <div class="sort-wrapper inline-flex flex-col">
+              <button class="item-filter-sort pl-8 mr-5 pr-3 py-[3px] inline-flex items-center ml-auto"><span class="sort-text">정렬기준:</span><img class="sort-btn-image" src="/assets/icon24px/icon-down.svg" alt="필터이미지" /></button>
+              <div class="sort-option inline-flex flex-col items-end absolute top-30 right-[31px] pr-6 bg-nike-white rounded-bl-[20px] z-0 w-[115px]">
+                <button class="recommend-sort hidden">추천순</button>
+                <button class="recent-sort hidden">최신순</button>
+                <button class="price-high-sort hidden">높은 가격순</button>
+                <button class="price-low-sort hidden">낮은 가격순</button>
+              </div>
+            </div>
+          </div>
+          <button class="item-filter mr-5 px-5 py-[3px] inline-flex items-center gap-[3px] border-nike-gray-light border-solid border rounded-[50px] ml-auto nikeDesktop:hidden">필터<img src="/assets/icon24px/icon-filter.svg" alt="필터이미지" /></button>
+        </div>
+      </div>
+      <div class="section-aside-wrapper nikeDesktop:flex nikeDesktop:felx-row nikeDesktop:flex-nowrap">
+        <section>
           <!-- 카테고리 목록 -->
           <div class="category-main-wrapper">
             <div
@@ -181,27 +200,10 @@
         </section>
 
         <aside class="aside-bar w-full">
-          <!-- 필터 바 -->
-          <div class="filter-bar pt-[16.5px] pb-[15px] mb-[15px] content-center inline-flex w-full h-[60px]">
-            <p class="total-item ml-5 inline-flex text-nike-gray-dark nikeDesktop:hidden"></p>
-            <!-- <div class="hidden nikeDesktop:block"><p class="hidden">신제품</p></div> -->
-            <div class="desktop-button hidden nikeDesktop:block nikeDesktop:ml-auto">
-              <button class="item-filter-hidden open pl-5 py-[3px] inline-flex items-center ml-auto">필터 숨기기<img src="/assets/icon24px/icon-filter.svg" alt="필터이미지" /></button>
-              <div class="sort-wrapper inline-flex flex-col">
-                <button class="item-filter-sort pl-8 mr-5 pr-3 py-[3px] inline-flex items-center ml-auto"><span class="sort-text">정렬기준:</span><img class="sort-btn-image" src="/assets/icon24px/icon-down.svg" alt="필터이미지" /></button>
-                <div class="sort-option inline-flex flex-col items-end absolute top-30 right-[31px] pr-6 bg-nike-white rounded-bl-[20px] z-0 w-[115px]">
-                  <button class="recommend-sort hidden">추천순</button>
-                  <button class="recent-sort hidden">최신순</button>
-                  <button class="price-high-sort hidden">높은 가격순</button>
-                  <button class="price-low-sort hidden">낮은 가격순</button>
-                </div>
-              </div>
-            </div>
-            <button class="item-filter mr-5 px-5 py-[3px] inline-flex items-center gap-[3px] border-nike-gray-light border-solid border rounded-[50px] ml-auto nikeDesktop:hidden">필터<img src="/assets/icon24px/icon-filter.svg" alt="필터이미지" /></button>
-          </div>
-
           <!-- 상품 목록 -->
-          <div class="item-list-wrapper flex w-full flex-wrap gap-x-1.5 gap-y-4.5 nikeDesktop:gap-x-0 z-0"></div>
+          <div class="item-list-wrapper flex w-full flex-wrap gap-x-1.5 gap-y-4.5 nikeDesktop:gap-x-0 z-0">
+            <!-- 상품이 들어갈 자리 -->
+          </div>
         </aside>
       </div>
       <nike-footer></nike-footer>

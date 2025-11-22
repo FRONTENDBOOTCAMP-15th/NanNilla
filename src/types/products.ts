@@ -24,6 +24,7 @@ export interface Products {
   extra: {
     isNew: boolean;
     isBest: boolean;
+    sale: boolean;
     category: string[];
     sort: 1;
     gender: string;
@@ -62,6 +63,20 @@ export interface Products {
   };
 }
 
+export interface CategoryItem {
+  code: string;
+  depth?: number;
+  parent?: string;
+  sort: number;
+  value: string;
+  desc?: string;
+  discountRate?: number;
+}
+
+// 전체 데이터 구조
+export interface CategoryData {
+  flatten: Record<string, CategoryItem>; // 여러 개의 CategoryItem
+}
 /**
  * 게시글 목록 항목 (목록 조회 시 content 제외)
  */
