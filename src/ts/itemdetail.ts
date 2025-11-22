@@ -439,7 +439,7 @@ function renderPreference(prds: Products[]) {
       return `
 
         <div class="prefer-items pl-6  flex gap-3  nikeDesktop:flex nikeDesktop:gap-3 nikeDesktop:min-w-[566.94px]">
-        <article class="min-w-[196px] min-h-[196px] nikeDesktop:min-w-[566.94px]">
+        <article class="nikeDesktop:slider-wrapper min-w-[196px] min-h-[196px] nikeDesktop:min-w-[566.94px]">
             <figure class="pt-3 nikeDesktop:min-w-[566.94px]">
             <a href="/src/pages/itemdetail?_id=${prd._id}">
               <img class="nikeDesktop:min-w-[566.94px] nikeDesktop:h-[566.94px] w-[196px] h-[196px] nikeDesktop:object-cover" src="${prd.mainImages[0].path}" alt="${prd.name} 이미지" />
@@ -466,3 +466,43 @@ if (data) {
 }
 
 ///-------------------------추천 제품 기능 구현----------------------------------------////
+
+///-------------------------추천 제품 버튼 클릭 시 슬라이딩 기능 구현----------------------------------------////
+
+const slidesContainer = document.querySelector('.preference-wrapper') as HTMLElement;
+
+const prevBtn = document.querySelector('.pre-button') as HTMLButtonElement;
+
+const nextBtn = document.querySelector('.next-button') as HTMLButtonElement;
+
+const slideItem = document.querySelector('.prefer-items') as HTMLElement;
+
+const slideWidth = slideItem.offsetWidth + parseInt(window.getComputedStyle(slideItem).marginRight);
+
+nextBtn?.addEventListener('click', () => {
+  slidesContainer.scrollLeft += slideWidth;
+
+  updateButtonStates();
+});
+
+prevBtn?.addEventListener('click', () => {
+  slidesContainer.scrollLeft -= slideWidth;
+
+  updateButtonStates();
+});
+
+function updateButtonStates() {
+  setTimeout(() => {
+    const maxScrollLeft = slidesContainer.scrollWidth - slidesContainer.clientWidth;
+
+    const currentScrollLeft = slidesContainer.scrollLeft;
+
+    prevBtn.disabled = currentScrollLeft <= 0;
+
+    nextBtn.disabled = currentScrollLeft >= maxScrollLeft - 1;
+  }, 100);
+}
+
+updateButtonStates();
+
+///-------------------------추천 제품 버튼 클릭 시 슬라이딩 기능 구현----------------------------------------////
