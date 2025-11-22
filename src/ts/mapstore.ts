@@ -4,19 +4,19 @@
 import type { Store } from '../types/products';
 
 // HTML 요소
-const container = document.getElementById('map') as HTMLElement;
-const mapElement = document.querySelector('.map') as HTMLElement;
-const storeListElement = document.querySelector('.store-list') as HTMLElement;
-const mapBtn = document.querySelector('.map-btn') as HTMLElement;
-const listBtn = document.querySelector('.list-btn') as HTMLElement;
-const storeCount = document.querySelector('.total-store') as HTMLElement;
+const mapElement = document.querySelector('.map') as HTMLElement; // 지도 넣는 곳
+const storeListElement = document.querySelector('.store-list') as HTMLElement; // 매장 리스트
+const mapBtn = document.querySelector('.map-btn') as HTMLElement; // 지도 버튼
+const listBtn = document.querySelector('.list-btn') as HTMLElement; // 리스트 버튼
+const storeCount = document.querySelector('.total-store') as HTMLElement; // 매장 개수
 
 // 지도 초기화
 const options = {
-  center: new kakao.maps.LatLng(37.3839, 127.1214),
+  center: new kakao.maps.LatLng(37.5023134298285, 127.025925464437),
   level: 3,
+  scrollwheel: false,
 };
-const map = new kakao.maps.Map(container, options);
+const map = new kakao.maps.Map(mapElement, options);
 
 // 현재 뷰 상태
 let isMapView = false;
@@ -33,7 +33,7 @@ async function loadStores() {
     storesData = (await response.json()) as Store[];
 
     // 매장 개수 표시
-    storeCount.textContent = `근처 매장: ${storesData.length}개`;
+    storeCount.textContent = `매장: ${storesData.length}개`;
 
     // 마커 표시 및 리스트 렌더링
     loadStoreMarkers();
