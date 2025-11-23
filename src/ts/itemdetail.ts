@@ -119,7 +119,7 @@ function render(prds: Products[]) {
       );
 
       // 이미지 스타일 설정
-      itemImage.classList.add('w-full', 'h-full', 'object-cover', 'block', 'nikeDesktop:w-[70px]', 'nikeDesktop:h-[70px]');
+      itemImage.classList.add('w-full', 'h-full', 'object-cover', 'block', 'nikeDesktop:w-[70px]', 'nikeDesktop:h-[70px]', 'nikeDesktop:rounded-md');
       itemImage.src = image.path;
       itemImage.alt = `${prd.name} - ${image.name}`;
 
@@ -128,11 +128,11 @@ function render(prds: Products[]) {
       // [초기 상태 설정]
       // 첫 번째는 검은 테두리, 나머지는 투명 테두리
       if (index === 0) {
-        itemColorButton.classList.add('border-black');
+        itemColorButton.classList.add('border-black', 'rounded-md', 'border');
         itemColorButton.classList.remove('border-transparent');
       } else {
         itemColorButton.classList.add('border-transparent'); // 안 보일 뿐 공간은 차지
-        itemColorButton.classList.remove('border-black');
+        itemColorButton.classList.remove('border-black', 'rounded-md', 'border');
       }
 
       // [클릭 이벤트]
@@ -144,13 +144,13 @@ function render(prds: Products[]) {
         //  모든 버튼을 투명 테두리로 초기화
         const allButtons = productInfo.querySelectorAll('.itemColorButton');
         allButtons.forEach((btn) => {
-          btn.classList.remove('border-black');
+          btn.classList.remove('border-black', 'rounded-md', 'border');
           btn.classList.add('border-transparent');
         });
 
         //  클릭된 버튼만 검은 테두리 적용
         itemColorButton.classList.remove('border-transparent');
-        itemColorButton.classList.add('border-black');
+        itemColorButton.classList.add('border-black', 'rounded-md', 'border');
 
         console.log('선택된 상품:', selectedProduct);
         ///-------------------------색상 선택 시 테두리 나타나는 기능 ----------------------------/////
@@ -240,6 +240,7 @@ if (data?.ok) {
 // 제품 사이즈 출력
 const axiosInstace = getAxios();
 const container = document.querySelector('.container');
+container?.classList.add('nikeDesktop:w-[376px]');
 export let selectedSize: string | null = null;
 async function getSizeProduct() {
   try {
@@ -255,7 +256,7 @@ async function getSizeProduct() {
       productSize.textContent = String(sizeData);
 
       // 초기 버튼 스타일
-      productSize.classList.add('w-[56.4px]', 'px-4', 'py-2', 'border', 'border-gray-300', 'rounded-md', 'text-sm', 'hover:bg-gray-100');
+      productSize.classList.add('w-[56.4px]', 'px-4', 'py-2', 'border', 'border-gray-300', 'rounded-md', 'text-sm', 'hover:bg-gray-100', 'nikeDesktop:w-[69.19px]', 'nikeDesktop:h-[48px]');
 
       productSize.addEventListener('click', () => {
         selectedSize = sizeData; // 1. 값 업데이트
@@ -282,19 +283,16 @@ async function getSizeProduct() {
     // 사이즈가 DB에 없을 때 - 하드코딩
     function noArray() {
       return `
-<button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button ">250</button>
-        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">255</button>
-        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">260</button>
-        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">265</button>
-        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">270</button>
-        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">275</button>
-        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">280</button>
-        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">285</button>
-        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">290</button>
-        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">295</button>
-        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">300</button>
-        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">305</button>
-        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100" type="button">310</button>
+<button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100 nikeDesktop:w-[69.19px] nikeDesktop:h-12" type="button ">250</button>
+        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100 nikeDesktop:w-[69.19px] nikeDesktop:h-12" type="button">255</button>
+        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100 nikeDesktop:w-[69.19px] nikeDesktop:h-12" type="button">260</button>
+        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100 nikeDesktop:w-[69.19px] nikeDesktop:h-12" type="button">265</button>
+        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100 nikeDesktop:w-[69.19px] nikeDesktop:h-12" type="button">270</button>
+        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100 nikeDesktop:w-[69.19px] nikeDesktop:h-12" type="button">275</button>
+        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100 nikeDesktop:w-[69.19px] nikeDesktop:h-12" type="button">280</button>
+        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100 nikeDesktop:w-[69.19px] nikeDesktop:h-12" type="button">285</button>
+        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100 nikeDesktop:w-[69.19px] nikeDesktop:h-12" type="button">290</button>
+        <button class="w-[56.4px] px-4 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-100 nikeDesktop:w-[69.19px] nikeDesktop:h-12" type="button">295</button>
     `;
     }
     const itemList = document.querySelector('.container');
@@ -441,9 +439,10 @@ function renderPreference(prds: Products[]) {
       return `
 
         <div class="prefer-items pl-6  flex gap-3  nikeDesktop:flex nikeDesktop:gap-3 nikeDesktop:min-w-[566.94px]">
-          <article class="min-w-[196px] min-h-[196px] nikeDesktop:min-w-[566.94px]">
+        <article class="nikeDesktop:slider-wrapper min-w-[196px] min-h-[196px] nikeDesktop:min-w-[566.94px]">
             <figure class="pt-3 nikeDesktop:min-w-[566.94px]">
-              <img class="nikeDesktop:min-w-[566.94px] nikeDesktop:h-[566.94px] w-[196px] h-[196px]" src="${prd.mainImages[0].path}" alt="${prd.name} 이미지" />
+            <a href="/src/pages/itemdetail?_id=${prd._id}">
+              <img class="nikeDesktop:min-w-[566.94px] nikeDesktop:h-[566.94px] w-[196px] h-[196px] nikeDesktop:object-cover" src="${prd.mainImages[0].path}" alt="${prd.name} 이미지" />
             </figure>
             <div class="pt-[11.75px] pb-[11.75px]">
               <h3 class="font-Noto text-sm font-medium">${prd.name}</h3>
@@ -467,3 +466,43 @@ if (data) {
 }
 
 ///-------------------------추천 제품 기능 구현----------------------------------------////
+
+///-------------------------추천 제품 버튼 클릭 시 슬라이딩 기능 구현----------------------------------------////
+
+const slidesContainer = document.querySelector('.preference-wrapper') as HTMLElement;
+
+const prevBtn = document.querySelector('.pre-button') as HTMLButtonElement;
+
+const nextBtn = document.querySelector('.next-button') as HTMLButtonElement;
+
+const slideItem = document.querySelector('.prefer-items') as HTMLElement;
+
+const slideWidth = slideItem.offsetWidth + parseInt(window.getComputedStyle(slideItem).marginRight);
+
+nextBtn?.addEventListener('click', () => {
+  slidesContainer.scrollLeft += slideWidth;
+
+  updateButtonStates();
+});
+
+prevBtn?.addEventListener('click', () => {
+  slidesContainer.scrollLeft -= slideWidth;
+
+  updateButtonStates();
+});
+
+function updateButtonStates() {
+  setTimeout(() => {
+    const maxScrollLeft = slidesContainer.scrollWidth - slidesContainer.clientWidth;
+
+    const currentScrollLeft = slidesContainer.scrollLeft;
+
+    prevBtn.disabled = currentScrollLeft <= 0;
+
+    nextBtn.disabled = currentScrollLeft >= maxScrollLeft - 1;
+  }, 100);
+}
+
+updateButtonStates();
+
+///-------------------------추천 제품 버튼 클릭 시 슬라이딩 기능 구현----------------------------------------////

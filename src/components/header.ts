@@ -14,13 +14,13 @@ class HeaderComponent extends HTMLElement {
       <!-- 헤더 -->
       <header class="hidden nikeDesktop:flex w-full h-10 px-6 justify-end items-center bg-nike-gray-lightest">
         <div class="flex gap-3">
-        <button class="text-xs font-medium">매장찾기</button>
+        <button class="text-xs font-medium"><a href="/src/pages/mapstore">매장 찾기</a></button>
         <p class="text-xs font-medium">|</p>
         <button class="text-xs font-medium">고객센터</button>
         <p class="text-xs font-medium">|</p>
-        <button id="signup-btn" class="text-xs font-medium cursor-pointer">가입하기</button>
+        <button id="signup-btn" class="text-xs font-medium cursor-pointer"><a href="/src/pages/signin.html">가입하기</a></button>
         <p id="divide" class="text-xs font-medium">|</p>
-        <button id="login-btn" class="text-xs font-medium cursor-pointer">로그인</button>
+        <button id="login-btn" class="text-xs font-medium cursor-pointer"><a href="/src/pages/signin.html">로그인</a></button>
         <button id="logout-btn" class="text-xs font-medium cursor-pointer">로그아웃</button>
         </div>
       </header>
@@ -188,8 +188,8 @@ class HeaderComponent extends HTMLElement {
         <div class="flex flex-col gap-9.5">
           <input type="checkbox" id="menu" class="peer hidden"><label for="menu-toggle" class="w-9 h-9 absolute right-2 top-2  p-1 z-30 box-border bg-[url(/assets/icon36px/icon-close.svg)] cursor-pointer"></label>
           <div class="flex gap-5 pl-8.5 pt-19">
-            <button id="signup-btn" class="w-22.5 h-10 rounded-full bg-nike-black text-nike-white text-base"><a href="src/pages/signin.html">가입하기</a></button>
-            <button id="login-btn" class="w-19.5 h-10 rounded-full bg-nike-white text-nike-black border border-nike-gray-light text-base"><a href="src/pages/signin.html">로그인</a></button>
+            <button id="signup-btn" class="w-22.5 h-10 rounded-full bg-nike-black text-nike-white text-base"><a href="/src/pages/signin.html">가입하기</a></button>
+            <button id="login-btn" class="w-19.5 h-10 rounded-full bg-nike-white text-nike-black border border-nike-gray-light text-base"><a href="/src/pages/signin.html">로그인</a></button>
             <button id="logout-btn" class="w-22.5 h-10 rounded-full bg-nike-black text-nike-white text-base hidden">로그아웃</button>
           </div>
           <div class="flex flex-col pl-8.5 gap-6">
@@ -203,7 +203,7 @@ class HeaderComponent extends HTMLElement {
             <button class="flex items-center gap-3 text-base font-medium py-2"><img src="/assets/icon24px/icon-cs.svg" alt=""><span>고객센터</span></button>
             <button class="flex items-center gap-3 text-base font-medium py-2"><img src="/assets/icon24px/icon-cart.svg" alt=""><a href="/src/pages/cart">장바구니</a></button>
             <button class="flex items-center gap-3 text-base font-medium py-2"><img src="/assets/icon24px/icon-order.svg" alt=""><span>주문</span></button>
-            <button class="flex items-center gap-3 text-base font-medium py-2"><img src="/assets/icon24px/icon-store.svg" alt=""><span>매장 찾기</span></button>
+            <button class="flex items-center gap-3 text-base font-medium py-2"><img src="/assets/icon24px/icon-store.svg" alt=""><a href="/src/pages/mapstore">매장 찾기</a></button>
           </div>
         </div>
       </section>
@@ -259,7 +259,7 @@ class HeaderComponent extends HTMLElement {
     const kidsBtn = this.querySelector('#menu-kids') as HTMLElement;
     const subMenuKids = this.querySelector('#sub-menu-kids') as HTMLElement;
     // --------------------------
-    // Men                      
+    // Men
     // --------------------------
     if (!menBtn || !subMenuMen) return;
     // 버튼 hover → 메뉴 열기
@@ -280,7 +280,7 @@ class HeaderComponent extends HTMLElement {
     });
 
     // --------------------------
-    // Women                      
+    // Women
     // --------------------------
     if (!womenBtn || !subMenuWomen) return;
     // 버튼 hover → 메뉴 열기
@@ -301,7 +301,7 @@ class HeaderComponent extends HTMLElement {
     });
 
     // --------------------------
-    // Kids                      
+    // Kids
     // --------------------------
     if (!kidsBtn || !subMenuKids) return;
     // 버튼 hover → 메뉴 열기

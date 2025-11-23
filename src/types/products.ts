@@ -77,6 +77,18 @@ export interface CategoryItem {
 export interface CategoryData {
   flatten: Record<string, CategoryItem>; // 여러 개의 CategoryItem
 }
+
+export interface Store {
+  id: number;
+  name: string;
+  lat: number;
+  lng: number;
+  address: string;
+  phone: string;
+  category: string;
+  hours: string;
+}
+
 /**
  * 게시글 목록 항목 (목록 조회 시 content 제외)
  */

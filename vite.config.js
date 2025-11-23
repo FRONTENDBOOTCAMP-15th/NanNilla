@@ -15,6 +15,7 @@ export default defineConfig({
         cart: path.resolve(__dirname, 'src/pages/cart.html'),
         signin: path.resolve(__dirname, 'src/pages/signin.html'),
         signup: path.resolve(__dirname, 'src/pages/signup.html'),
+        mapstore: path.resolve(__dirname, 'src/pages/mapstore.html'),
       },
     },
   },

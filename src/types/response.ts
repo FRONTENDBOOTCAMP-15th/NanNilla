@@ -8,12 +8,12 @@ export interface ApiError {
   message: string;
 }
 
-
 /**
  * 게시글 목록 조회 응답 (GET /posts)
  * 성공: { ok: 1, item: [...], pagination: {...} }
  * 실패: { ok: 0, message: "에러 메시지" }
  */
+
 export type ItemListRes = {
   ok: 1;
   item: Products[];
